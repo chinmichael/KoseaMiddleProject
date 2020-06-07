@@ -1,19 +1,20 @@
 package loginPack;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import java.awt.*;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 public class LoginStart extends JFrame {
-
-	private JPanel contentPane;
-
-	/**
-	 * Launch the application.
-	 */
+	
+	public class Content extends JPanel {
+		public void paintComponent(Graphics g) {
+			Dimension d = getSize();
+			ImageIcon image = new ImageIcon("C:\\Users\\chinm\\git\\KoseaMiddleProject\\KoseaMiddleProject\\src\\imagePack");
+			g.drawImage(image.getImage(), 0, 0, d.width, d.height, null);
+		}
+	}
+	
 	public static void main(String[] args) {
 
 		try {
@@ -24,17 +25,23 @@ public class LoginStart extends JFrame {
 		}
 
 	}
+	
 
-	/**
-	 * Create the frame.
-	 */
+
 	public LoginStart() {
+		setTitle("Login");
+		getContentPane().setLayout(null);
+		
+		JButton btnNewButton = new JButton("New button");
+		btnNewButton.setBounds(117, 142, 97, 23);
+		getContentPane().add(btnNewButton);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
-		setContentPane(contentPane);
+		setSize(800, 1300);
+		setLocation(800, 400);
+		
+		Content panel = new Content();
+		panel.setLayout(null);
+		panel.setBounds(0, 0, 800, 1300);
+		setContentPane(panel);
 	}
-
 }
