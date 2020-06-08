@@ -3,11 +3,15 @@ package loginPack;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.border.Border;
+
 import toolPack.*;
 
 public class LoginHome extends JFrame {
 	
 	ImageInput imageEdit = new ImageInput();
+	private JTextField fieldID;
+	private JTextField fieldPW;
 
 	public static void main(String[] args) {
 
@@ -46,15 +50,8 @@ public class LoginHome extends JFrame {
 			
 		});
 		
-		JPanel backG = new JPanel() {
-			public void paintComponent(Graphics g) {
-				Dimension d = getSize();
-				ImageIcon image = new ImageIcon("src\\imagePack\\LoginBG1.png");
-				g.drawImage(image.getImage(), 0, 0, d.width, d.height, null);
-				setOpaque(false);
-				super.paintComponent(g);
-			}
-		};
+		ImageIcon panelImage = new ImageIcon("src\\imagePack\\LoginBG1.png");
+		JPanel backG = imageEdit.panelPaint(panelImage);
 		backG.setBounds(0, 0, 380, 600);
 		
 		JButton xbutton = new JButton();
@@ -80,31 +77,46 @@ public class LoginHome extends JFrame {
 		ImageIcon laction = new ImageIcon("src\\imagePack\\Lbutton2.png");
 		imageEdit.setButtonImage(loginB, lnormal, laction);
 		
-		JTextArea inputID = new JTextArea("ID를 입력하세요") {
-			public void paintComponent(Graphics g) {
-				Dimension d = getSize();
-				ImageIcon image = new ImageIcon("src\\imagePack\\Textbar.png");
-				g.drawImage(image.getImage(), 0, 0, d.width, d.height, null);
-				setOpaque(false);
-				super.paintComponent(g);
-			}
-		};
-		inputID.setBounds(63, 294, 254, 41);
-		getContentPane().add(inputID);
-		inputID.setColumns(10);
 		
-		JTextArea inputPW = new JTextArea("PW를 입력하세요") {
-			public void paintComponent(Graphics g) {
-				Dimension d = getSize();
-				ImageIcon image = new ImageIcon("src\\imagePack\\Textbar.png");
-				g.drawImage(image.getImage(), 0, 0, d.width, d.height, null);
-				setOpaque(false);
-				super.paintComponent(g);
+		fieldID = new JTextField("ID를 입력하세요") {
+			public void setBorder(Border border) {	
+			}
+		}; // 익명클래스로 텍스트 테두리 제거
+		fieldID.setBounds(70, 295, 240, 31);
+		fieldID.setOpaque(false);
+		getContentPane().add(fieldID);
+		fieldID.setColumns(10);
+		fieldID.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e){
+                fieldID.setText("");
+            }
+		});
+		
+		fieldPW = new JTextField("비밀번호를 입력하세요") {
+			public void setBorder(Border border) {
 			}
 		};
-		inputPW.setBounds(63, 341, 254, 41);
-		getContentPane().add(inputPW);
-		inputPW.setColumns(10);
+		fieldPW.setBounds(70, 346, 240, 31);
+		fieldPW.setOpaque(false);
+		getContentPane().add(fieldPW);
+		fieldPW.setColumns(10);
+		fieldPW.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e){
+                fieldPW.setText("");
+            }
+		});
+		
+		ImageIcon textImage = new ImageIcon("src\\imagePack\\Textbar.png");
+
+		JLabel backID = new JLabel();
+		backID.setBounds(63, 290, 254, 41);
+		imageEdit.setPaintLabel(backID, textImage);
+		getContentPane().add(backID);
+		
+		JLabel backPW = new JLabel();
+		backPW.setBounds(63, 341, 254, 41);
+		imageEdit.setPaintLabel(backPW, textImage);
+		getContentPane().add(backPW);
 		
 		getContentPane().add(backG);
 	}
