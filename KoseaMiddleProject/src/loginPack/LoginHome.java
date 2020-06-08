@@ -2,10 +2,12 @@ package loginPack;
 
 import java.awt.*;
 import java.awt.event.*;
-
 import javax.swing.*;
+import toolPack.*;
 
 public class LoginHome extends JFrame {
+	
+	ImageInput imageEdit = new ImageInput();
 
 	public static void main(String[] args) {
 
@@ -44,94 +46,67 @@ public class LoginHome extends JFrame {
 			
 		});
 		
+		JPanel backG = new JPanel() {
+			public void paintComponent(Graphics g) {
+				Dimension d = getSize();
+				ImageIcon image = new ImageIcon("src\\imagePack\\LoginBG1.png");
+				g.drawImage(image.getImage(), 0, 0, d.width, d.height, null);
+				setOpaque(false);
+				super.paintComponent(g);
+			}
+		};
+		backG.setBounds(0, 0, 380, 600);
+		
 		JButton xbutton = new JButton();
-		xbutton.setBounds(348, 10, 20, 21);
-		xbutton.setBorderPainted(false);
-		xbutton.setContentAreaFilled(false);
-		xbutton.setFocusPainted(false);
-		Dimension d1 = xbutton.getSize();
-		
-		ImageIcon xnormal = new ImageIcon("src\\imagePack\\Xbutton1.png");
-		xnormal = imageSetsize(xnormal, d1.width, d1.height);
-		ImageIcon xaction = new ImageIcon("src\\imagePack\\Xbutton2.png");
-		xaction = imageSetsize(xaction, d1.width, d1.height);
-		
-		xbutton.setIcon(xnormal);
-		xbutton.setPressedIcon(xaction);
-		xbutton.setRolloverIcon(xaction);
+		xbutton.setLocation(348, 10);
+		getContentPane().add(xbutton);
+		xbutton.setSize(20, 20);
 		xbutton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
 			}
 		});
+		ImageIcon xnormal = new ImageIcon("src\\imagePack\\Xbutton1.png");
+		ImageIcon xaction = new ImageIcon("src\\imagePack\\Xbutton2.png");
+		imageEdit.setButtonImage(xbutton, xnormal, xaction);
+		
 		
 		JButton loginB = new JButton();
-		loginB.setBounds(52, 378, 280, 40);
-		loginB.setBorderPainted(false);
-		loginB.setContentAreaFilled(false);
-		loginB.setFocusPainted(false);
-		Dimension d2 = loginB.getSize();
-		
-		ImageIcon lnormal = new ImageIcon("src\\imagePack\\Lbutton1.png");
-		lnormal = imageSetsize(lnormal, d2.width, d2.height);
-		ImageIcon laction = new ImageIcon("src\\imagePack\\Lbutton2.png");
-		laction = imageSetsize(laction, d2.width, d2.height);
-		
-		loginB.setIcon(lnormal);
-		loginB.setPressedIcon(laction);
-		loginB.setRolloverIcon(laction);
-		
-		getContentPane().add(xbutton);
+		loginB.setBounds(63, 402, 254, 41);
 		getContentPane().add(loginB);
 		
 		
-		JTextField IDcheck = new JTextField();
-		IDcheck = new JTextField("ID를 입력하세요");
-		IDcheck.setBounds(52, 278, 280, 40);
-		getContentPane().add(IDcheck);
-		IDcheck.setColumns(10);
+		ImageIcon lnormal = new ImageIcon("src\\imagePack\\Lbutton1.png");
+		ImageIcon laction = new ImageIcon("src\\imagePack\\Lbutton2.png");
+		imageEdit.setButtonImage(loginB, lnormal, laction);
 		
-		JTextField PWcheck = new JTextField();
-		PWcheck = new JTextField("PW를 입력하세요");
-		PWcheck.setBounds(52, 328, 280, 40);
-		getContentPane().add(PWcheck);
-		PWcheck.setColumns(10);
+		JTextArea inputID = new JTextArea("ID를 입력하세요") {
+			public void paintComponent(Graphics g) {
+				Dimension d = getSize();
+				ImageIcon image = new ImageIcon("src\\imagePack\\Textbar.png");
+				g.drawImage(image.getImage(), 0, 0, d.width, d.height, null);
+				setOpaque(false);
+				super.paintComponent(g);
+			}
+		};
+		inputID.setBounds(63, 294, 254, 41);
+		getContentPane().add(inputID);
+		inputID.setColumns(10);
 		
-		JLabel regText = new JLabel("신규 등록");
-		regText.setFont(new Font("굴림", Font.PLAIN, 13));
-		regText.setBounds(119, 428, 57, 27);
-		getContentPane().add(regText);
+		JTextArea inputPW = new JTextArea("PW를 입력하세요") {
+			public void paintComponent(Graphics g) {
+				Dimension d = getSize();
+				ImageIcon image = new ImageIcon("src\\imagePack\\Textbar.png");
+				g.drawImage(image.getImage(), 0, 0, d.width, d.height, null);
+				setOpaque(false);
+				super.paintComponent(g);
+			}
+		};
+		inputPW.setBounds(63, 341, 254, 41);
+		getContentPane().add(inputPW);
+		inputPW.setColumns(10);
 		
-		JLabel lblNewLabel_1 = new JLabel("|");
-		lblNewLabel_1.setFont(new Font("굴림", Font.PLAIN, 14));
-		lblNewLabel_1.setBounds(189, 428, 7, 27);
-		getContentPane().add(lblNewLabel_1);
-		
-		JLabel findText = new JLabel("계정 찾기");
-		findText.setFont(new Font("굴림", Font.PLAIN, 13));
-		findText.setBounds(218, 431, 57, 21);
-		getContentPane().add(findText);
-		
-		JButton regB = new JButton();
-		regB.setBorderPainted(false);
-		regB.setContentAreaFilled(false);
-		regB.setFocusPainted(false);
-		regB.setBounds(86, 428, 97, 23);
-		getContentPane().add(regB);
-		
-		JButton findB = new JButton();
-		findB.setBorderPainted(false);
-		findB.setContentAreaFilled(false);
-		findB.setFocusPainted(false);
-		findB.setBounds(227, 519, 97, 23);
-		getContentPane().add(findB);
-		
-	}
-	
-	public void paint(Graphics g) {
-		Dimension d = getSize();
-		ImageIcon image = new ImageIcon("src\\imagePack\\LoginBG1.png");
-		g.drawImage(image.getImage(), 0, 0, d.width, d.height, null);
+		getContentPane().add(backG);
 	}
 	
 	public ImageIcon imageSetsize(ImageIcon icon, int x, int y) {
