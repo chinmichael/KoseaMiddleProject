@@ -12,7 +12,7 @@ public class ConnDB {
 	private Statement stmt;
 	private ResultSet rs;
 	
-	public void connDB() {
+	public ConnDB() {
 		try {
 			Class.forName(driver);
 			System.out.println("jdbc driver loading success");
@@ -24,6 +24,18 @@ public class ConnDB {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public Statement getST() {
+		return stmt;
+	}
+	
+	public ResultSet getRS() {
+		return rs;
+	}
+	
+	public void setRS(ResultSet rs) {
+		this.rs = rs;
 	}
 	
 }
