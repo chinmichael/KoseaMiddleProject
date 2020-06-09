@@ -1,9 +1,11 @@
 package connPack;
 
 import java.util.ArrayList;
+
 import java.sql.*;
 import loginPack.*;
 import mainPack.*;
+import warningPack.*;
 
 public class AccountQ {
 	
@@ -19,8 +21,8 @@ public class AccountQ {
 			c.getRS().last();
 			
 			if(c.getRS().getRow() == 0) {
-				WarningWindow w = new WarningWindow();
-				w.openWarningAccount();
+				AccountInput wMsg = new AccountInput();
+				wMsg.printMsg();
 			} else {
 				String checkPW = c.getRS().getString("user_pw");
 				
@@ -48,8 +50,8 @@ public class AccountQ {
 					}
 					
 				} else {
-					WarningWindow w = new WarningWindow();
-					w.openWarningAccount();
+					AccountInput wMsg = new AccountInput();
+					wMsg.printMsg();
 				}
 			}
 			

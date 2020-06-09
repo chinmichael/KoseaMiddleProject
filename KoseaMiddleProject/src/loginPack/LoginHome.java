@@ -11,6 +11,7 @@ import javax.swing.border.Border;
 import toolPack.*;
 import connPack.*;
 import mainPack.*;
+import warningPack.*;
 
 public class LoginHome extends JFrame {
 	
@@ -147,8 +148,9 @@ public class LoginHome extends JFrame {
 		loginB.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				if (fieldID.getText().equals("") || fieldPW.getText().equals("")) {
-					WarningWindow win = new WarningWindow();
-					win.openWarningAccount();
+					AccountInput wMsg = new AccountInput();
+					wMsg.printMsg();
+					
 					if (fieldID.getText().equals("")) {
 						msgID.setVisible(true);
 					}
