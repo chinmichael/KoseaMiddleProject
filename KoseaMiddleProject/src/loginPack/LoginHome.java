@@ -155,12 +155,17 @@ public class LoginHome extends JFrame {
 					if (fieldPW.getText().equals("")) {
 						msgPW.setVisible(true);
 					}
+					
 				} else {
 					String IDcheck = fieldID.getText();
 					String PWcheck = fieldPW.getText();
 					
 					AccountQ login = new AccountQ();
-					ArrayList<AccountDB> list = login.list(IDcheck, PWcheck);				
+					ArrayList<AccountDB> list = login.list(IDcheck, PWcheck);
+					AccountDB data = (AccountDB) list.get(0);
+					if (data.getUcheck()) {
+						dispose();
+					}
 					
 				}
 			}

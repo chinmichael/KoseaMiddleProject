@@ -45,9 +45,6 @@ public class AccountQ {
 						
 						MainHome openMain = new MainHome();
 						openMain.openMainHome();
-						System.out.println("¿©±â³Ä");
-						LoginHome s = new LoginHome();
-						s.dispose();
 					}
 					
 				} else {

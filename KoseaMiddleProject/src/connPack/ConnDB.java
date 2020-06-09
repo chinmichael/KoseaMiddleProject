@@ -4,7 +4,8 @@ import java.sql.*;
 
 public class ConnDB {
 	String driver = "oracle.jdbc.driver.OracleDriver";
-	String url = "jdbc:oracle:thin:@localhost:1521:orcl";
+//	String url = "jdbc:oracle:thin:@localhost:1521:orcl";   // School URL
+	String url = "jdbc:oracle:thin:@localhost:1521:ChinHR"; // Home URL
 	String user = "hrchin";
 	String password = "kosea";
 	
@@ -15,11 +16,8 @@ public class ConnDB {
 	public ConnDB() {
 		try {
 			Class.forName(driver);
-			System.out.println("jdbc driver loading success");
 			con = DriverManager.getConnection(url, user, password);
-			System.out.println("oracle connetion success");
 			stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-			System.out.println("statement create success." +"\n\n");
 			
 		} catch (Exception e) {
 			e.printStackTrace();

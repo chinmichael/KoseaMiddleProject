@@ -26,10 +26,6 @@ public class MainHome extends JFrame {
 	public void openMainHome() {
 		MainHome frame = new MainHome();
 		frame.setVisible(true);
-		System.out.println("Àú±â³Ä");
-		LoginHome s = new LoginHome();
-		s.dispose();
-		
 	}
 
 
