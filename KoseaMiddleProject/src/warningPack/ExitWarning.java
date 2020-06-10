@@ -7,13 +7,13 @@ import javax.swing.*;
 import toolPack.*;
 
 
-public class AccountInput extends JFrame {
+public class ExitWarning extends JFrame {
 
 	Container contentP = getContentPane();
 
 	public static void main(String[] args) {
 		try {
-			AccountInput frame = new AccountInput();
+			ExitWarning frame = new ExitWarning();
 			frame.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -21,11 +21,11 @@ public class AccountInput extends JFrame {
 	}
 	
 	public void printMsg() {
-		AccountInput frame = new AccountInput();
+		ExitWarning frame = new ExitWarning();
 		frame.setVisible(true);
 	}
 
-	public AccountInput() {
+	public ExitWarning() {
 		setSize(300, 180); //2400 1450
 		setResizable(false);
 		SizeTool st = new SizeTool();
@@ -58,13 +58,13 @@ public class AccountInput extends JFrame {
 		JPanel backG = imageEdit.panelPaint(panelImage);
 		backG.setBounds(0, 0, 300, 180);
 		
-		JLabel msgAccount = new JLabel("아이디 혹은 비밀번호를 확인해주세요");
+		JLabel msgAccount = new JLabel("종료하시겠습니까?");
 		msgAccount.setForeground(new Color(153, 102, 0));
 		msgAccount.setFont(new Font("굴림", Font.BOLD, 15));
-		msgAccount.setBounds(20, 52, 255, 63);
+		msgAccount.setBounds(88, 52, 128, 63);
 		contentP.add(msgAccount);
 		
-		JLabel buttonMsg = new JLabel("확인");
+		JLabel buttonMsg = new JLabel("종료");
 		buttonMsg.setForeground(Color.WHITE);
 		buttonMsg.setFont(new Font("굴림", Font.BOLD, 15));
 		buttonMsg.setBounds(138, 132, 33, 22);
@@ -72,13 +72,13 @@ public class AccountInput extends JFrame {
 		
 		ImageIcon cnormal = new ImageIcon("src\\warningImage\\Wbutton1.jpg");
 		ImageIcon caction = new ImageIcon("src\\warningImage\\Wbutton2.jpg");
-		JButton checkOK = new JButton();
-		checkOK.setBounds(105, 125, 97, 31);
-		contentP.add(checkOK);
-		imageEdit.setButtonImage(checkOK, cnormal, caction);
-		checkOK.addMouseListener(new MouseAdapter() {
+		JButton checkExit = new JButton();
+		checkExit.setBounds(105, 125, 97, 31);
+		contentP.add(checkExit);
+		imageEdit.setButtonImage(checkExit, cnormal, caction);
+		checkExit.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				dispose();
+				System.exit(0);
 			}
 		});
 		

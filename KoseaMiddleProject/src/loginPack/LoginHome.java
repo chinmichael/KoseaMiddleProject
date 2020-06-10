@@ -15,7 +15,6 @@ import warningPack.*;
 
 public class LoginHome extends JFrame {
 	
-	ImageInput imageEdit = new ImageInput();
 	private JTextField fieldID;
 	private JPasswordField fieldPW;
 
@@ -33,9 +32,8 @@ public class LoginHome extends JFrame {
 	public LoginHome() {
 		setSize(380, 600);
 		setResizable(false);
-		Toolkit tk = Toolkit.getDefaultToolkit();
-		Dimension screen = tk.getScreenSize();
-		setLocation(screen.width/2 - 190, screen.height/2 - 350);
+		SizeTool st = new SizeTool();
+		setLocation(st.setCenterX(380), st.setCenterY(600) - 20);
 		setUndecorated(true);
 		getContentPane().setLayout(null);
 		addMouseMotionListener(new MouseMotionListener() {
@@ -57,6 +55,8 @@ public class LoginHome extends JFrame {
 			}
 			
 		});
+		
+		ImageInput imageEdit = new ImageInput();
 		
 		ImageIcon panelImage = new ImageIcon("src\\loginImage\\LoginBG1.jpg");
 		JPanel backG = imageEdit.panelPaint(panelImage);
@@ -135,7 +135,8 @@ public class LoginHome extends JFrame {
 		getContentPane().add(xbutton);
 		xbutton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				System.exit(0);
+				ExitWarning ex = new ExitWarning();
+				ex.printMsg();
 			}
 		});
 			
@@ -164,8 +165,8 @@ public class LoginHome extends JFrame {
 					
 					AccountQ login = new AccountQ();
 					ArrayList<AccountDB> list = login.list(IDcheck, PWcheck);
-					AccountDB data = (AccountDB) list.get(0);
-					if (data.getUcheck()) {
+//					AccountDB data = (AccountDB) list.get(0);
+					if (login.flg) {
 						dispose();
 					}
 					

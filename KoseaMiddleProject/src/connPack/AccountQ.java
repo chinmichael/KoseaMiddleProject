@@ -9,6 +9,8 @@ import warningPack.*;
 
 public class AccountQ {
 	
+	public static boolean flg;
+	
 	public ArrayList<AccountDB> list (String id, String pw) {
 		ArrayList<AccountDB> list = new ArrayList<AccountDB>();
 		
@@ -38,10 +40,10 @@ public class AccountQ {
 						String user_type = c.getRS().getString("user_type");
 						String owner_code = c.getRS().getString("owner_code");
 						
-						boolean flg = true;
+						flg = true;
 
 						AccountDB data = new AccountDB(user_name, id, pw, e_mail, phone, hint, hint_answer,
-								shop_id, user_type, owner_code, flg);
+								shop_id, user_type, owner_code);
 						
 						list.add(data);
 						
