@@ -1,19 +1,18 @@
-package warningPack;
+package popUpPack;
 
 import java.awt.*;
-
 import java.awt.event.*;
 import javax.swing.*;
 import toolPack.*;
 
 
-public class AccountInput extends JFrame {
+public class ShortageW extends JDialog {
 
 	Container contentP = getContentPane();
 
 	public static void main(String[] args) {
 		try {
-			AccountInput frame = new AccountInput();
+			ShortageW frame = new ShortageW();
 			frame.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -21,47 +20,29 @@ public class AccountInput extends JFrame {
 	}
 	
 	public void printMsg() {
-		AccountInput frame = new AccountInput();
+		ShortageW frame = new ShortageW();
 		frame.setVisible(true);
 	}
 
-	public AccountInput() {
+	public ShortageW() {
 		setSize(300, 180); //2400 1450
 		setResizable(false);
 		SizeTool st = new SizeTool();
 		setLocation(st.setCenterX(300), st.setCenterY(180) - 100);
 		setUndecorated(true);
+		setModal(true);
+		addMouseMotionListener(new DragMoveDialog());
 		contentP.setLayout(null);
-		addMouseMotionListener(new MouseMotionListener() {
-			int xDrag, yDrag, xPress, yPress;
-			
-			@Override
-			public void mouseDragged(MouseEvent e) {
-				xDrag = e.getX();
-				yDrag = e.getY();
-				JFrame sframe = (JFrame) e.getSource();
-				sframe.setLocation(sframe.getLocation().x +  xDrag - xPress, sframe.getLocation().y +  yDrag - yPress);
-				
-			}
-
-			@Override
-			public void mouseMoved(MouseEvent e) {
-				xPress = e.getX();
-				yPress = e.getY();
-			}
-			
-		});
-		
 		ImageInput imageEdit = new ImageInput();
 		
 		ImageIcon panelImage = new ImageIcon("src\\warningImage\\CationBG.jpg");
 		JPanel backG = imageEdit.panelPaint(panelImage);
 		backG.setBounds(0, 0, 300, 180);
 		
-		JLabel msgAccount = new JLabel("아이디 혹은 비밀번호를 확인해주세요");
+		JLabel msgAccount = new JLabel("필수 입력정보를 입력해주세요");
 		msgAccount.setForeground(new Color(153, 102, 0));
 		msgAccount.setFont(new Font("굴림", Font.BOLD, 15));
-		msgAccount.setBounds(20, 52, 255, 63);
+		msgAccount.setBounds(45, 52, 255, 63);
 		contentP.add(msgAccount);
 		
 		JLabel buttonMsg = new JLabel("확인");

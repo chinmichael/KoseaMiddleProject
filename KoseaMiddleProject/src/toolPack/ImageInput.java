@@ -2,6 +2,7 @@ package toolPack;
 
 import java.awt.*;
 import javax.swing.*;
+import javax.swing.border.Border;
 
 public class ImageInput {
 
@@ -10,6 +11,17 @@ public class ImageInput {
 		Image b = a.getScaledInstance(x, y, java.awt.Image.SCALE_SMOOTH); // (image함수 getScaledInstance로 품질 유지한 채 사이즈 변경)
 		ImageIcon c = new ImageIcon(b);
 		return c;
+	}
+	
+	public void setOneImage(JButton b, ImageIcon im) {
+
+		buttonOpaque(b);
+
+		Dimension d = b.getSize();
+
+		im = imageSetsize(im, d.width, d.height);
+
+		b.setIcon(im);
 	}
 
 	public void setButtonImage(JButton b, ImageIcon bNormal, ImageIcon bAction) {
@@ -51,6 +63,16 @@ public class ImageInput {
 		};
 
 		return p;
+	}
+	
+	public JTextField textClean() {
+		JTextField jt = new JTextField() {
+			public void setBorder(Border border) {	
+			}
+		}; // 익명클래스로 텍스트 테두리 제거
+		jt.setOpaque(false);
+		
+		return jt;
 	}
 
 	public JTextArea textPaint(ImageIcon back) {

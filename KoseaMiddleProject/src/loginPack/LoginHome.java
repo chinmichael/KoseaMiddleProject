@@ -11,22 +11,22 @@ import javax.swing.border.Border;
 import toolPack.*;
 import connPack.*;
 import mainPack.*;
-import warningPack.*;
+import popUpPack.*;
 
 public class LoginHome extends JFrame {
+	
+	Container contentP = getContentPane();
 	
 	private JTextField fieldID;
 	private JPasswordField fieldPW;
 
 	public static void main(String[] args) {
-
 		try {
 			LoginHome frame = new LoginHome();
 			frame.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	public LoginHome() {
@@ -36,25 +36,7 @@ public class LoginHome extends JFrame {
 		setLocation(st.setCenterX(380), st.setCenterY(600) - 20);
 		setUndecorated(true);
 		getContentPane().setLayout(null);
-		addMouseMotionListener(new MouseMotionListener() {
-			int xDrag, yDrag, xPress, yPress;
-			
-			@Override
-			public void mouseDragged(MouseEvent e) {
-				xDrag = e.getX();
-				yDrag = e.getY();
-				JFrame sframe = (JFrame) e.getSource();
-				sframe.setLocation(sframe.getLocation().x +  xDrag - xPress, sframe.getLocation().y +  yDrag - yPress);
-				
-			}
-
-			@Override
-			public void mouseMoved(MouseEvent e) {
-				xPress = e.getX();
-				yPress = e.getY();
-			}
-			
-		});
+		addMouseMotionListener(new MouseDragMove());
 		
 		ImageInput imageEdit = new ImageInput();
 		
@@ -65,21 +47,17 @@ public class LoginHome extends JFrame {
 		JLabel msgID = new JLabel("아이디를 입력하세요");
 		msgID.setForeground(Color.GRAY);
 		msgID.setBounds(72, 305, 131, 15);
-		getContentPane().add(msgID);
+		contentP.add(msgID);
 		
-		fieldID = new JTextField() {
-			public void setBorder(Border border) {	
-			}
-		}; // 익명클래스로 텍스트 테두리 제거
+		fieldID = imageEdit.textClean();
 		fieldID.setBounds(70, 295, 240, 31);
-		fieldID.setOpaque(false);
-		getContentPane().add(fieldID);
+		contentP.add(fieldID);
 		fieldID.setColumns(10);
 		
 		JLabel msgPW = new JLabel("비밀번호를 입력하세요");
 		msgPW.setForeground(Color.GRAY);
 		msgPW.setBounds(72, 356, 133, 15);
-		getContentPane().add(msgPW);
+		contentP.add(msgPW);
 		
 		fieldPW = new JPasswordField() {
 			public void setBorder(Border border) {
@@ -87,7 +65,7 @@ public class LoginHome extends JFrame {
 		};
 		fieldPW.setBounds(70, 346, 240, 31);
 		fieldPW.setOpaque(false);
-		getContentPane().add(fieldPW);
+		contentP.add(fieldPW);
 		fieldPW.setColumns(10);
 		
 		fieldID.addMouseListener(new MouseAdapter() {
@@ -119,12 +97,12 @@ public class LoginHome extends JFrame {
 		JLabel backID = new JLabel();
 		backID.setBounds(63, 290, 254, 41);
 		imageEdit.setPaintLabel(backID, textImage);
-		getContentPane().add(backID);
+		contentP.add(backID);
 		
 		JLabel backPW = new JLabel();
 		backPW.setBounds(63, 341, 254, 41);
 		imageEdit.setPaintLabel(backPW, textImage);
-		getContentPane().add(backPW);
+		contentP.add(backPW);
 		
 		JButton xbutton = new JButton();
 		xbutton.setLocation(348, 10);
@@ -132,7 +110,7 @@ public class LoginHome extends JFrame {
 		ImageIcon xnormal = new ImageIcon("src\\loginImage\\Xbutton1.jpg");
 		ImageIcon xaction = new ImageIcon("src\\loginImage\\Xbutton2.jpg");
 		imageEdit.setButtonImage(xbutton, xnormal, xaction);
-		getContentPane().add(xbutton);
+		contentP.add(xbutton);
 		xbutton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				ExitWarning ex = new ExitWarning();
@@ -145,7 +123,7 @@ public class LoginHome extends JFrame {
 		ImageIcon lnormal = new ImageIcon("src\\loginImage\\Lbutton1.jpg");
 		ImageIcon laction = new ImageIcon("src\\loginImage\\Lbutton2.jpg");
 		imageEdit.setButtonImage(loginB, lnormal, laction);
-		getContentPane().add(loginB);
+		contentP.add(loginB);
 		loginB.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				if (fieldID.getText().equals("") || fieldPW.getText().equals("")) {
@@ -163,10 +141,10 @@ public class LoginHome extends JFrame {
 					String IDcheck = fieldID.getText();
 					String PWcheck = fieldPW.getText();
 					
-					AccountQ login = new AccountQ();
-					ArrayList<AccountDB> list = login.list(IDcheck, PWcheck);
+					AccountQ loginC = new AccountQ();
+					ArrayList<AccountDB> list = loginC.list(IDcheck, PWcheck);
 //					AccountDB data = (AccountDB) list.get(0);
-					if (login.flg) {
+					if (loginC.flg) {
 						dispose();
 					}
 					
@@ -178,26 +156,31 @@ public class LoginHome extends JFrame {
 		lblNewLabel_1.setFont(new Font("맑은 고딕", Font.BOLD, 13));
 		lblNewLabel_1.setForeground(new Color(102, 51, 0));
 		lblNewLabel_1.setBounds(112, 530, 57, 15);
-		getContentPane().add(lblNewLabel_1);
+		contentP.add(lblNewLabel_1);
 		
 		JButton regB = new JButton();
 		regB.setBounds(108, 528, 64, 20);
-		getContentPane().add(regB);
+		contentP.add(regB);
 		imageEdit.buttonOpaque(regB);
-		
+		regB.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				LoginRegist reg = new LoginRegist();
+				reg.openWindow();
+			}
+		});		
 		JLabel lblNewLabel = new JLabel("계정 찾기");
 		lblNewLabel.setFont(new Font("맑은 고딕", Font.BOLD, 13));
 		lblNewLabel.setForeground(new Color(102, 51, 0));
 		lblNewLabel.setBounds(206, 530, 57, 15);
-		getContentPane().add(lblNewLabel);
+		contentP.add(lblNewLabel);
 		
 		JButton findB = new JButton();
 		findB.setBounds(203, 528, 64, 20);
-		getContentPane().add(findB);
+		contentP.add(findB);
 		imageEdit.buttonOpaque(findB);
 		
 		
-		getContentPane().add(backG);
+		contentP.add(backG);
 		
 	}
 

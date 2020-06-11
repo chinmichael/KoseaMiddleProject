@@ -1,4 +1,4 @@
-package warningPack;
+package popUpPack;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-public class CheckError extends JFrame {
+public class ChangeCheck extends JFrame {
 
 	private JPanel contentPane;
 
@@ -18,7 +18,7 @@ public class CheckError extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					CheckError frame = new CheckError();
+					ChangeCheck frame = new ChangeCheck();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -30,7 +30,7 @@ public class CheckError extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public CheckError() {
+	public ChangeCheck() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();

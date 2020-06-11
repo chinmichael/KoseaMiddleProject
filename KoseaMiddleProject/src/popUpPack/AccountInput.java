@@ -1,4 +1,4 @@
-package warningPack;
+package popUpPack;
 
 import java.awt.*;
 
@@ -7,13 +7,13 @@ import javax.swing.*;
 import toolPack.*;
 
 
-public class ExitWarning extends JFrame {
+public class AccountInput extends JDialog {
 
 	Container contentP = getContentPane();
 
 	public static void main(String[] args) {
 		try {
-			ExitWarning frame = new ExitWarning();
+			AccountInput frame = new AccountInput();
 			frame.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -21,50 +21,32 @@ public class ExitWarning extends JFrame {
 	}
 	
 	public void printMsg() {
-		ExitWarning frame = new ExitWarning();
+		AccountInput frame = new AccountInput();
 		frame.setVisible(true);
 	}
 
-	public ExitWarning() {
+	public AccountInput() {
 		setSize(300, 180); //2400 1450
 		setResizable(false);
 		SizeTool st = new SizeTool();
 		setLocation(st.setCenterX(300), st.setCenterY(180) - 100);
 		setUndecorated(true);
+		setModal(true);
+		addMouseMotionListener(new DragMoveDialog());
 		contentP.setLayout(null);
-		addMouseMotionListener(new MouseMotionListener() {
-			int xDrag, yDrag, xPress, yPress;
-			
-			@Override
-			public void mouseDragged(MouseEvent e) {
-				xDrag = e.getX();
-				yDrag = e.getY();
-				JFrame sframe = (JFrame) e.getSource();
-				sframe.setLocation(sframe.getLocation().x +  xDrag - xPress, sframe.getLocation().y +  yDrag - yPress);
-				
-			}
-
-			@Override
-			public void mouseMoved(MouseEvent e) {
-				xPress = e.getX();
-				yPress = e.getY();
-			}
-			
-		});
-		
 		ImageInput imageEdit = new ImageInput();
 		
 		ImageIcon panelImage = new ImageIcon("src\\warningImage\\CationBG.jpg");
 		JPanel backG = imageEdit.panelPaint(panelImage);
 		backG.setBounds(0, 0, 300, 180);
 		
-		JLabel msgAccount = new JLabel("종료하시겠습니까?");
+		JLabel msgAccount = new JLabel("아이디 혹은 비밀번호를 확인해주세요");
 		msgAccount.setForeground(new Color(153, 102, 0));
 		msgAccount.setFont(new Font("굴림", Font.BOLD, 15));
-		msgAccount.setBounds(88, 52, 128, 63);
+		msgAccount.setBounds(20, 52, 255, 63);
 		contentP.add(msgAccount);
 		
-		JLabel buttonMsg = new JLabel("종료");
+		JLabel buttonMsg = new JLabel("확인");
 		buttonMsg.setForeground(Color.WHITE);
 		buttonMsg.setFont(new Font("굴림", Font.BOLD, 15));
 		buttonMsg.setBounds(138, 132, 33, 22);
@@ -72,13 +54,13 @@ public class ExitWarning extends JFrame {
 		
 		ImageIcon cnormal = new ImageIcon("src\\warningImage\\Wbutton1.jpg");
 		ImageIcon caction = new ImageIcon("src\\warningImage\\Wbutton2.jpg");
-		JButton checkExit = new JButton();
-		checkExit.setBounds(105, 125, 97, 31);
-		contentP.add(checkExit);
-		imageEdit.setButtonImage(checkExit, cnormal, caction);
-		checkExit.addMouseListener(new MouseAdapter() {
+		JButton checkOK = new JButton();
+		checkOK.setBounds(105, 125, 97, 31);
+		contentP.add(checkOK);
+		imageEdit.setButtonImage(checkOK, cnormal, caction);
+		checkOK.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				System.exit(0);
+				dispose();
 			}
 		});
 		
