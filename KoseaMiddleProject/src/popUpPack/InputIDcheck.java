@@ -3,6 +3,8 @@ package popUpPack;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+
+import loginPack.LoginRegist;
 import toolPack.*;
 
 public class InputIDcheck extends JDialog {
@@ -108,6 +110,7 @@ public class InputIDcheck extends JDialog {
 		imageEdit.setButtonImage(xButton, xnormal, xaction);
 		xButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
+				useID = false;
 				dispose();
 			}
 		});

@@ -36,6 +36,7 @@ public class LoginHome extends JFrame {
 		setLocation(st.setCenterX(380), st.setCenterY(600) - 20);
 		setUndecorated(true);
 		getContentPane().setLayout(null);
+//		setOpaque(false);
 		addMouseMotionListener(new MouseDragMove());
 		
 		ImageInput imageEdit = new ImageInput();
@@ -181,6 +182,11 @@ public class LoginHome extends JFrame {
 		
 		
 		contentP.add(backG);
+		
+	}
+
+	private void setOpaque(boolean b) {
+		// TODO Auto-generated method stub
 		
 	}
 

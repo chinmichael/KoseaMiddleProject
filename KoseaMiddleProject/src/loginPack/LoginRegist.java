@@ -24,14 +24,8 @@ public class LoginRegist extends JDialog {
 	private JTextField mailF1, mailF2;
 	private JTextField rankF;
 	private JTextField shopF;
-	
-	private String inID;
-	
+
 	private boolean olcheck = false;
-	
-	public void setID(String inID) {
-		this.inID = inID;
-	}
 
 	public static void main(String[] args) {
 		try {
@@ -82,6 +76,7 @@ public class LoginRegist extends JDialog {
 		nameF.setColumns(10);
 		
 		idF = imageEdit.textClean();
+		idF.setEditable(false);
 		idF.setBounds(135, 135, 195, 25);
 		contentP.add(idF);
 		idF.setColumns(10);
@@ -143,6 +138,12 @@ public class LoginRegist extends JDialog {
 		shopF.setBounds(135, 575, 195, 25);
 		contentP.add(shopF);
 		shopF.setColumns(10);
+		
+		JLabel checkinfo = new JLabel("중복확인 버튼을 눌러주세요 >>");
+		checkinfo.setForeground(Color.LIGHT_GRAY);
+		checkinfo.setFont(new Font("굴림", Font.BOLD, 13));
+		checkinfo.setBounds(143, 137, 192, 25);
+		contentP.add(checkinfo);
 		
 		JLabel lblNewLabel = new JLabel("성명");
 		lblNewLabel.setBounds(45, 85, 41, 20);
@@ -247,6 +248,18 @@ public class LoginRegist extends JDialog {
 		imageEdit.setPaintLabel(lblNewLabel_17_3, inputArea1);
 		getContentPane().add(lblNewLabel_17_3);
 		
+		JLabel lblNewLabel_17_4 = new JLabel("-");
+		lblNewLabel_17_4.setForeground(new Color(102, 51, 0));
+		lblNewLabel_17_4.setFont(new Font("굴림", Font.BOLD, 18));
+		lblNewLabel_17_4.setBounds(286, 417, 18, 15);
+		contentP.add(lblNewLabel_17_4);
+		
+		JLabel lblNewLabel_17_5 = new JLabel("-");
+		lblNewLabel_17_5.setForeground(new Color(102, 51, 0));
+		lblNewLabel_17_5.setFont(new Font("굴림", Font.BOLD, 18));
+		lblNewLabel_17_5.setBounds(196, 417, 18, 15);
+		contentP.add(lblNewLabel_17_5);
+		
 		JLabel lblNewLabel_18_1 = new JLabel("New label");
 		lblNewLabel_18_1.setBounds(127, 460, 115, 35);
 		imageEdit.setPaintLabel(lblNewLabel_18_1, inputArea1);
@@ -284,7 +297,14 @@ public class LoginRegist extends JDialog {
 		overlap.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				OverCheck ov = new OverCheck();
-				idF.setText(ov.openWindow());
+				ov.openWindow();
+				
+				idF.setText(ov.getID());
+				if(idF.getText().equals("")) {
+					checkinfo.setVisible(true);
+				} else {
+					checkinfo.setVisible(false);
+				}
 			}
 		});
 		
@@ -325,7 +345,6 @@ public class LoginRegist extends JDialog {
 		});
 		
 		contentP.add(backG);
-		
 	}
 	
 	public void settextQ(JLabel l) {

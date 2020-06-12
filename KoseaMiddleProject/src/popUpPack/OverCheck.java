@@ -5,13 +5,13 @@ import java.awt.event.*;
 import javax.swing.*;
 
 import connPack.ExistCheck;
+import loginPack.LoginRegist;
 import toolPack.*;
 
 public class OverCheck extends JDialog {
 	
 	Container contentP = getContentPane();
-	private JTextField idF;
-	private static boolean flg = false;
+	private static JTextField idF;
 	
 	public static void main(String[] args) {
 		try {
@@ -22,16 +22,15 @@ public class OverCheck extends JDialog {
 		}
 	}
 	
-	public String openWindow() {
+	public String getID() {
+		return idF.getText();
+	}
+	
+	public void openWindow() {
 		OverCheck frame = new OverCheck();
 		frame.setVisible(true);
-		
-		if(flg) {
-			return idF.getText();
-		} else {
-			return "";
-		}
 	}
+	
 	public OverCheck() {
 		setSize(300, 180); //2400 1450
 		setResizable(false);
@@ -64,6 +63,7 @@ public class OverCheck extends JDialog {
 		imageEdit.setPaintLabel(lblNewLabel_12, inputArea1);
 		contentP.add(lblNewLabel_12);
 		
+		LoginRegist lR = new LoginRegist();
 		ImageIcon reg1 = new ImageIcon("src\\loginImage\\RegButton2.jpg");
 		JButton overlap = new JButton();
 		overlap.setBounds(230, 104, 53, 35);
@@ -84,14 +84,11 @@ public class OverCheck extends JDialog {
 					InputIDcheck ck = new InputIDcheck(flg);
 					ck.printMsg(flg);
 
-					if (flg) {
-
-					} else {
+					if (flg == false) {
 						idF.setText("");
 					}
 					
 					if(ck.getUse()) {
-						flg = true;
 						dispose();
 					}
 				}
@@ -108,6 +105,7 @@ public class OverCheck extends JDialog {
 		imageEdit.setButtonImage(xButton, xnormal, xaction);
 		xButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
+				idF.setText("");
 				dispose();
 			}
 		});
