@@ -128,7 +128,7 @@ public class LoginHome extends JFrame {
 		loginB.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				if (fieldID.getText().equals("") || fieldPW.getText().equals("")) {
-					AccountInput wMsg = new AccountInput();
+					EssentialW wMsg = new EssentialW();
 					wMsg.printMsg();
 					
 					if (fieldID.getText().equals("")) {

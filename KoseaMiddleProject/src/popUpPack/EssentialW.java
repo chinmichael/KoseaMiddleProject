@@ -7,7 +7,7 @@ import javax.swing.*;
 import toolPack.*;
 
 
-public class AccountInput extends JDialog {
+public class EssentialW extends JDialog {
 
 	Container contentP = getContentPane();
 
@@ -25,7 +25,7 @@ public class AccountInput extends JDialog {
 		frame.setVisible(true);
 	}
 
-	public AccountInput() {
+	public EssentialW() {
 		setSize(300, 180); //2400 1450
 		setResizable(false);
 		SizeTool st = new SizeTool();
@@ -40,10 +40,10 @@ public class AccountInput extends JDialog {
 		JPanel backG = imageEdit.panelPaint(panelImage);
 		backG.setBounds(0, 0, 300, 180);
 		
-		JLabel msgAccount = new JLabel("아이디 혹은 비밀번호를 확인해주세요");
+		JLabel msgAccount = new JLabel("필수 정보를 모두 입력해주세요");
 		msgAccount.setForeground(new Color(153, 102, 0));
 		msgAccount.setFont(new Font("굴림", Font.BOLD, 15));
-		msgAccount.setBounds(20, 52, 255, 63);
+		msgAccount.setBounds(45, 52, 255, 63);
 		contentP.add(msgAccount);
 		
 		JLabel buttonMsg = new JLabel("확인");

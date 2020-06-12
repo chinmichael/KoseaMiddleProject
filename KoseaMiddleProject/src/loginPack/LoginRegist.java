@@ -5,6 +5,7 @@ import java.awt.event.*;
 import javax.swing.*;
 
 import connPack.ExistCheck;
+import popUpPack.EssentialW;
 import popUpPack.ExitWarning;
 import popUpPack.InputIDcheck;
 import popUpPack.OverCheck;
@@ -24,8 +25,6 @@ public class LoginRegist extends JDialog {
 	private JTextField mailF1, mailF2;
 	private JTextField rankF;
 	private JTextField shopF;
-
-	private boolean olcheck = false;
 
 	public static void main(String[] args) {
 		try {
@@ -331,17 +330,25 @@ public class LoginRegist extends JDialog {
 		contentP.add(submitB);
 		submitB.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				
-				if(olcheck) {
+
+				if (!nameF.getText().isBlank() && !idF.getText().isBlank() && !pwF.getText().isBlank()
+						&& !checkPwF.getText().isBlank() && !hintF.getText().isBlank() && !hAnswerF.getText().isBlank()
+						&& !phoneF1.getText().isBlank() && !phoneF2.getText().isBlank() && !phoneF3.getText().isBlank()
+						&& !rankF.getText().isBlank() && !shopF.getText().isBlank()) {
 					
-					
+					if(pwF.getText().equals(checkPwF.getText())) {
+						
+					} else {
+						
+					}
+
 				} else {
-					OverlapCheck ov = new OverlapCheck(true);
-					ov.printMsg(true);
-					
+					EssentialW es = new EssentialW();
+					es.printMsg();
 				}
-				
+
 			}
+
 		});
 		
 		contentP.add(backG);

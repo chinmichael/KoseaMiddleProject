@@ -23,7 +23,7 @@ public class AccountQ {
 			c.getRS().last();
 			
 			if(c.getRS().getRow() == 0) {
-				AccountInput wMsg = new AccountInput();
+				EssentialW wMsg = new EssentialW();
 				wMsg.printMsg();
 			} else {
 				String checkPW = c.getRS().getString("user_pw");
@@ -52,7 +52,7 @@ public class AccountQ {
 					}
 					
 				} else {
-					AccountInput wMsg = new AccountInput();
+					EssentialW wMsg = new EssentialW();
 					wMsg.printMsg();
 				}
 			}
