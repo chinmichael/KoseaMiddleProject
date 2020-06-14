@@ -3,13 +3,22 @@ package loginPack;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
+import javax.swing.plaf.ColorUIResource;
+import javax.swing.plaf.basic.BasicArrowButton;
 
 import connPack.ExistCheck;
-import popUpPack.EssentialW;
+import connPack.RegistAccount;
 import popUpPack.ExitWarning;
 import popUpPack.InputIDcheck;
 import popUpPack.OverCheck;
 import popUpPack.OverlapCheck;
+import popUpPack.OwnerCodeInput;
+import popUpPack.PWError;
+import popUpPack.ShopList;
+import popUpPack.ShopSearch;
+import popUpPack.ShortageW;
 import toolPack.*;
 
 public class LoginRegist extends JDialog {
@@ -23,8 +32,10 @@ public class LoginRegist extends JDialog {
 	private JTextField hAnswerF;
 	private JTextField phoneF1, phoneF2, phoneF3;
 	private JTextField mailF1, mailF2;
-	private JTextField rankF;
+	private String rankF;
 	private JTextField shopF;
+	
+	JRadioButton rankS1, rankS2, rankS3;
 
 	public static void main(String[] args) {
 		try {
@@ -100,21 +111,25 @@ public class LoginRegist extends JDialog {
 		contentP.add(hAnswerF);
 		hAnswerF.setColumns(10);
 		
+		IntegerDocument id = new IntegerDocument(3);
+		IntegerDocument id2 = new IntegerDocument(4);
+		IntegerDocument id3 = new IntegerDocument(4);
+		
 		phoneF1 = imageEdit.textClean();
 		phoneF1.setBounds(135, 410, 45, 25);
-		phoneF1.setDocument(new JTextFLimit(3));
+		phoneF1.setDocument(id);
 		contentP.add(phoneF1);
 		phoneF1.setColumns(10);
 		
 		phoneF2 = imageEdit.textClean();
 		phoneF2.setBounds(225, 410, 45, 25);
-		phoneF2.setDocument(new JTextFLimit(4));
+		phoneF2.setDocument(id2);
 		contentP.add(phoneF2);
 		phoneF2.setColumns(10);
 		
 		phoneF3 = imageEdit.textClean();
 		phoneF3.setBounds(315, 410, 45, 25);
-		phoneF3.setDocument(new JTextFLimit(4));
+		phoneF3.setDocument(id3);
 		contentP.add(phoneF3);
 		phoneF3.setColumns(10);
 		
@@ -127,11 +142,6 @@ public class LoginRegist extends JDialog {
 		mailF2.setBounds(285, 465, 103, 25);
 		contentP.add(mailF2);
 		mailF2.setColumns(10);
-		
-		rankF = imageEdit.textClean();
-		rankF.setBounds(135, 520, 195, 25);
-		contentP.add(rankF);
-		rankF.setColumns(10);
 		
 		shopF = imageEdit.textClean();
 		shopF.setBounds(135, 575, 195, 25);
@@ -275,19 +285,13 @@ public class LoginRegist extends JDialog {
 		lblNewLabel_18_3.setBounds(251, 467, 18, 25);
 		contentP.add(lblNewLabel_18_3);
 		
-		JLabel lblNewLabel_19 = new JLabel("New label");
-		lblNewLabel_19.setBounds(127, 515, 207, 35);
-		imageEdit.setPaintLabel(lblNewLabel_19, inputArea1);
-		contentP.add(lblNewLabel_19);
-		
 		JLabel lblNewLabel_20 = new JLabel("New label");
 		lblNewLabel_20.setBounds(127, 570, 207, 35);
 		imageEdit.setPaintLabel(lblNewLabel_20, inputArea1);
 		contentP.add(lblNewLabel_20);
 		
 		ImageIcon reg1 = new ImageIcon("src\\loginImage\\RegButton2.jpg");
-		ImageIcon reg2 = new ImageIcon("src\\loginImage\\RegButton1.jpg");
-		ImageIcon reg3 = new ImageIcon("src\\loginImage\\RegButton3.jpg");
+		ImageIcon reg2 = new ImageIcon("src\\loginImage\\RegButton3.jpg");
 		
 		JButton overlap = new JButton();
 		overlap.setBounds(336, 130, 53, 35);
@@ -307,19 +311,43 @@ public class LoginRegist extends JDialog {
 			}
 		});
 		
-		JButton searchR = new JButton();
-		searchR.setBounds(336, 515, 53, 35);
-		imageEdit.setOneImage(searchR, reg2);
-		contentP.add(searchR);
+		RadioSelect radioS = new RadioSelect();
+		
+		rankS1 = new JRadioButton(" 아르바이트");
+		setRadio(rankS1);
+		rankS1.setBounds(123, 524, 115, 23);
+		contentP.add(rankS1);
+		rankS1.addActionListener(radioS);
+		
+		rankS2 = new JRadioButton(" 매니저");
+		setRadio(rankS2);
+		rankS2.setBounds(243, 524, 85, 23);
+		contentP.add(rankS2);
+		rankS2.addActionListener(radioS);
+		
+		rankS3 = new JRadioButton(" 점장");
+		setRadio(rankS3);
+		rankS3.setBounds(334, 524, 70, 23);
+		contentP.add(rankS3);
+		rankS3.addActionListener(radioS);
+		
+		ButtonGroup rankG = new ButtonGroup();
+		rankG.add(rankS1);
+		rankG.add(rankS2);
+		rankG.add(rankS3);
+		
 		
 		JButton searchS = new JButton();
 		searchS.setBounds(336, 570, 53, 35);
-		imageEdit.setOneImage(searchS, reg3);
+		imageEdit.setOneImage(searchS, reg2);
 		contentP.add(searchS);
-		
-//		JComboBox comboBox = new JComboBox();
-//		comboBox.setBounds(127, 518, 265, 35);
-//		contentP.add(comboBox);
+		searchS.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				ShopSearch ss = new ShopSearch();
+				ss.openWindow();
+				shopF.setText(ss.getCode());
+			}
+		});
 		
 		ImageIcon subNormal = new ImageIcon("src\\loginImage\\SubmitReg1.jpg");
 		ImageIcon subAction = new ImageIcon("src\\loginImage\\SubmitReg2.jpg");
@@ -334,21 +362,47 @@ public class LoginRegist extends JDialog {
 				if (!nameF.getText().isBlank() && !idF.getText().isBlank() && !pwF.getText().isBlank()
 						&& !checkPwF.getText().isBlank() && !hintF.getText().isBlank() && !hAnswerF.getText().isBlank()
 						&& !phoneF1.getText().isBlank() && !phoneF2.getText().isBlank() && !phoneF3.getText().isBlank()
-						&& !rankF.getText().isBlank() && !shopF.getText().isBlank()) {
+						&& !rankF.equals("") && !shopF.getText().isBlank()) {
 					
 					if(pwF.getText().equals(checkPwF.getText())) {
 						
-					} else {
+						String mail;
+						if(!mailF1.getText().isBlank() || !mailF2.getText().isBlank()) {
+							mail = "";
+						} else {
+							mail = mailF1.getText() + "@" + mailF2.getText();
+						}
+						String phone = phoneF1.getText() + "-" + phoneF2.getText() + "-" + phoneF3.getText();
+						String owner;
 						
+						if(rankF.equals("점장")) {
+							OwnerCodeInput oc = new OwnerCodeInput();
+							oc.openWindow();
+							owner = oc.getCode();
+						} else {
+							owner = "";
+						}
+						
+						if(rankF.equals("점장") && owner.equals("")) {
+							ShortageW sh = new ShortageW();
+							sh.printMsg();
+							
+						} else {
+							RegistAccount regAcc = new RegistAccount();
+							regAcc.registAccount(nameF.getText(), idF.getText(), checkPwF.getText(), mail, phone, hintF.getText(), hAnswerF.getText(), shopF.getText(), rankF, owner);
+						}
+						
+					} else {
+						PWError pe = new PWError();
+						pe.printMsg();
 					}
 
 				} else {
-					EssentialW es = new EssentialW();
-					es.printMsg();
+					ShortageW sh = new ShortageW();
+					sh.printMsg();
 				}
 
 			}
-
 		});
 		
 		contentP.add(backG);
@@ -357,5 +411,29 @@ public class LoginRegist extends JDialog {
 	public void settextQ(JLabel l) {
 		l.setForeground(new Color(153, 102, 0));
 		l.setFont(new Font("굴림", Font.BOLD, 15));
+	}
+	
+	public void setRadio(JRadioButton jr) {
+		jr.setIcon(new ImageIcon(LoginRegist.class.getResource("/loginImage/LRaidoB1.png")));
+		jr.setSelectedIcon(new ImageIcon(LoginRegist.class.getResource("/loginImage/LRaidoB2.png")));
+		jr.setFocusable(false);
+		jr.setOpaque(false);
+	}
+	
+	public class RadioSelect implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if(rankS1.isSelected()) {
+				rankF = "아르바이트";
+//				System.out.println(rankF); 확인용
+			}
+			if(rankS2.isSelected()) {
+				rankF = "매니저";
+			}
+			if(rankS3.isSelected()) {
+				rankF = "점장";
+			}
+			
+		}
 	}
 }

@@ -1,31 +1,34 @@
 package popUpPack;
 
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
-import java.awt.event.*;
-import javax.swing.*;
-import toolPack.*;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 
+import toolPack.DragMoveDialog;
+import toolPack.ImageInput;
+import toolPack.SizeTool;
 
-public class EssentialW extends JDialog {
+public class ShortageL extends JDialog {
 
 	Container contentP = getContentPane();
 
-	public static void main(String[] args) {
-		try {
-			EssentialW frame = new EssentialW();
-			frame.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public void printMsg() {
-		EssentialW frame = new EssentialW();
+	public void printMsg(int num) {
+		ShortageL frame = new ShortageL(num);
 		frame.setVisible(true);
 	}
 
-	public EssentialW() {
+	public ShortageL(int num) {
 		setSize(300, 180); //2400 1450
 		setResizable(false);
 		SizeTool st = new SizeTool();
@@ -40,22 +43,25 @@ public class EssentialW extends JDialog {
 		JPanel backG = imageEdit.panelPaint(panelImage);
 		backG.setBounds(0, 0, 300, 180);
 		
-		JLabel msgAccount = new JLabel("필수 정보를 모두 입력해주세요");
+		String msg = Integer.toString(num) + "자리 이상을 입력해주세요";
+		
+		JLabel msgAccount = new JLabel(msg);
 		msgAccount.setForeground(new Color(153, 102, 0));
 		msgAccount.setFont(new Font("굴림", Font.BOLD, 15));
-		msgAccount.setBounds(45, 52, 255, 63);
+		msgAccount.setBounds(25, 52, 255, 63);
+		msgAccount.setHorizontalAlignment(JLabel.CENTER);
 		contentP.add(msgAccount);
 		
 		JLabel buttonMsg = new JLabel("확인");
 		buttonMsg.setForeground(Color.WHITE);
 		buttonMsg.setFont(new Font("굴림", Font.BOLD, 15));
-		buttonMsg.setBounds(138, 132, 33, 22);
+		buttonMsg.setBounds(135, 132, 33, 22);
 		getContentPane().add(buttonMsg);
 		
 		ImageIcon cnormal = new ImageIcon("src\\warningImage\\Wbutton1.jpg");
 		ImageIcon caction = new ImageIcon("src\\warningImage\\Wbutton2.jpg");
 		JButton checkOK = new JButton();
-		checkOK.setBounds(105, 125, 97, 31);
+		checkOK.setBounds(102, 125, 97, 31);
 		contentP.add(checkOK);
 		imageEdit.setButtonImage(checkOK, cnormal, caction);
 		checkOK.addMouseListener(new MouseAdapter() {
@@ -80,4 +86,5 @@ public class EssentialW extends JDialog {
 		contentP.add(backG);
 
 	}
+
 }

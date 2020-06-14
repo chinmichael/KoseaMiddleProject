@@ -83,7 +83,7 @@ public class LoginHome extends JFrame {
                 msgPW.setVisible(false);
             }
 		});
-		
+			
 		addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				if (fieldID.getText().equals(""))
@@ -128,7 +128,7 @@ public class LoginHome extends JFrame {
 		loginB.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				if (fieldID.getText().equals("") || fieldPW.getText().equals("")) {
-					EssentialW wMsg = new EssentialW();
+					AccountInput wMsg = new AccountInput();
 					wMsg.printMsg();
 					
 					if (fieldID.getText().equals("")) {
@@ -144,7 +144,6 @@ public class LoginHome extends JFrame {
 					
 					AccountQ loginC = new AccountQ();
 					ArrayList<AccountDB> list = loginC.list(IDcheck, PWcheck);
-//					AccountDB data = (AccountDB) list.get(0);
 					if (loginC.flg) {
 						dispose();
 					}
@@ -182,11 +181,6 @@ public class LoginHome extends JFrame {
 		
 		
 		contentP.add(backG);
-		
-	}
-
-	private void setOpaque(boolean b) {
-		// TODO Auto-generated method stub
 		
 	}
 

@@ -1,8 +1,13 @@
 package toolPack;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
+import javax.swing.plaf.basic.BasicComboPopup;
 
 public class ImageInput {
 
@@ -23,6 +28,7 @@ public class ImageInput {
 
 		b.setIcon(im);
 	}
+	
 
 	public void setButtonImage(JButton b, ImageIcon bNormal, ImageIcon bAction) {
 
@@ -50,6 +56,19 @@ public class ImageInput {
 		back = imageSetsize(back, d.width, d.height);
 		l.setIcon(back);
 	}
+	
+	public static void setSelectionColorOfComboBox(JComboBox<String> comboBox) 
+	{ 
+	 Object child = comboBox.getAccessibleContext().getAccessibleChild(0); 
+	 BasicComboPopup popup = (BasicComboPopup) child; 
+	 JList list = popup.getList(); 
+	 list.setBorder(new LineBorder(new Color(254, 230, 160))); 
+	 list.setSelectionBackground(new Color(254, 230, 160)); 
+	 list.setSelectionForeground(new Color(254, 230, 160)); 
+	 list.setFocusable(false); 
+	} 
+	
+
 
 	public JPanel panelPaint(ImageIcon back) {
 

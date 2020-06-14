@@ -1,9 +1,6 @@
 package connPack;
 
 import java.util.ArrayList;
-
-import java.sql.*;
-import loginPack.*;
 import mainPack.*;
 import popUpPack.*;
 
@@ -17,13 +14,13 @@ public class AccountQ {
 		try {
 			ConnDB c = new ConnDB();
 			
-			String query = "SELECT * FROM USERK WHERE user_id = '" + id + "'"; // 필요하면 toUpperCase()로 대문자화
+			String query = "SELECT * FROM ACCOUNTD WHERE user_id = '" + id + "'"; // 필요하면 toUpperCase()로 대문자화
 			
 			c.setRS(c.getST().executeQuery(query));
 			c.getRS().last();
 			
 			if(c.getRS().getRow() == 0) {
-				EssentialW wMsg = new EssentialW();
+				AccountInput wMsg = new AccountInput();
 				wMsg.printMsg();
 			} else {
 				String checkPW = c.getRS().getString("user_pw");
@@ -46,16 +43,19 @@ public class AccountQ {
 								shop_id, user_type, owner_code);
 						
 						list.add(data);
-						
-						MainHome openMain = new MainHome();
-						openMain.openMainHome();
 					}
 					
+					MainHome openMain = new MainHome();
+					openMain.openMainHome();
+					
 				} else {
-					EssentialW wMsg = new EssentialW();
+					AccountInput wMsg = new AccountInput();
 					wMsg.printMsg();
 				}
 			}
+			
+			c.getCon().close();
+			c.getRS().close();
 			
 			
 		} catch (Exception e) {
