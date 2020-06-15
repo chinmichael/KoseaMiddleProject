@@ -22,8 +22,8 @@ public class LoginHome extends JFrame {
 	
 	ImageInput imageEdit = new ImageInput();
 	TextClear tc = new TextClear();
+	CationMsg cm = new CationMsg();
 	
-	AccountInput wMsg = new AccountInput();
 	AccountQ loginC = new AccountQ();
 
 	public static void main(String[] args) {
@@ -127,7 +127,8 @@ public class LoginHome extends JFrame {
 		loginB.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				if (fieldID.getText().equals("") || fieldPW.getText().equals("")) {
-					wMsg.printMsg();
+					String msg = "아이디 혹은 비밀번호을 확인해주세요";
+					cm.printMsg(msg);
 					
 					if (fieldID.getText().equals("")) {
 						msgID.setVisible(true);

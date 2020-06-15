@@ -10,6 +10,7 @@ import javax.swing.plaf.basic.BasicArrowButton;
 
 import connPack.ExistCheck;
 import connPack.RegistAccount;
+import popUpPack.CationMsg;
 import popUpPack.ExitWarning;
 import popUpPack.InputIDcheck;
 import popUpPack.OverCheck;
@@ -39,6 +40,7 @@ public class LoginRegist extends JDialog {
 	
 	TextClear tc = new TextClear();
 	ImageInput imageEdit = new ImageInput();
+	CationMsg cm = new CationMsg();
 
 	public static void main(String[] args) {
 		try {

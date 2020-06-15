@@ -10,6 +10,7 @@ public class AccountQ {
 	
 	public ArrayList<AccountDB> list (String id, String pw) {
 		ArrayList<AccountDB> list = new ArrayList<AccountDB>();
+		CationMsg cm = new CationMsg();
 		
 		try {
 			ConnDB c = new ConnDB();
@@ -19,9 +20,10 @@ public class AccountQ {
 			c.setRS(c.getST().executeQuery(query));
 			c.getRS().last();
 			
+			String msg= "아이디 혹은 비밀번호을 확인해주세요";
+			
 			if(c.getRS().getRow() == 0) {
-				AccountInput wMsg = new AccountInput();
-				wMsg.printMsg();
+				cm.printMsg(msg);
 			} else {
 				String checkPW = c.getRS().getString("user_pw");
 				
@@ -49,8 +51,7 @@ public class AccountQ {
 					openMain.openMainHome();
 					
 				} else {
-					AccountInput wMsg = new AccountInput();
-					wMsg.printMsg();
+					cm.printMsg(msg);
 				}
 			}
 			
