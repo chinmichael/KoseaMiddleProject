@@ -47,6 +47,10 @@ public class IDList extends JDialog {
 		dialog.setVisible(true);
 	}
 	
+	public IDList() {
+		
+	}
+	
 	public IDList(ArrayList<AccFindDB> idFind) {
 		setSize(400, 240); // 2400, 1450
 		setResizable(false);

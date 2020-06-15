@@ -76,14 +76,15 @@ public class OverCheck extends JDialog {
 				String idInput = idF.getText();
 
 				if (idInput.equals("")) {
-					OverlapCheck ov = new OverlapCheck(false);
-					ov.printMsg(false);
+					String msg = "ID를 입력해주세요";
+					CationMsg cm = new CationMsg();
+					cm.printMsg(msg);
 
 				} else {
 					ExistCheck ex = new ExistCheck();
 					boolean flg = ex.idcheck(idInput);
 
-					InputIDcheck ck = new InputIDcheck(flg);
+					InputIDcheck ck = new InputIDcheck();
 					ck.printMsg(flg);
 
 					if (flg == false) {

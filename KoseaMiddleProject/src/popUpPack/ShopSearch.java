@@ -85,7 +85,7 @@ public class ShopSearch extends JDialog {
 					ShopQ sq = new ShopQ();
 					ArrayList<ShopDB> list = sq.list(searchName);
 					
-					ShopList sWin = new ShopList(list, searchName);
+					ShopList sWin = new ShopList();
 					sWin.openList(list, searchName);
 					
 					if (sWin.getFlg()) {

@@ -30,6 +30,10 @@ public class InputIDcheck extends JDialog {
 		InputIDcheck frame = new InputIDcheck(f);
 		frame.setVisible(true);
 	}
+	
+	public InputIDcheck() {
+		
+	}
 
 	public InputIDcheck(boolean f) {
 		

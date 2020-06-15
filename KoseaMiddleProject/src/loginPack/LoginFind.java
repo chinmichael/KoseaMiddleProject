@@ -1,6 +1,7 @@
 package loginPack;
 
 import java.awt.BorderLayout;
+
 import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.event.MouseAdapter;
@@ -16,10 +17,10 @@ import javax.swing.border.EmptyBorder;
 import connPack.AccFindDB;
 import connPack.AccFindQ;
 import connPack.ExistCheck;
+import popUpPack.CationMsg;
 import popUpPack.IDList;
-import popUpPack.PassResult;
+import popUpPack.ResultMsg;
 import popUpPack.ShopSearch;
-import popUpPack.ShortageW;
 import toolPack.DragMoveDialog;
 import toolPack.ImageInput;
 import toolPack.IntegerDocument;
@@ -39,6 +40,8 @@ public class LoginFind extends JDialog {
 	ImageInput imageEdit = new ImageInput();
 	TextClear tc = new TextClear();
 	ExistCheck ec = new ExistCheck();
+	CationMsg cm = new CationMsg();
+	ResultMsg rm = new ResultMsg();
 	
 	private JTextField nameF;
 	private JTextField phoneF1;
@@ -290,13 +293,13 @@ public class LoginFind extends JDialog {
 					AccFindQ idfind = new AccFindQ();
 					ArrayList<AccFindDB> list = idfind.idFind(nameF.getText(), phone, shopF.getText());
 					
-					IDList il = new IDList(list);
+					IDList il = new IDList();
 					il.openList(list);
 					idF.setText(il.getID());
 					
 				} else {
-					ShortageW sh = new ShortageW();
-					sh.printMsg();
+					String msg = "필수정보를 모두 입력해주세요";
+					cm.printMsg(msg);
 				}
 				
 			}
@@ -314,7 +317,8 @@ public class LoginFind extends JDialog {
 				if (!idF.getText().isBlank()) {
 					hintF.setText(ec.hintCheck(idF.getText()));
 				} else {
-
+					String msg = "ID를 입력해주세요";
+					cm.printMsg(msg);
 				}
 			}
 		});
@@ -327,12 +331,11 @@ public class LoginFind extends JDialog {
 			public void mouseClicked(MouseEvent e) {
 				if(!idF.getText().isBlank() && !hintF.getText().isBlank()) {
 					String result = ec.pwSearch(idF.getText(), hintAF.getText());
-					PassResult pr = new PassResult(result);
-					pr.printMsg(result);
+					rm.printMsg(result);
 					
 				} else {
-					ShortageW sh = new ShortageW();
-					sh.printMsg();
+					String msg = "필수정보를 모두 입력해주세요";
+					cm.printMsg(msg);
 				}
 			}
 		});		

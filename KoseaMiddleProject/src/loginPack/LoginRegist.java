@@ -1,6 +1,7 @@
 package loginPack;
 
 import java.awt.*;
+
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -14,12 +15,9 @@ import popUpPack.CationMsg;
 import popUpPack.ExitWarning;
 import popUpPack.InputIDcheck;
 import popUpPack.OverCheck;
-import popUpPack.OverlapCheck;
 import popUpPack.OwnerCodeInput;
-import popUpPack.PWError;
 import popUpPack.ShopList;
 import popUpPack.ShopSearch;
-import popUpPack.ShortageW;
 import toolPack.*;
 
 public class LoginRegist extends JDialog {
@@ -390,8 +388,8 @@ public class LoginRegist extends JDialog {
 						}
 						
 						if(rankF.equals("점장") && owner.equals("")) {
-							ShortageW sh = new ShortageW();
-							sh.printMsg();
+							String msg = "필수정보를 모두 입력해주세요";
+							cm.printMsg(msg);
 							
 						} else {
 							RegistAccount regAcc = new RegistAccount();
@@ -402,13 +400,13 @@ public class LoginRegist extends JDialog {
 						}
 						
 					} else {
-						PWError pe = new PWError();
-						pe.printMsg();
+						String msg = "비밀번호가 일치하지 않습니다";
+						cm.printMsg(msg);
 					}
 
 				} else {
-					ShortageW sh = new ShortageW();
-					sh.printMsg();
+					String msg = "필수정보를 모두 입력해주세요";
+					cm.printMsg(msg);
 				}
 
 			}

@@ -32,6 +32,7 @@ public class OwnerCodeInput extends JDialog {
 	
 	ImageInput imageEdit = new ImageInput();
 	TextClear tc = new TextClear();
+	CationMsg cm = new CationMsg();
 	
 	public String getCode() {
 		return ownerCode;
@@ -84,8 +85,8 @@ public class OwnerCodeInput extends JDialog {
 				String inputCode = ownerC.getText();
 				
 				if(inputCode.length() != 6) {
-					ShortageL Smsg = new ShortageL(6);
-					Smsg.printMsg(6);
+					String msg = "6자리로 입력해주세요";
+					cm.printMsg(msg);
 				} else {
 					ownerCode = inputCode;
 					dispose();

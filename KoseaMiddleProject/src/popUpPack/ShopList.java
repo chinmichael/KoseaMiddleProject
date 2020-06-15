@@ -52,6 +52,10 @@ public class ShopList extends JDialog {
 		ShopList dialog = new ShopList(list, name);
 		dialog.setVisible(true);
 	}
+	
+	public ShopList() {
+		
+	}
 
 	public ShopList(ArrayList<ShopDB> list, String name) {
 		setSize(480, 290); // 2400, 1450
@@ -86,6 +90,7 @@ public class ShopList extends JDialog {
 			record[2] = data.getShopLoc();
 			model.addRow(record);
 			}
+		
 		table.getColumn("점포코드").setPreferredWidth(70);
 		table.getColumn("점포명").setPreferredWidth(160);
 		table.getColumn("점포위치").setPreferredWidth(200);
