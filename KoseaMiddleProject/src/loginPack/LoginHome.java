@@ -176,6 +176,12 @@ public class LoginHome extends JFrame {
 		findB.setBounds(203, 528, 64, 20);
 		contentP.add(findB);
 		imageEdit.buttonOpaque(findB);
+		findB.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				LoginFind find = new LoginFind();
+				find.openWindow();
+			}
+		});
 		
 		
 		contentP.add(backG);

@@ -58,6 +58,11 @@ public class LoginFind extends JDialog {
 			e.printStackTrace();
 		}
 	}
+	
+	public void openWindow() {
+		LoginFind frame = new LoginFind();
+		frame.setVisible(true);
+	}
 
 	public LoginFind() {
 		setSize(600, 450);//2800 2100
