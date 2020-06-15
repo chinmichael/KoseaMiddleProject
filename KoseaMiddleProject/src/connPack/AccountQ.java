@@ -36,14 +36,14 @@ public class AccountQ {
 						String shop_id = c.getRS().getString("shop_id");
 						String user_type = c.getRS().getString("user_type");
 						String owner_code = c.getRS().getString("owner_code");
-						
-						flg = true;
 
 						AccountDB data = new AccountDB(user_name, id, pw, e_mail, phone, hint, hint_answer,
 								shop_id, user_type, owner_code);
 						
 						list.add(data);
 					}
+					
+					flg = true;
 					
 					MainHome openMain = new MainHome();
 					openMain.openMainHome();

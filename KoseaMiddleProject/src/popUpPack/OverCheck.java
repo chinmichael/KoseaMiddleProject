@@ -13,6 +13,9 @@ public class OverCheck extends JDialog {
 	Container contentP = getContentPane();
 	private static JTextField idF;
 	
+	ImageInput imageEdit = new ImageInput();
+	TextClear tc = new TextClear();
+	
 	public static void main(String[] args) {
 		try {
 			OverCheck frame = new OverCheck();
@@ -40,7 +43,6 @@ public class OverCheck extends JDialog {
 		setModal(true);
 		addMouseMotionListener(new DragMoveDialog());
 		contentP.setLayout(null);
-		ImageInput imageEdit = new ImageInput();
 		
 		ImageIcon panelImage = new ImageIcon("src\\warningImage\\CationBG.jpg");
 		JPanel backG = imageEdit.panelPaint(panelImage);
@@ -52,7 +54,7 @@ public class OverCheck extends JDialog {
 		msgAccount.setBounds(55, 39, 190, 63);
 		contentP.add(msgAccount);
 		
-		idF = imageEdit.textClean();
+		idF = tc.textClean();
 		idF.setBounds(31, 109, 195, 25);
 		contentP.add(idF);
 		idF.setColumns(10);

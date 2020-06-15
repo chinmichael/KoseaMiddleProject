@@ -26,8 +26,8 @@ public class LoginRegist extends JDialog {
 	Container contentP = getContentPane();
 	private JTextField nameF;
 	private JTextField idF;
-	private JTextField pwF;
-	private JTextField checkPwF;
+	private JPasswordField pwF;
+	private JPasswordField checkPwF;
 	private JTextField hintF;
 	private JTextField hAnswerF;
 	private JTextField phoneF1, phoneF2, phoneF3;
@@ -36,6 +36,9 @@ public class LoginRegist extends JDialog {
 	private JTextField shopF;
 	
 	JRadioButton rankS1, rankS2, rankS3;
+	
+	TextClear tc = new TextClear();
+	ImageInput imageEdit = new ImageInput();
 
 	public static void main(String[] args) {
 		try {
@@ -61,8 +64,6 @@ public class LoginRegist extends JDialog {
 		contentP.setLayout(null);
 		addMouseMotionListener(new DragMoveDialog());
 		
-		ImageInput imageEdit = new ImageInput();
-		
 		ImageIcon panelImage = new ImageIcon("src\\loginImage\\LRegBG1.jpg");
 		JPanel backG = imageEdit.panelPaint(panelImage);
 		backG.setBounds(0, 0, 450, 700);
@@ -80,33 +81,33 @@ public class LoginRegist extends JDialog {
 			}
 		});
 		
-		nameF = imageEdit.textClean();
+		nameF = tc.textClean();
 		nameF.setBounds(135, 80, 195, 25);
 		contentP.add(nameF);
 		nameF.setColumns(10);
 		
-		idF = imageEdit.textClean();
+		idF = tc.textClean();
 		idF.setEditable(false);
 		idF.setBounds(135, 135, 195, 25);
 		contentP.add(idF);
 		idF.setColumns(10);
 		
-		pwF = imageEdit.textClean();
+		pwF = tc.passClean();
 		pwF.setBounds(135, 190, 195, 25);
 		contentP.add(pwF);
 		pwF.setColumns(10);
 		
-		checkPwF = imageEdit.textClean();
+		checkPwF = tc.passClean();
 		checkPwF.setBounds(135, 245, 195, 25);
 		contentP.add(checkPwF);
 		checkPwF.setColumns(10);
 		
-		hintF = imageEdit.textClean();
+		hintF = tc.textClean();
 		hintF.setBounds(135, 300, 195, 25);
 		contentP.add(hintF);
 		hintF.setColumns(10);
 		
-		hAnswerF = imageEdit.textClean();
+		hAnswerF = tc.textClean();
 		hAnswerF.setBounds(135, 355, 195, 25);
 		contentP.add(hAnswerF);
 		hAnswerF.setColumns(10);
@@ -115,35 +116,38 @@ public class LoginRegist extends JDialog {
 		IntegerDocument id2 = new IntegerDocument(4);
 		IntegerDocument id3 = new IntegerDocument(4);
 		
-		phoneF1 = imageEdit.textClean();
+		phoneF1 = tc.textClean();
 		phoneF1.setBounds(135, 410, 45, 25);
 		phoneF1.setDocument(id);
+		phoneF1.setHorizontalAlignment(SwingConstants.CENTER);
 		contentP.add(phoneF1);
 		phoneF1.setColumns(10);
 		
-		phoneF2 = imageEdit.textClean();
+		phoneF2 = tc.textClean();
 		phoneF2.setBounds(225, 410, 45, 25);
 		phoneF2.setDocument(id2);
+		phoneF2.setHorizontalAlignment(SwingConstants.CENTER);
 		contentP.add(phoneF2);
 		phoneF2.setColumns(10);
 		
-		phoneF3 = imageEdit.textClean();
+		phoneF3 = tc.textClean();
 		phoneF3.setBounds(315, 410, 45, 25);
 		phoneF3.setDocument(id3);
+		phoneF3.setHorizontalAlignment(SwingConstants.CENTER);
 		contentP.add(phoneF3);
 		phoneF3.setColumns(10);
 		
-		mailF1 = imageEdit.textClean();
+		mailF1 = tc.textClean();
 		mailF1.setBounds(135, 465, 103, 25);
 		contentP.add(mailF1);
 		mailF1.setColumns(10);
 		
-		mailF2 = imageEdit.textClean();
+		mailF2 = tc.textClean();
 		mailF2.setBounds(285, 465, 103, 25);
 		contentP.add(mailF2);
 		mailF2.setColumns(10);
 		
-		shopF = imageEdit.textClean();
+		shopF = tc.textClean();
 		shopF.setBounds(135, 575, 195, 25);
 		contentP.add(shopF);
 		shopF.setColumns(10);
@@ -367,7 +371,7 @@ public class LoginRegist extends JDialog {
 					if(pwF.getText().equals(checkPwF.getText())) {
 						
 						String mail;
-						if(!mailF1.getText().isBlank() || !mailF2.getText().isBlank()) {
+						if(mailF1.getText().isBlank() || mailF2.getText().isBlank()) {
 							mail = "";
 						} else {
 							mail = mailF1.getText() + "@" + mailF2.getText();
@@ -390,6 +394,9 @@ public class LoginRegist extends JDialog {
 						} else {
 							RegistAccount regAcc = new RegistAccount();
 							regAcc.registAccount(nameF.getText(), idF.getText(), checkPwF.getText(), mail, phone, hintF.getText(), hAnswerF.getText(), shopF.getText(), rankF, owner);
+							if(regAcc.getFlg()) {
+								dispose();
+							}
 						}
 						
 					} else {

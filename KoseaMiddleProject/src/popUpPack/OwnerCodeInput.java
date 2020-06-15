@@ -22,13 +22,16 @@ import connPack.ShopQ;
 import toolPack.DragMoveDialog;
 import toolPack.ImageInput;
 import toolPack.SizeTool;
+import toolPack.TextClear;
 
 public class OwnerCodeInput extends JDialog {
 
 	Container contentP = getContentPane();
 	JTextField ownerC = new JTextField();
-	
 	static String ownerCode = "";
+	
+	ImageInput imageEdit = new ImageInput();
+	TextClear tc = new TextClear();
 	
 	public String getCode() {
 		return ownerCode;
@@ -48,7 +51,6 @@ public class OwnerCodeInput extends JDialog {
 		setModal(true);
 		addMouseMotionListener(new DragMoveDialog());
 		contentP.setLayout(null);
-		ImageInput imageEdit = new ImageInput();
 		
 		ImageIcon panelImage = new ImageIcon("src\\warningImage\\CationBG.jpg");
 		JPanel backG = imageEdit.panelPaint(panelImage);
@@ -61,7 +63,7 @@ public class OwnerCodeInput extends JDialog {
 		msgAccount.setHorizontalAlignment(JLabel.CENTER);
 		contentP.add(msgAccount);
 		
-		ownerC = imageEdit.textClean();
+		ownerC = tc.textClean();
 		ownerC.setBounds(31, 109, 195, 25);
 		contentP.add(ownerC);
 		ownerC.setColumns(10);

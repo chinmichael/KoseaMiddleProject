@@ -19,6 +19,12 @@ public class LoginHome extends JFrame {
 	
 	private JTextField fieldID;
 	private JPasswordField fieldPW;
+	
+	ImageInput imageEdit = new ImageInput();
+	TextClear tc = new TextClear();
+	
+	AccountInput wMsg = new AccountInput();
+	AccountQ loginC = new AccountQ();
 
 	public static void main(String[] args) {
 		try {
@@ -36,10 +42,7 @@ public class LoginHome extends JFrame {
 		setLocation(st.setCenterX(380), st.setCenterY(600) - 20);
 		setUndecorated(true);
 		getContentPane().setLayout(null);
-//		setOpaque(false);
 		addMouseMotionListener(new MouseDragMove());
-		
-		ImageInput imageEdit = new ImageInput();
 		
 		ImageIcon panelImage = new ImageIcon("src\\loginImage\\LoginBG1.jpg");
 		JPanel backG = imageEdit.panelPaint(panelImage);
@@ -50,7 +53,7 @@ public class LoginHome extends JFrame {
 		msgID.setBounds(72, 305, 131, 15);
 		contentP.add(msgID);
 		
-		fieldID = imageEdit.textClean();
+		fieldID = tc.textClean();
 		fieldID.setBounds(70, 295, 240, 31);
 		contentP.add(fieldID);
 		fieldID.setColumns(10);
@@ -60,12 +63,8 @@ public class LoginHome extends JFrame {
 		msgPW.setBounds(72, 356, 133, 15);
 		contentP.add(msgPW);
 		
-		fieldPW = new JPasswordField() {
-			public void setBorder(Border border) {
-			}
-		};
+		fieldPW = tc.passClean();
 		fieldPW.setBounds(70, 346, 240, 31);
-		fieldPW.setOpaque(false);
 		contentP.add(fieldPW);
 		fieldPW.setColumns(10);
 		
@@ -128,7 +127,6 @@ public class LoginHome extends JFrame {
 		loginB.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				if (fieldID.getText().equals("") || fieldPW.getText().equals("")) {
-					AccountInput wMsg = new AccountInput();
 					wMsg.printMsg();
 					
 					if (fieldID.getText().equals("")) {
@@ -142,7 +140,6 @@ public class LoginHome extends JFrame {
 					String IDcheck = fieldID.getText();
 					String PWcheck = fieldPW.getText();
 					
-					AccountQ loginC = new AccountQ();
 					ArrayList<AccountDB> list = loginC.list(IDcheck, PWcheck);
 					if (loginC.flg) {
 						dispose();
@@ -167,7 +164,8 @@ public class LoginHome extends JFrame {
 				LoginRegist reg = new LoginRegist();
 				reg.openWindow();
 			}
-		});		
+		});
+		
 		JLabel lblNewLabel = new JLabel("∞Ë¡§ √£±‚");
 		lblNewLabel.setFont(new Font("∏º¿∫ ∞ÌµÒ", Font.BOLD, 13));
 		lblNewLabel.setForeground(new Color(102, 51, 0));

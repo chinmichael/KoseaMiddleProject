@@ -83,16 +83,6 @@ public class ImageInput {
 
 		return p;
 	}
-	
-	public JTextField textClean() {
-		JTextField jt = new JTextField() {
-			public void setBorder(Border border) {	
-			}
-		}; // 익명클래스로 텍스트 테두리 제거
-		jt.setOpaque(false);
-		
-		return jt;
-	}
 
 	public JTextArea textPaint(ImageIcon back) {
 		JTextArea t = new JTextArea() {

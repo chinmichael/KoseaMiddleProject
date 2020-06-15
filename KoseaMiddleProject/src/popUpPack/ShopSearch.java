@@ -15,13 +15,15 @@ import toolPack.*;
 public class ShopSearch extends JDialog {
 	
 	static String shopCode;
+	Container contentP = getContentPane();
+	private static JTextField shopName;
+	
+	ImageInput imageEdit = new ImageInput();
+	TextClear tc = new TextClear();
 	
 	public String getCode() {
 		return shopCode;
 	}
-	
-	Container contentP = getContentPane();
-	private static JTextField shopName;
 	
 	public static void main(String[] args) {
 		try {
@@ -46,7 +48,6 @@ public class ShopSearch extends JDialog {
 		setModal(true);
 		addMouseMotionListener(new DragMoveDialog());
 		contentP.setLayout(null);
-		ImageInput imageEdit = new ImageInput();
 		
 		ImageIcon panelImage = new ImageIcon("src\\warningImage\\CationBG.jpg");
 		JPanel backG = imageEdit.panelPaint(panelImage);
@@ -58,7 +59,7 @@ public class ShopSearch extends JDialog {
 		msgAccount.setBounds(70, 39, 160, 63);
 		contentP.add(msgAccount);
 		
-		shopName = imageEdit.textClean();
+		shopName = tc.textClean();
 		shopName.setBounds(31, 109, 195, 25);
 		contentP.add(shopName);
 		shopName.setColumns(10);

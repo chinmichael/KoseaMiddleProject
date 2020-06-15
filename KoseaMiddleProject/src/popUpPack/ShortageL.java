@@ -56,7 +56,7 @@ public class ShortageL extends JDialog {
 		buttonMsg.setForeground(Color.WHITE);
 		buttonMsg.setFont(new Font("±¼¸²", Font.BOLD, 15));
 		buttonMsg.setBounds(135, 132, 33, 22);
-		getContentPane().add(buttonMsg);
+		contentP.add(buttonMsg);
 		
 		ImageIcon cnormal = new ImageIcon("src\\warningImage\\Wbutton1.jpg");
 		ImageIcon caction = new ImageIcon("src\\warningImage\\Wbutton2.jpg");
