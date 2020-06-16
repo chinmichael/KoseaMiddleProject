@@ -9,7 +9,7 @@ public class AccountDB {
 	private String hint;
 	private String hint_answer;
 	private String shop_id;
-	private String user_type;
+	private static String user_type;
 	private String owner_code;
 	
 	public AccountDB() {

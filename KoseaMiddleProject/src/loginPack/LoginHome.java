@@ -80,6 +80,21 @@ public class LoginHome extends JFrame {
                 msgPW.setVisible(true);
             }
 		});
+		
+		fieldID.setFocusTraversalKeysEnabled(false);
+		fieldID.addKeyListener(new KeyAdapter() {
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == 9) {  //keyCode() == 9 는 Tab, 10은 Enter
+					fieldPW.requestFocus();
+					if (fieldID.getText().equals("")) {
+						msgID.setVisible(true);
+					}
+					msgPW.setVisible(false);
+
+				}
+			}
+		});
+		
 		fieldPW.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e){
 				if(fieldID.getText().equals(""))
@@ -129,8 +144,8 @@ public class LoginHome extends JFrame {
 		ImageIcon laction = new ImageIcon("src\\loginImage\\Lbutton2.jpg");
 		imageEdit.setButtonImage(loginB, lnormal, laction);
 		contentP.add(loginB);
-		loginB.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
+		loginB.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				if (fieldID.getText().equals("") || fieldPW.getText().equals("")) {
 					String msg = "아이디 혹은 비밀번호을 확인해주세요";
 					cm.printMsg(msg);
@@ -151,6 +166,16 @@ public class LoginHome extends JFrame {
 						dispose();
 					}
 					
+				}
+			}
+		});
+		
+		fieldPW.addKeyListener(new KeyAdapter() {
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == 10) {  //keyCode() == 9 는 Tab, 10은 Enter
+					Toolkit.getDefaultToolkit().beep(); 
+
+			        loginB.doClick();
 				}
 			}
 		});
