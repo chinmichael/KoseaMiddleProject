@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
@@ -27,7 +28,7 @@ import toolPack.TextClear;
 public class OwnerCodeInput extends JDialog {
 
 	Container contentP = getContentPane();
-	JTextField ownerC = new JTextField();
+	JPasswordField ownerC = new JPasswordField();
 	static String ownerCode = "";
 	
 	ImageInput imageEdit = new ImageInput();
@@ -64,7 +65,7 @@ public class OwnerCodeInput extends JDialog {
 		msgAccount.setHorizontalAlignment(JLabel.CENTER);
 		contentP.add(msgAccount);
 		
-		ownerC = tc.textClean();
+		ownerC = tc.passClean();
 		ownerC.setBounds(31, 109, 195, 25);
 		contentP.add(ownerC);
 		ownerC.setColumns(10);

@@ -34,6 +34,11 @@ public class LoginHome extends JFrame {
 			e.printStackTrace();
 		}
 	}
+	
+	public void openWindow() {
+		LoginHome frame = new LoginHome();
+		frame.setVisible(true);
+	}
 
 	public LoginHome() {
 		setSize(380, 600);
@@ -41,7 +46,7 @@ public class LoginHome extends JFrame {
 		SizeTool st = new SizeTool();
 		setLocation(st.setCenterX(380), st.setCenterY(600) - 20);
 		setUndecorated(true);
-		getContentPane().setLayout(null);
+		contentP.setLayout(null);
 		addMouseMotionListener(new MouseDragMove());
 		
 		ImageIcon panelImage = new ImageIcon("src\\loginImage\\LoginBG1.jpg");

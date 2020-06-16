@@ -80,7 +80,9 @@ public class ShopSearch extends JDialog {
 				String searchName = shopName.getText();
 
 				if (searchName.equals("")) {
-
+					CationMsg cm = new CationMsg();
+					String msg = "점포명을 입력해주세요";
+					cm.printMsg(msg);
 				} else {
 					ShopQ sq = new ShopQ();
 					ArrayList<ShopDB> list = sq.list(searchName);

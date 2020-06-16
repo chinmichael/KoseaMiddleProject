@@ -3,16 +3,23 @@ package popUpPack;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+
+import loginPack.LoginHome;
 import toolPack.*;
 
 
-public class ExitWarning extends JDialog {
+public class ReturnLogin extends JDialog {
 
 	Container contentP = getContentPane();
+	static boolean flg = false;
+	
+	public boolean getFlg() {
+		return flg;
+	}
 
 	public static void main(String[] args) {
 		try {
-			ExitWarning frame = new ExitWarning();
+			ReturnLogin frame = new ReturnLogin();
 			frame.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -20,11 +27,11 @@ public class ExitWarning extends JDialog {
 	}
 	
 	public void printMsg() {
-		ExitWarning frame = new ExitWarning();
+		ReturnLogin frame = new ReturnLogin();
 		frame.setVisible(true);
 	}
 
-	public ExitWarning() {
+	public ReturnLogin() {
 		setSize(300, 180); //2400 1450
 		setResizable(false);
 		SizeTool st = new SizeTool();
@@ -40,19 +47,19 @@ public class ExitWarning extends JDialog {
 		JPanel backG = imageEdit.panelPaint(panelImage);
 		backG.setBounds(0, 0, 300, 180);
 		
-		JLabel msgAccount = new JLabel(" 종료하시겠습니까?");
+		JLabel msgAccount = new JLabel(" 로그아웃 하시겠습니까?");
 		msgAccount.setHorizontalAlignment(SwingConstants.CENTER);
 		msgAccount.setForeground(new Color(153, 102, 0));
 		msgAccount.setFont(new Font("굴림", Font.BOLD, 15));
 		msgAccount.setBounds(0, 52, 300, 63);
 		contentP.add(msgAccount);
 		
-		JLabel buttonMsg = new JLabel("종료");
+		JLabel buttonMsg = new JLabel("Logout");
 		buttonMsg.setHorizontalAlignment(SwingConstants.CENTER);
 		buttonMsg.setForeground(Color.WHITE);
 		buttonMsg.setFont(new Font("굴림", Font.BOLD, 15));
-		buttonMsg.setBounds(103, 132, 97, 22);
-		getContentPane().add(buttonMsg);
+		buttonMsg.setBounds(104, 132, 95, 22);
+		contentP.add(buttonMsg);
 		
 		ImageIcon cnormal = new ImageIcon("src\\warningImage\\Wbutton1.jpg");
 		ImageIcon caction = new ImageIcon("src\\warningImage\\Wbutton2.jpg");
@@ -62,7 +69,10 @@ public class ExitWarning extends JDialog {
 		imageEdit.setButtonImage(checkExit, cnormal, caction);
 		checkExit.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				System.exit(0);
+				LoginHome lh = new LoginHome();
+				lh.openWindow();
+				flg = true;
+				dispose();
 			}
 		});
 		
