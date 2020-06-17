@@ -162,7 +162,8 @@ public class LoginHome extends JFrame {
 					String PWcheck = fieldPW.getText();
 					
 					ArrayList<AccountDB> list = loginC.list(IDcheck, PWcheck);
-					if (loginC.flg) {
+					if (loginC.getFlg()) {
+						loginC.setFlg(false);
 						dispose();
 					}
 					

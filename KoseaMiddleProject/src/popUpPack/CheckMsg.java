@@ -1,80 +1,83 @@
 package popUpPack;
 
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
-import loginPack.LoginHome;
-import toolPack.*;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 
+import toolPack.DragMoveDialog;
+import toolPack.ImageInput;
+import toolPack.SizeTool;
 
-public class ReturnLogin extends JDialog {
+public class CheckMsg extends JDialog {
 
 	Container contentP = getContentPane();
-	static boolean flg = false;
+	private static boolean flg = false;
+	
+	ImageInput imageEdit = new ImageInput();
 	
 	public boolean getFlg() {
 		return flg;
 	}
 	
 	public void setFlg(boolean flg) {
-		this.flg= flg;
+		this.flg = flg;
 	}
 
-	public static void main(String[] args) {
-		try {
-			ReturnLogin frame = new ReturnLogin();
-			frame.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	public void printMsg(String msg, String useMsg) {
+		CheckMsg dialog = new CheckMsg(msg, useMsg);
+		dialog.setVisible(true);
 	}
 	
-	public void printMsg() {
-		ReturnLogin frame = new ReturnLogin();
-		frame.setVisible(true);
+	public CheckMsg() {
+		
 	}
-
-	public ReturnLogin() {
+	
+	public CheckMsg(String msg, String useMsg) {
 		setSize(300, 180); //2400 1450
 		setResizable(false);
 		SizeTool st = new SizeTool();
 		setLocation(st.setCenterX(300), st.setCenterY(180) - 100);
 		setUndecorated(true);
-		contentP.setLayout(null);
 		setModal(true);
 		addMouseMotionListener(new DragMoveDialog());
-		
-		ImageInput imageEdit = new ImageInput();
+		contentP.setLayout(null);
 		
 		ImageIcon panelImage = new ImageIcon("src\\warningImage\\CationBG.jpg");
 		JPanel backG = imageEdit.panelPaint(panelImage);
 		backG.setBounds(0, 0, 300, 180);
 		
-		JLabel msgAccount = new JLabel(" 로그아웃 하시겠습니까?");
-		msgAccount.setHorizontalAlignment(SwingConstants.CENTER);
+		JLabel msgAccount = new JLabel(msg);
 		msgAccount.setForeground(new Color(153, 102, 0));
 		msgAccount.setFont(new Font("굴림", Font.BOLD, 15));
 		msgAccount.setBounds(0, 52, 300, 63);
+		msgAccount.setHorizontalAlignment(JLabel.CENTER);
 		contentP.add(msgAccount);
 		
-		JLabel buttonMsg = new JLabel("Logout");
-		buttonMsg.setHorizontalAlignment(SwingConstants.CENTER);
+		JLabel buttonMsg = new JLabel(useMsg); //사용, "사용가능한 ID입니다", "중복되는 ID가 있습니다"
 		buttonMsg.setForeground(Color.WHITE);
 		buttonMsg.setFont(new Font("굴림", Font.BOLD, 15));
-		buttonMsg.setBounds(104, 132, 95, 22);
+		buttonMsg.setBounds(135, 132, 33, 22);
 		contentP.add(buttonMsg);
 		
 		ImageIcon cnormal = new ImageIcon("src\\warningImage\\Wbutton1.jpg");
 		ImageIcon caction = new ImageIcon("src\\warningImage\\Wbutton2.jpg");
-		JButton checkExit = new JButton();
-		checkExit.setBounds(103, 125, 97, 31);
-		contentP.add(checkExit);
-		imageEdit.setButtonImage(checkExit, cnormal, caction);
-		checkExit.addMouseListener(new MouseAdapter() {
+		JButton checkOK = new JButton();
+		checkOK.setBounds(102, 125, 97, 31);
+		contentP.add(checkOK);
+		imageEdit.setButtonImage(checkOK, cnormal, caction);
+		checkOK.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				LoginHome lh = new LoginHome();
-				lh.openWindow();
 				flg = true;
 				dispose();
 			}
@@ -94,6 +97,6 @@ public class ReturnLogin extends JDialog {
 		
 		
 		contentP.add(backG);
-
 	}
+
 }

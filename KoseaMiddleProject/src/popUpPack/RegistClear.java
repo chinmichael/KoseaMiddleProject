@@ -24,10 +24,14 @@ public class RegistClear extends JDialog {
 	
 	Container contentP = getContentPane();
 	ImageInput imageEdit = new ImageInput();
-	static boolean flg = false;
+	private static boolean flg = false;
 	
 	public boolean getFlg() {
 		return flg;
+	}
+	
+	public void setFlg(boolean flg) {
+		this.flg = false;
 	}
 	
 	public void printMsg() {

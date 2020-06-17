@@ -48,6 +48,10 @@ public class ShopList extends JDialog {
 		return flg;
 	}
 	
+	public void setFlg(boolean flg) {
+		this.flg= flg;
+	}
+	
 	public void openList(ArrayList<ShopDB> list, String name) {
 		ShopList dialog = new ShopList(list, name);
 		dialog.setVisible(true);

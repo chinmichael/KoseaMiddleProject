@@ -92,6 +92,7 @@ public class ShopSearch extends JDialog {
 					
 					if (sWin.getFlg()) {
 						shopCode = sWin.getCode();
+						sWin.setFlg(false);
 						dispose();
 					}
 

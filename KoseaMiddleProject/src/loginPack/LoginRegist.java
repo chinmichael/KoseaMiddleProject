@@ -2,6 +2,7 @@ package loginPack;
 
 import java.awt.*;
 
+
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -13,7 +14,6 @@ import connPack.ExistCheck;
 import connPack.RegistAccount;
 import popUpPack.CationMsg;
 import popUpPack.ExitWarning;
-import popUpPack.InputIDcheck;
 import popUpPack.OverCheck;
 import popUpPack.OwnerCodeInput;
 import popUpPack.ShopList;
@@ -34,8 +34,10 @@ public class LoginRegist extends JDialog {
 	private String rankF;
 	private JTextField shopF;
 	
+	JLabel checkinfo2;
 	JRadioButton rankS1, rankS2, rankS3;
 	
+	boolean passflg = true;
 	TextClear tc = new TextClear();
 	ImageInput imageEdit = new ImageInput();
 	CationMsg cm = new CationMsg();
@@ -81,7 +83,20 @@ public class LoginRegist extends JDialog {
 			}
 		});
 		
-		nameF = tc.textClean();
+		JLabel checkinfo = new JLabel("중복확인 버튼을 눌러주세요 >>");
+		checkinfo.setForeground(Color.LIGHT_GRAY);
+		checkinfo.setFont(new Font("굴림", Font.BOLD, 13));
+		checkinfo.setBounds(143, 137, 192, 25);
+		contentP.add(checkinfo);
+		
+		checkinfo2 = new JLabel("8자리 이상을 입력해주세요");
+		checkinfo2.setHorizontalAlignment(SwingConstants.RIGHT);
+		checkinfo2.setForeground(Color.LIGHT_GRAY);
+		checkinfo2.setFont(new Font("굴림", Font.BOLD, 13));
+		checkinfo2.setBounds(108, 192, 220, 25);
+		contentP.add(checkinfo2);
+		
+		nameF = tfsetting(nameF);
 		nameF.setBounds(135, 80, 195, 25);
 		contentP.add(nameF);
 		nameF.setColumns(10);
@@ -96,18 +111,54 @@ public class LoginRegist extends JDialog {
 		pwF.setBounds(135, 190, 195, 25);
 		contentP.add(pwF);
 		pwF.setColumns(10);
+		pwF.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				checkinfo2.setVisible(false);
+				passflg = true;
+			}
+		});
+		
+		pwF.setFocusTraversalKeysEnabled(false);
+		pwF.addKeyListener(new KeyAdapter() {
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == 9) {  //keyCode() == 9 는 Tab, 10은 Enter
+					checkPwF.requestFocus();
+					if (pwF.getText().isBlank()) {
+						checkinfo2.setVisible(true);
+						passflg = false;
+					}
+				}
+			}
+		});
+		
+		addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				if (pwF.getText().isBlank()) {
+					checkinfo2.setVisible(true);
+					passflg = false;
+				}
+			}
+		});
 		
 		checkPwF = tc.passClean();
 		checkPwF.setBounds(135, 245, 195, 25);
 		contentP.add(checkPwF);
 		checkPwF.setColumns(10);
+		checkPwF.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				if (pwF.getText().isBlank()) {
+					checkinfo2.setVisible(true);
+					passflg = false;
+				}
+			}
+		});
 		
-		hintF = tc.textClean();
+		hintF = tfsetting(hintF);
 		hintF.setBounds(135, 300, 195, 25);
 		contentP.add(hintF);
 		hintF.setColumns(10);
 		
-		hAnswerF = tc.textClean();
+		hAnswerF = tfsetting(hAnswerF);
 		hAnswerF.setBounds(135, 355, 195, 25);
 		contentP.add(hAnswerF);
 		hAnswerF.setColumns(10);
@@ -116,47 +167,41 @@ public class LoginRegist extends JDialog {
 		IntegerDocument id2 = new IntegerDocument(4);
 		IntegerDocument id3 = new IntegerDocument(4);
 		
-		phoneF1 = tc.textClean();
+		phoneF1 = tfsetting(phoneF1);
 		phoneF1.setBounds(135, 410, 45, 25);
 		phoneF1.setDocument(id);
 		phoneF1.setHorizontalAlignment(SwingConstants.CENTER);
 		contentP.add(phoneF1);
 		phoneF1.setColumns(10);
 		
-		phoneF2 = tc.textClean();
+		phoneF2 = tfsetting(phoneF2);
 		phoneF2.setBounds(225, 410, 45, 25);
 		phoneF2.setDocument(id2);
 		phoneF2.setHorizontalAlignment(SwingConstants.CENTER);
 		contentP.add(phoneF2);
 		phoneF2.setColumns(10);
 		
-		phoneF3 = tc.textClean();
+		phoneF3 = tfsetting(phoneF3);
 		phoneF3.setBounds(315, 410, 45, 25);
 		phoneF3.setDocument(id3);
 		phoneF3.setHorizontalAlignment(SwingConstants.CENTER);
 		contentP.add(phoneF3);
 		phoneF3.setColumns(10);
 		
-		mailF1 = tc.textClean();
+		mailF1 = tfsetting(mailF1);
 		mailF1.setBounds(135, 465, 103, 25);
 		contentP.add(mailF1);
 		mailF1.setColumns(10);
 		
-		mailF2 = tc.textClean();
+		mailF2 = tfsetting(mailF2);
 		mailF2.setBounds(285, 465, 103, 25);
 		contentP.add(mailF2);
 		mailF2.setColumns(10);
 		
-		shopF = tc.textClean();
+		shopF = tfsetting(shopF);
 		shopF.setBounds(135, 575, 195, 25);
 		contentP.add(shopF);
 		shopF.setColumns(10);
-		
-		JLabel checkinfo = new JLabel("중복확인 버튼을 눌러주세요 >>");
-		checkinfo.setForeground(Color.LIGHT_GRAY);
-		checkinfo.setFont(new Font("굴림", Font.BOLD, 13));
-		checkinfo.setBounds(143, 137, 192, 25);
-		contentP.add(checkinfo);
 		
 		JLabel lblNewLabel = new JLabel("성명");
 		lblNewLabel.setBounds(45, 85, 41, 20);
@@ -368,35 +413,42 @@ public class LoginRegist extends JDialog {
 						&& !phoneF1.getText().isBlank() && !phoneF2.getText().isBlank() && !phoneF3.getText().isBlank()
 						&& !rankF.equals("") && !shopF.getText().isBlank()) {
 					
-					if(pwF.getText().equals(checkPwF.getText())) {
-						
-						String mail;
-						if(mailF1.getText().isBlank() || mailF2.getText().isBlank()) {
-							mail = "";
-						} else {
-							mail = mailF1.getText() + "@" + mailF2.getText();
-						}
-						String phone = phoneF1.getText() + "-" + phoneF2.getText() + "-" + phoneF3.getText();
-						String owner;
-						
-						if(rankF.equals("점장")) {
-							OwnerCodeInput oc = new OwnerCodeInput();
-							oc.openWindow();
-							owner = oc.getCode();
-						} else {
-							owner = "";
-						}
-						
-						if(rankF.equals("점장") && owner.equals("")) {
-							String msg = "필수정보를 모두 입력해주세요";
-							cm.printMsg(msg);
-							
-						} else {
-							RegistAccount regAcc = new RegistAccount();
-							regAcc.registAccount(nameF.getText(), idF.getText(), checkPwF.getText(), mail, phone, hintF.getText(), hAnswerF.getText(), shopF.getText(), rankF, owner);
-							if(regAcc.getFlg()) {
-								dispose();
+					if (pwF.getText().equals(checkPwF.getText())) {
+
+						if (pwF.getText().length() >= 8) {
+
+							String mail;
+							if (mailF1.getText().isBlank() || mailF2.getText().isBlank()) {
+								mail = "";
+							} else {
+								mail = mailF1.getText() + "@" + mailF2.getText();
 							}
+							String phone = phoneF1.getText() + "-" + phoneF2.getText() + "-" + phoneF3.getText();
+							String owner;
+
+							if (rankF.equals("점장")) {
+								OwnerCodeInput oc = new OwnerCodeInput();
+								oc.openWindow();
+								owner = oc.getCode();
+							} else {
+								owner = "";
+							}
+
+							if (rankF.equals("점장") && owner.equals("")) {
+								String msg = "필수정보를 모두 입력해주세요";
+								cm.printMsg(msg);
+
+							} else {
+								RegistAccount regAcc = new RegistAccount();
+								regAcc.registAccount(nameF.getText(), idF.getText(), checkPwF.getText(), mail, phone,
+										hintF.getText(), hAnswerF.getText(), shopF.getText(), rankF, owner);
+								if (regAcc.getFlg()) {
+									regAcc.setFlg(false);
+									dispose();
+								}
+							}
+						} else {
+							cm.printMsg("비밀번호는 8자리 이상 입력했주세요");
 						}
 						
 					} else {
@@ -443,4 +495,19 @@ public class LoginRegist extends JDialog {
 			
 		}
 	}
+	
+	public JTextField tfsetting (JTextField tf) {
+		tf = tc.textClean();
+		tf.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				if(pwF.getText().isBlank() && passflg) {
+					checkinfo2.setVisible(true);
+					passflg = false;
+				}
+			}
+		});
+		
+		return tf;
+	}
+
 }

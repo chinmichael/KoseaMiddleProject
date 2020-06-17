@@ -15,6 +15,8 @@ public class OverCheck extends JDialog {
 	
 	ImageInput imageEdit = new ImageInput();
 	TextClear tc = new TextClear();
+	CheckMsg ck  = new CheckMsg();
+	CationMsg cm = new CationMsg();
 	
 	public static void main(String[] args) {
 		try {
@@ -75,8 +77,8 @@ public class OverCheck extends JDialog {
 			public void mouseClicked(MouseEvent e) {
 				String idInput = idF.getText();
 
-				if (idInput.equals("")) {
-					String msg = "ID를 입력해주세요";
+				if (idInput.length() < 6) {
+					String msg = "ID는 6자리 이상을 입력해주세요";
 					CationMsg cm = new CationMsg();
 					cm.printMsg(msg);
 
@@ -84,14 +86,15 @@ public class OverCheck extends JDialog {
 					ExistCheck ex = new ExistCheck();
 					boolean flg = ex.idcheck(idInput);
 
-					InputIDcheck ck = new InputIDcheck();
-					ck.printMsg(flg);
-
 					if (flg == false) {
+						cm.printMsg("중복되는 ID가 있습니다");
 						idF.setText("");
+					} else {
+						ck.printMsg("사용가능한 ID입니다", "사용");
 					}
 					
-					if(ck.getUse()) {
+					if(ck.getFlg()) {
+						ck.setFlg(false);
 						dispose();
 					}
 				}

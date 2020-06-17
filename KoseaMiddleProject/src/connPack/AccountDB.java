@@ -8,7 +8,7 @@ public class AccountDB {
 	private String phone;
 	private String hint;
 	private String hint_answer;
-	private String shop_id;
+	private static String shop_id;
 	private static String user_type;
 	private String owner_code;
 	

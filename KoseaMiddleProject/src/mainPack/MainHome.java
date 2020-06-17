@@ -17,6 +17,7 @@ public class MainHome extends JFrame {
 	AccountDB ad = new AccountDB();
 //	String Type = ad.getUtype();
 	String Type = ""; // 확인작업용
+//	String Type = "점장"; //확인작업용2
 	
 	Container contentP = getContentPane();
 	ImageInput imageEdit = new ImageInput();
@@ -67,14 +68,15 @@ public class MainHome extends JFrame {
 		contentP.add(xButton);
 		xButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-//				ReturnLogin rl = new ReturnLogin();
-//				rl.printMsg();
-//				
-//				if(rl.getFlg()) {
-//					dispose();
-//				}
+				ReturnLogin rl = new ReturnLogin();
+				rl.printMsg();
 				
-				System.exit(0);  // 작업중 실제 실행 빠르게 확인 후 닫는 용
+				if(rl.getFlg()) {
+					rl.setFlg(false);
+					dispose();
+				}
+				
+//				System.exit(0);  // 작업중 실제 실행 빠르게 확인 후 닫는 용
 			}
 		});
 		
@@ -82,15 +84,15 @@ public class MainHome extends JFrame {
 		contentP.add(mhp);
 		mhp.setVisible(true);
 		
-		mdp.setBounds(20, 160, 420, 70);
+		mdp.setBounds(20, 160, 420, 500);
 		contentP.add(mdp);
 		mdp.setVisible(false);
 		
-		msp.setBounds(20, 160, 420, 70);
+		msp.setBounds(20, 160, 420, 500);
 		contentP.add(msp);
 		msp.setVisible(false);
 		
-		map.setBounds(20, 160, 420, 70);
+		map.setBounds(20, 160, 420, 500);
 		contentP.add(map);
 		map.setVisible(false);
 		

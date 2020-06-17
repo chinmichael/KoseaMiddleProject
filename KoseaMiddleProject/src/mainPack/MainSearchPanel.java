@@ -9,15 +9,9 @@ import javax.swing.plaf.ColorUIResource;
 import toolPack.ImageInput;
 import javax.swing.JButton;
 
-public class MainSearchPanel extends JPanel {
-	
-	ImageInput imageEdit = new ImageInput();
-	Color BG = new ColorUIResource (254, 251, 245);
+public class MainSearchPanel extends BasicMP {
 
 	public MainSearchPanel() {
-		setBackground(BG); //
-		setSize(420, 70); //setBound at 40, 185
-		setLayout(null);
 		
 		ImageIcon searchSNormal = new ImageIcon("src\\mainIcon\\searchSB1.jpg");
 		ImageIcon searchSAction = new ImageIcon("src\\mainIcon\\searchSB2.jpg");

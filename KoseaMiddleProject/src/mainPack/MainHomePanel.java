@@ -23,16 +23,14 @@ import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.plaf.ColorUIResource;
 
-public class MainHomePanel extends JPanel {
+import popUpPack.CheckMsg;
+
+public class MainHomePanel extends BasicMP {
 	
 	JTextArea noticeWriting;
-	ImageInput imageEdit = new ImageInput();
-	Color BG = new ColorUIResource(254, 251, 245);
+	CheckMsg ck = new CheckMsg();
 
 	public MainHomePanel() {
-		setBackground(BG); //
-		setSize(420, 500); // setBound at 40, 185
-		setLayout(null);
 
 		noticeWriting = new JTextArea();
 		noticeWriting.setBorder(new EmptyBorder(0, 0, 0, 0));
@@ -64,13 +62,17 @@ public class MainHomePanel extends JPanel {
 		add(saveButton);
 		saveButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				try {
-					OutputStream output = new FileOutputStream("C:\\hrchinDB\\DisNotice.txt");
-					byte[] notice = noticeWriting.getText().getBytes();
-					output.write(notice);
+				ck.printMsg("변경사항을 저장하시겠습니까?", "저장");
 
-				} catch (Exception e1) {
-					e1.printStackTrace();
+				if (ck.getFlg()) {
+					try {
+						OutputStream output = new FileOutputStream("C:\\hrchinDB\\DisNotice.txt");
+						byte[] notice = noticeWriting.getText().getBytes();
+						output.write(notice);
+
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
 				}
 			}
 		});
@@ -81,12 +83,16 @@ public class MainHomePanel extends JPanel {
 		add(backButton);
 		backButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				loadFile();
+				ck.printMsg("마지막 저장 상태로 되돌리시겠습니까?", "확인");
+
+				if (ck.getFlg()) {
+					loadFile();
+				}
 			}
 		});
-		
+
 	}
-	
+
 	public void loadFile() {
 		try {
 			File file = new File("C:\\hrchinDB\\DisNotice.txt"); // https://coding-factory.tistory.com/282

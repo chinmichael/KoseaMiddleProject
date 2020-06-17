@@ -6,7 +6,15 @@ import popUpPack.*;
 
 public class AccountQ {
 	
-	public static boolean flg;
+	private static boolean flg;
+	
+	public void setFlg(boolean flg) {
+		this.flg = flg;
+	}
+	
+	public boolean getFlg() {
+		return flg;
+	}
 	
 	public ArrayList<AccountDB> list (String id, String pw) {
 		ArrayList<AccountDB> list = new ArrayList<AccountDB>();
@@ -28,7 +36,7 @@ public class AccountQ {
 				String checkPW = c.getRS().getString("user_pw");
 				
 				if (checkPW.equals(pw)) {
-					c.getRS().previous(); // 리스트 이전요소 반환하고 커서 역방향 이동
+					c.getRS().first(); // 리스트 이전요소 반환하고 커서 역방향 이동
 					while (c.getRS().next()) {
 						String user_name = c.getRS().getString("user_name");
 						String e_mail = c.getRS().getString("e_mail");

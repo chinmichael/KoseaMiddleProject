@@ -39,7 +39,7 @@ public class ExistCheck {
 			c.getRS().last();
 
 			if (!(c.getRS().getRow() == 0)) {
-				c.getRS().previous();
+				c.getRS().first();
 				while (c.getRS().next()) {
 					hint = c.getRS().getString("hint");
 				}
@@ -63,7 +63,7 @@ public class ExistCheck {
 			c.getRS().last();
 
 			if (!(c.getRS().getRow() == 0)) {
-				c.getRS().previous();
+				c.getRS().first();
 				
 				String resultPW = "";
 				while (c.getRS().next()) {
