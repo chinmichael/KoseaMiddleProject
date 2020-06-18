@@ -1,55 +1,162 @@
 //https://m.blog.naver.com/PostView.nhn?blogId=kdy0573&logNo=150158901889&proxyReferer=https:%2F%2Fwww.google.com%2F
-//https://aiden1004.tistory.com/entry/%EC%9E%90%EB%B0%94-%EC%8A%A4%EC%9C%99-%ED%85%8C%EC%9D%B4%EB%B8%94%EC%97%90-%EB%B2%84%ED%8A%BC-%EC%9E%85%EB%A0%A5%EC%B2%B4%ED%81%AC%EB%B0%95%EC%8A%A4-%ED%9B%84-%EC%9D%B4%EB%B2%A4%ED%8A%B8-%EC%B2%98%EB%A6%AC
-//https://krvision.tistory.com/entry/Swing-JTable
+//https://hashcode.co.kr/questions/2488/jtable%EC%97%90%EC%84%9C-%EC%97%AC%EB%9F%AC-%EA%B0%9C%EC%9D%98-%EC%97%B4-%EC%84%A0%ED%83%9D%ED%95%98%EA%B8%B0
+//https://m.blog.naver.com/PostView.nhn?blogId=kdy0573&logNo=150158901889&proxyReferer=https:%2F%2Fwww.google.com%2F
+//http://blog.daum.net/janustop/70
+//https://kimsaemjava.tistory.com/61
+//https://cordingtime.tistory.com/72
 
 package mainResultPanel;
-import java.util.ArrayList;
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 
 import connPack.AccountDB;
 import connPack.DisDBShort;
 import connPack.DisQ;
+import popUpPack.CationMsg;
+import toolPack.DateTool;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+
 
 public class MonthDisPanel extends BasicRMP {
-	
+
 	AccountDB ad = new AccountDB();
 //	String shopID = ad.getUshop();
-	String shopID = "SG85";  //실험용
-	
+	String shopID = "SG85"; // 실험용
+
 	private JTable table;
 	DefaultTableModel model;
 	JScrollPane sp;
-	Object[] record = new Object[3];
+	Object[] record = new Object[5];
+	TableColumnModel tcm;
 	
+	DateTool dt = new DateTool();
+	CationMsg cm = new CationMsg();
+	DisQ dq = new DisQ();
+
 	public MonthDisPanel() {
 
-		String[] title = { "상품명", "재고", "유통기한" };
-		model = new DefaultTableModel(title, 0);
-		table = new JTable(model) {
+		String[] title = { "", "No.", "상품명", "재고", "유통기한" };
+		model = new DefaultTableModel(title, 0) {
+			public boolean isCellEditable(int row, int column) {
+				if (column == 1 || column == 2) {
+					return false;
+				} else {
+					return true;
+				}
+			}
+
+			@Override
+			public Class<?> getColumnClass(int columnIndex) {
+				if (columnIndex == 0) {
+					return Boolean.class;
+				} else if (columnIndex == 3) {
+					return Integer.class;
+				} else {
+					return String.class;
+				}
+			}
 
 		};
+		table = new JTable(model);
 		sp = new JScrollPane(table);
-		sp.setBounds(0, 0, 420, 350);
+		sp.setBounds(0, 0, 420, 330);
+		
+		table.getColumn("").setPreferredWidth(10);
+		table.getColumn("No.").setPreferredWidth(25);
+		table.getColumn("상품명").setPreferredWidth(200);
+		table.getColumn("재고").setPreferredWidth(25);
+		table.getColumn("유통기한").setPreferredWidth(80);
+		
+		DefaultTableCellRenderer mid = new DefaultTableCellRenderer();
+		mid.setHorizontalAlignment(SwingConstants.CENTER);
+		DefaultTableCellRenderer right = new DefaultTableCellRenderer();
+		right.setHorizontalAlignment(SwingConstants.RIGHT);
+		
+		tcm = table.getColumnModel();
+		tcm.getColumn(1).setCellRenderer(mid);
+		tcm.getColumn(2).setCellRenderer(mid);
+		tcm.getColumn(4).setCellRenderer(mid);
+		
+		tcm.getColumn(3).setCellRenderer(right);
 
-		DisQ dq = new DisQ();
+
 		ArrayList<DisDBShort> list = dq.disSearchMonth(shopID);
 //		System.out.println("db실행");
+		
 
 		for (int i = 0; i < list.size(); i++) {
 			DisDBShort data = list.get(i);
-			record[0] = data.getName();
-			record[1] = data.getStock();
-			record[2] = data.getDate();
+			record[0] = false;
+			record[1] = data.getNum();
+			record[2] = data.getName();
+			record[3] = data.getStock();
+			record[4] = data.getDate();
 			model.addRow(record);
+			
 		}
-
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-
+		
 		add(sp);
+		
+		ImageIcon saveNormal = new ImageIcon("src\\mainIcon\\saveB1.jpg");
+		ImageIcon saveAction = new ImageIcon("src\\mainIcon\\saveB2.jpg");
+		ImageIcon backNormal = new ImageIcon("src\\mainIcon\\backB1.jpg");
+		ImageIcon backAction = new ImageIcon("src\\mainIcon\\backB2.jpg");
+		
+		JButton saveButton = new JButton();
+		saveButton.setBounds(0, 355, 60, 60);
+		imageEdit.setButtonImage(saveButton, saveNormal, saveAction);
+		add(saveButton);
+		saveButton.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				boolean flg = true;
+				
+				for (int i = 0; i < table.getRowCount(); i++) {
+					if ((boolean) table.getModel().getValueAt(i, 0)) {
 
+						if (!dt.vildationDate((String) table.getModel().getValueAt(i, 4))) {
+							cm.printMsg("유효기간을 YYYY/MM/DD형식으로 입력하세요");
+							flg = false;
+						} 
+					}
+				}
+				
+				if (flg) {
+					for (int i = 0; i < table.getRowCount(); i++) {
+						if ((boolean) table.getModel().getValueAt(i, 0)) {
+
+							int serial = (int) table.getModel().getValueAt(i, 1);
+							String date = (String) table.getModel().getValueAt(i, 4);
+							int stock = (int) table.getModel().getValueAt(i, 3);
+							
+//							String dat = date.replace("/", "");
+//							System.out.println(dat);
+							
+							dq.disChange(serial, date, stock);
+
+						}
+
+					}
+				}
+			}
+
+		});
+		
+		JButton refreshButton = new JButton();
+		refreshButton.setBounds(360, 355, 60, 60);
+		imageEdit.setButtonImage(refreshButton, backNormal, backAction);
+		add(refreshButton);
+		
 	}
 }
