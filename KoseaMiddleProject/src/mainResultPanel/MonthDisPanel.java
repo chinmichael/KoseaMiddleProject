@@ -21,6 +21,7 @@ import javax.swing.table.TableColumnModel;
 import connPack.AccountDB;
 import connPack.DisDBShort;
 import connPack.DisQ;
+import connPack.DisUpdateQ;
 import popUpPack.CationMsg;
 import toolPack.DateTool;
 
@@ -43,6 +44,7 @@ public class MonthDisPanel extends BasicRMP {
 	DateTool dt = new DateTool();
 	CationMsg cm = new CationMsg();
 	DisQ dq = new DisQ();
+	DisUpdateQ du = new DisUpdateQ();
 
 	public MonthDisPanel() {
 
@@ -126,7 +128,7 @@ public class MonthDisPanel extends BasicRMP {
 					if ((boolean) table.getModel().getValueAt(i, 0)) {
 
 						if (!dt.vildationDate((String) table.getModel().getValueAt(i, 4))) {
-							cm.printMsg("유효기간을 YYYY/MM/DD형식으로 입력하세요");
+							cm.printMsg("유효기간을 입력형식을 맞춰주세요");
 							flg = false;
 						} 
 					}
@@ -140,10 +142,8 @@ public class MonthDisPanel extends BasicRMP {
 							String date = (String) table.getModel().getValueAt(i, 4);
 							int stock = (int) table.getModel().getValueAt(i, 3);
 							
-//							String dat = date.replace("/", "");
-//							System.out.println(dat);
-							
-							dq.disChange(serial, date, stock);
+
+							du.disChange(serial, date, stock);
 
 						}
 

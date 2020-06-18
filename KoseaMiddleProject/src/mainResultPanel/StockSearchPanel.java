@@ -1,5 +1,6 @@
 package mainResultPanel;
 
-public class StockSearchPanel {
-
+public class StockSearchPanel extends BasicRMP {
+	
+	
 }

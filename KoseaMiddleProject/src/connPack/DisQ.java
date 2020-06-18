@@ -39,24 +39,5 @@ public class DisQ {
 		
 		return list;
 	}
-	
-	public void disChange(int serial, String date, int stock) {
-		
-		String dat = date.replace("/", "");
-		String ser = Integer.toString(serial);
-		String sto = Integer.toString(stock);
-		
-		try {
-			String query = "UPDATE stock SET stock_num = " + sto + ", exp_date = TO_DATE(" + dat + ", 'YYYY/MM/DD') WHERE serial_num = " + ser;
-//			System.out.println(query);
-			c.setRS(c.getST().executeQuery(query));
-			c.getCon().close();
-			c.getRS().close();
-			
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-		
-	}
 
 }
