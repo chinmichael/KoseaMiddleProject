@@ -22,6 +22,7 @@ import connPack.ShopDB;
 import connPack.ShopQ;
 import toolPack.DragMoveDialog;
 import toolPack.ImageInput;
+import toolPack.JTextFLimit;
 import toolPack.SizeTool;
 import toolPack.TextClear;
 
@@ -34,6 +35,7 @@ public class OwnerCodeInput extends JDialog {
 	ImageInput imageEdit = new ImageInput();
 	TextClear tc = new TextClear();
 	CationMsg cm = new CationMsg();
+	JTextFLimit tf = new JTextFLimit(6);
 	
 	public String getCode() {
 		return ownerCode;
@@ -67,6 +69,7 @@ public class OwnerCodeInput extends JDialog {
 		
 		ownerC = tc.passClean();
 		ownerC.setBounds(31, 109, 195, 25);
+		ownerC.setDocument(tf);
 		contentP.add(ownerC);
 		ownerC.setColumns(10);
 		

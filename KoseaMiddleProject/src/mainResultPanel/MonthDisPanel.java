@@ -42,7 +42,6 @@ public class MonthDisPanel extends BasicRMP {
 	TableColumnModel tcm;
 	
 	DateTool dt = new DateTool();
-	
 	DisUpdateQ du = new DisUpdateQ();
 
 	public MonthDisPanel() {
@@ -99,6 +98,8 @@ public class MonthDisPanel extends BasicRMP {
 		
 		ImageIcon saveNormal = new ImageIcon("src\\mainIcon\\saveB1.jpg");
 		ImageIcon saveAction = new ImageIcon("src\\mainIcon\\saveB2.jpg");
+		ImageIcon expandNormal = new ImageIcon("src\\mainIcon\\ExpandB1.jpg");
+		ImageIcon expandAction = new ImageIcon("src\\mainIcon\\ExpandB2.jpg");
 		ImageIcon backNormal = new ImageIcon("src\\mainIcon\\backB1.jpg");
 		ImageIcon backAction = new ImageIcon("src\\mainIcon\\backB2.jpg");
 		
@@ -156,6 +157,11 @@ public class MonthDisPanel extends BasicRMP {
 			}
 
 		});
+		
+		JButton expandButton = new JButton();
+		expandButton.setBounds(180, 355, 60, 60);
+		imageEdit.setButtonImage(expandButton, expandNormal, expandAction);
+		add(expandButton);
 		
 		JButton refreshButton = new JButton();
 		refreshButton.setBounds(360, 355, 60, 60);

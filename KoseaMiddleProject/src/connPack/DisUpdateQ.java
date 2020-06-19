@@ -21,7 +21,7 @@ public class DisUpdateQ {
 
 		try {
 			String query = "UPDATE stock SET stock_num = " + sto + ", exp_date = TO_DATE(" + dat
-					+ ", 'YYYY/MM/DD') WHERE serial_num = " + ser;
+					+ ", 'YYYY/MM/DD'), disuse_count = disuse_count + 1 WHERE serial_num = " + ser;
 
 			c.getST().executeUpdate(query);
 			c.getCon().commit();

@@ -57,18 +57,6 @@ public class ImageInput {
 		l.setIcon(back);
 	}
 	
-	public static void setSelectionColorOfComboBox(JComboBox<String> comboBox) 
-	{ 
-	 Object child = comboBox.getAccessibleContext().getAccessibleChild(0); 
-	 BasicComboPopup popup = (BasicComboPopup) child; 
-	 JList list = popup.getList(); 
-	 list.setBorder(new LineBorder(new Color(254, 230, 160))); 
-	 list.setSelectionBackground(new Color(254, 230, 160)); 
-	 list.setSelectionForeground(new Color(254, 230, 160)); 
-	 list.setFocusable(false); 
-	} 
-	
-
 
 	public JPanel panelPaint(ImageIcon back) {
 

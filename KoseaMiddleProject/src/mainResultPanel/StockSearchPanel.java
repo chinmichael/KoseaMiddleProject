@@ -1,24 +1,101 @@
+// https://www.python2.net/questions-58172.htm
+
 package mainResultPanel;
 import javax.swing.JLabel;
+import javax.swing.plaf.ColorUIResource;
+
+import connPack.TypeList;
+import connPack.TypeList2;
+import toolPack.PersonalComboBoxUI;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
+import java.awt.Font;
+import javax.swing.JButton;
+import java.awt.Color;
+import java.awt.ComponentOrientation;
+import java.awt.Cursor;
 
 public class StockSearchPanel extends BasicRMP {
+	
+	TypeList tl = new TypeList();
+	
 	public StockSearchPanel() {
 		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setBounds(102, 10, 220, 35);
-		add(lblNewLabel);
+		ImageIcon labelBack = new ImageIcon("src\\mainIcon\\menuBar.jpg");
 		
-		JLabel lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setBounds(102, 75, 220, 35);
-		add(lblNewLabel_1);
+		JLabel codeArea = new JLabel("New label");
+		codeArea.setBounds(125, 10, 220, 40);
+		imageEdit.setPaintLabel(codeArea, labelBack);
+		add(codeArea);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(102, 149, 100, 23);
-		add(comboBox);
+		JLabel nameArea = new JLabel("New label");
+		nameArea.setBounds(125, 75, 220, 40);
+		imageEdit.setPaintLabel(nameArea, labelBack);
+		add(nameArea);
 		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(225, 149, 97, 23);
-		add(comboBox_1);
+		JLabel brandArea = new JLabel("New label");
+		brandArea.setBounds(125, 140, 220, 40);
+		imageEdit.setPaintLabel(brandArea, labelBack);
+		add(brandArea);
+		
+		Color CB = new ColorUIResource (255,238,208);
+		Color SB = new ColorUIResource(242,183,113);
+		
+		PersonalComboBoxUI pu = new PersonalComboBoxUI();
+		pu.setColorBack(CB, SB);
+		PersonalComboBoxUI pu2 = new PersonalComboBoxUI();
+		pu2.setColorBack(CB, SB);
+		
+		JComboBox typeSmall = new JComboBox();
+		typeSmall.setFont(new Font("돋움", Font.PLAIN, 13));
+		typeSmall.addItem("소분류");
+		typeSmall.setFocusTraversalKeysEnabled(false);
+		typeSmall.setFocusable(false);
+		pu2.installUI(typeSmall);
+		typeSmall.setBounds(125, 265, 220, 35);
+		add(typeSmall);
+		
+		JComboBox typeBig = new JComboBox(tl.list());
+		typeBig.setFocusTraversalKeysEnabled(false);
+		typeBig.setFocusable(false);
+		pu.installUI(typeBig);
+		typeBig.setFont(new Font("돋움", Font.PLAIN, 13));
+		typeBig.setBounds(125, 205, 220, 35);
+		add(typeBig);
+		typeBig.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String type = (String) typeBig.getSelectedItem();
+				
+				if(type.equals("대분류")) {
+					typeSmall.removeAllItems();
+					typeSmall.addItem("소분류");
+					
+				} else {
+					TypeList2 tl2 = new TypeList2();
+					String[] type2 = tl2.list(type);
+					typeSmall.removeAllItems();
+					
+					for(int i = 0; i < type2.length; i++) {
+						typeSmall.addItem(type2[i]);
+					}
+				}
+			}
+		});
+		
+		
+		ImageIcon searchNormal = new ImageIcon("src\\mainIcon\\searchNB1.jpg");
+		ImageIcon searchAction = new ImageIcon("src\\mainIcon\\searchNB2.jpg");
+		
+		JButton searchB = new JButton();
+		searchB.setBounds(180, 340, 60, 60);
+		imageEdit.setButtonImage(searchB, searchNormal, searchAction);
+		add(searchB);
+		
+		
 	}
 }

@@ -1,5 +1,5 @@
 package mainResultPanel;
 
-public class ProductInputPanel {
+public class ProductInputPanel extends BasicRMP {
 
 }

@@ -1,3 +1,5 @@
+// https://www.python2.net/questions-58172.htm
+
 package toolPack;
 
 import java.awt.Color;
@@ -21,9 +23,11 @@ import javax.swing.plaf.basic.BasicComboBoxUI;
 public class PersonalComboBoxUI extends BasicComboBoxUI {
 	
 	Color background;
+	Color selectground;
 	
-	public void setColorBack(Color background) {
+	public void setColorBack(Color background, Color selectground) {
 		this.background = background;
+		this.selectground = selectground;
 	}
 	
 	public static ComponentUI createUI (JComponent c) {
@@ -36,7 +40,6 @@ public class PersonalComboBoxUI extends BasicComboBoxUI {
 		
 		JComboBox<?> comboBox =(JComboBox<?>) c;
 		comboBox.setBackground(background);
-		comboBox.setForeground(background);
 		comboBox.setBorder(new LineBorder(background));
 		comboBox.setLightWeightPopupEnabled(true);
 	}
@@ -54,18 +57,18 @@ public class PersonalComboBoxUI extends BasicComboBoxUI {
 		}
 		
 		button.setOpaque(true);
-		button.setBackground(background);
-		button.setBorder(BorderFactory.createLineBorder(background));
+		button.setBackground(selectground);
+		button.setBorder(BorderFactory.createLineBorder(selectground));
 		
 		return button;
 		
 	}
 
-//	@Override
-//	protected ListCellRenderer createRenderer() {
-//		PersonalComboBoxRenderer pr = new PersonalComboBoxRenderer();
-//		pr.setColorBack(background);
-//		return pr;
-//	}
+	@Override
+	protected ListCellRenderer createRenderer() {
+		PersonalComboBoxRenderer pr = new PersonalComboBoxRenderer();
+		pr.setColorBack(background, selectground);
+		return pr;
+	}
 
 }

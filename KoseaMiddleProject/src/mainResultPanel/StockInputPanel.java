@@ -1,5 +1,5 @@
 package mainResultPanel;
 
-public class StockInputPanel {
+public class StockInputPanel extends BasicRMP {
 
 }
