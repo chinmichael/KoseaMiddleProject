@@ -87,13 +87,13 @@ public class ShopList extends JDialog {
 		sp = new JScrollPane(table);
 		sp.setBounds(25, 137, 430, 130);
 		
-		for(int i = 0; i < list.size(); i++) {
+		for (int i = 0; i < list.size(); i++) {
 			ShopDB data = (ShopDB) list.get(i);
 			record[0] = data.getShopID();
 			record[1] = data.getShopName();
 			record[2] = data.getShopLoc();
 			model.addRow(record);
-			}
+		}
 		
 		table.getColumn("점포코드").setPreferredWidth(70);
 		table.getColumn("점포명").setPreferredWidth(160);

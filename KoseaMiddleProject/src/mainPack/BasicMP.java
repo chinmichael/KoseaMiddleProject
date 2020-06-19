@@ -2,10 +2,9 @@ package mainPack;
 
 import java.awt.Color;
 
-import javax.swing.JLayeredPane;
-import javax.swing.JPanel;
-import javax.swing.plaf.ColorUIResource;
 
+import javax.swing.JLayeredPane;
+import javax.swing.plaf.ColorUIResource;
 import toolPack.ImageInput;
 
 public class BasicMP extends JLayeredPane {

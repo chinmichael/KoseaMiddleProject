@@ -23,7 +23,9 @@ public class AccFindQ {
 				cm.printMsg("검색결과가 없습니다");
 
 			} else {
-				c.getRS().first();
+				
+				c.getRS().beforeFirst();
+				
 				while (c.getRS().next()) {
 					String user_id = c.getRS().getString("user_id");
 					String create_date = c.getRS().getString("create_date");

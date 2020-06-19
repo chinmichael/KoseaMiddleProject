@@ -39,7 +39,7 @@ public class ExistCheck {
 			c.getRS().last();
 
 			if (!(c.getRS().getRow() == 0)) {
-				c.getRS().first();
+				c.getRS().beforeFirst();
 				while (c.getRS().next()) {
 					hint = c.getRS().getString("hint");
 				}

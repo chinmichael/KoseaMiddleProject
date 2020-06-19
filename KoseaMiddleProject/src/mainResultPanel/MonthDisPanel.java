@@ -8,6 +8,7 @@
 package mainResultPanel;
 
 import java.awt.event.MouseAdapter;
+
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import javax.swing.JScrollPane;
@@ -22,7 +23,6 @@ import connPack.AccountDB;
 import connPack.DisDBShort;
 import connPack.DisQ;
 import connPack.DisUpdateQ;
-import popUpPack.CationMsg;
 import toolPack.DateTool;
 
 import javax.swing.ImageIcon;
@@ -42,8 +42,7 @@ public class MonthDisPanel extends BasicRMP {
 	TableColumnModel tcm;
 	
 	DateTool dt = new DateTool();
-	CationMsg cm = new CationMsg();
-	DisQ dq = new DisQ();
+	
 	DisUpdateQ du = new DisUpdateQ();
 
 	public MonthDisPanel() {
@@ -73,6 +72,7 @@ public class MonthDisPanel extends BasicRMP {
 		table = new JTable(model);
 		sp = new JScrollPane(table);
 		sp.setBounds(0, 0, 420, 330);
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
 		table.getColumn("").setPreferredWidth(10);
 		table.getColumn("No.").setPreferredWidth(25);
@@ -84,6 +84,7 @@ public class MonthDisPanel extends BasicRMP {
 		mid.setHorizontalAlignment(SwingConstants.CENTER);
 		DefaultTableCellRenderer right = new DefaultTableCellRenderer();
 		right.setHorizontalAlignment(SwingConstants.RIGHT);
+
 		
 		tcm = table.getColumnModel();
 		tcm.getColumn(1).setCellRenderer(mid);
@@ -92,22 +93,7 @@ public class MonthDisPanel extends BasicRMP {
 		
 		tcm.getColumn(3).setCellRenderer(right);
 
-
-		ArrayList<DisDBShort> list = dq.disSearchMonth(shopID);
-//		System.out.println("db실행");
-		
-
-		for (int i = 0; i < list.size(); i++) {
-			DisDBShort data = list.get(i);
-			record[0] = false;
-			record[1] = data.getNum();
-			record[2] = data.getName();
-			record[3] = data.getStock();
-			record[4] = data.getDate();
-			model.addRow(record);
-			
-		}
-		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		setData();
 		
 		add(sp);
 		
@@ -122,19 +108,33 @@ public class MonthDisPanel extends BasicRMP {
 		add(saveButton);
 		saveButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				boolean flg = true;
+				boolean flg1 = true;
+				boolean flg2 = true;
 				
 				for (int i = 0; i < table.getRowCount(); i++) {
 					if ((boolean) table.getModel().getValueAt(i, 0)) {
 
-						if (!dt.vildationDate((String) table.getModel().getValueAt(i, 4))) {
-							cm.printMsg("유효기간을 입력형식을 맞춰주세요");
-							flg = false;
+						if ((int) table.getModel().getValueAt(i, 3) < 0) {
+							cm.printMsg("재고수량이 유효하지 않습니다");
+							flg1 = false;
 						} 
 					}
 				}
 				
-				if (flg) {
+				if (flg1) {
+
+					for (int i = 0; i < table.getRowCount(); i++) {
+						if ((boolean) table.getModel().getValueAt(i, 0)) {
+
+							if (!dt.vildationDate((String) table.getModel().getValueAt(i, 4))) {
+								cm.printMsg("유효기간을 입력형식을 맞춰주세요");
+								flg2 = false;
+							}
+						}
+					}
+				}
+
+				if (flg1 && flg2) {
 					for (int i = 0; i < table.getRowCount(); i++) {
 						if ((boolean) table.getModel().getValueAt(i, 0)) {
 
@@ -146,7 +146,11 @@ public class MonthDisPanel extends BasicRMP {
 							du.disChange(serial, date, stock);
 
 						}
-
+					}
+					
+					if(du.getFlg()) {
+						du.setFlg(false);
+						rm.printMsg("변경사항을 저장했습니다");
 					}
 				}
 			}
@@ -157,6 +161,34 @@ public class MonthDisPanel extends BasicRMP {
 		refreshButton.setBounds(360, 355, 60, 60);
 		imageEdit.setButtonImage(refreshButton, backNormal, backAction);
 		add(refreshButton);
+		refreshButton.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				ck.printMsg("마지막 저장 상태로 되돌리시겠습니까?", "확인");
+
+				if (ck.getFlg()) {
+					setData();
+				}
+			}
+		});
 		
+	}
+	
+	public void setData() {
+		
+		DisQ dq = new DisQ();
+		ArrayList<DisDBShort> list = dq.disSearchMonth(shopID);
+		
+		model.setNumRows(0);
+
+		for (int i = 0; i < list.size(); i++) {
+			DisDBShort data = list.get(i);
+			record[0] = false;
+			record[1] = data.getNum();
+			record[2] = data.getName();
+			record[3] = data.getStock();
+			record[4] = data.getDate();
+			model.addRow(record);
+			
+		}
 	}
 }

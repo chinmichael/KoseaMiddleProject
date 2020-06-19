@@ -16,7 +16,7 @@ public class ShopQ {
 			c.setRS(c.getST().executeQuery(query));
 			c.getRS().last();
 
-			c.getRS().first();
+			c.getRS().beforeFirst();
 			while (c.getRS().next()) {
 				String shop_id = c.getRS().getString("shop_id");
 				String shop_name = c.getRS().getString("shop_name");

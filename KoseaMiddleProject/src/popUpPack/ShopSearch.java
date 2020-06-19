@@ -16,7 +16,7 @@ public class ShopSearch extends JDialog {
 	
 	static String shopCode;
 	Container contentP = getContentPane();
-	private static JTextField shopName;
+	private JTextField shopName;
 	
 	ImageInput imageEdit = new ImageInput();
 	TextClear tc = new TextClear();

@@ -36,7 +36,7 @@ public class AccountQ {
 				String checkPW = c.getRS().getString("user_pw");
 				
 				if (checkPW.equals(pw)) {
-					c.getRS().first(); // 리스트 이전요소 반환하고 커서 역방향 이동
+					c.getRS().beforeFirst();
 					while (c.getRS().next()) {
 						String user_name = c.getRS().getString("user_name");
 						String e_mail = c.getRS().getString("e_mail");
