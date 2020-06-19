@@ -9,5 +9,5 @@ pro_id,
 location,
 stock_num,
 exp_date DATE,
-dissuse_count,
+disuse_count,
 count_month) 

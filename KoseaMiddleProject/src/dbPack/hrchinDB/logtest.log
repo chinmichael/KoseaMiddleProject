@@ -1,5 +1,5 @@
 
-SQL*Loader: Release 11.2.0.1.0 - Production on 화 6월 16 22:59:17 2020
+SQL*Loader: Release 11.2.0.1.0 - Production on 금 6월 19 14:45:33 2020
 
 Copyright (c) 1982, 2009, Oracle and/or its affiliates.  All rights reserved.
 
@@ -28,7 +28,7 @@ PRO_ID                               NEXT     *   ,       CHARACTER
 LOCATION                             NEXT     *   ,       CHARACTER            
 STOCK_NUM                            NEXT     *   ,       CHARACTER            
 EXP_DATE                             NEXT     *   ,       DATE RR/MM/DD        
-DISSUSE_COUNT                        NEXT     *   ,       CHARACTER            
+DISUSE_COUNT                         NEXT     *   ,       CHARACTER            
 COUNT_MONTH                          NEXT     *   ,       CHARACTER            
 
 레코드 57: 기각됨 - 테이블 STOCK, 열 SHOP_ID에 오류
@@ -48,8 +48,8 @@ COUNT_MONTH                          NEXT     *   ,       CHARACTER
 거부된 논리 레코드의 합계:         1
 폐기된 논리 레코드의 합계:         0
 
-화 6월  16 22:59:17 2020에 실행 개시
-화 6월  16 22:59:18 2020에 실행 종료
+금 6월  19 14:45:33 2020에 실행 개시
+금 6월  19 14:45:33 2020에 실행 종료
 
-경과 시간:        00:00:00.37
-CPU 시간:         00:00:00.24
+경과 시간:        00:00:00.04
+CPU 시간:         00:00:00.01
