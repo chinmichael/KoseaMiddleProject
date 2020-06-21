@@ -2,6 +2,7 @@ package mainResultPanel;
 
 import java.util.ArrayList;
 
+
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
@@ -12,14 +13,9 @@ import javax.swing.table.TableColumnModel;
 
 import connPack.AccountDB;
 import connPack.DisMCDB;
-import connPack.DisMCQ;
-import connPack.DisMCUpdate;
+import connPack.DisQ;
 
 public class MonthCkPanel extends BasicRMP {
-	
-	AccountDB ad = new AccountDB();
-//	String shopID = ad.getUshop();
-	String shopID = "SG85"; // ½ÇÇè¿ë
 	
 	private JTable table;
 	DefaultTableModel model;
@@ -27,7 +23,7 @@ public class MonthCkPanel extends BasicRMP {
 	Object[] record = new Object[4];
 	TableColumnModel tcm;
 	
-	DisMCQ dm = new DisMCQ();
+	DisQ dq = new DisQ();
 	
 	public MonthCkPanel() {
 		
@@ -56,11 +52,9 @@ public class MonthCkPanel extends BasicRMP {
 		tcm.getColumn(2).setCellRenderer(mid);
 		tcm.getColumn(3).setCellRenderer(mid);
 		
+		dq.updateMonth(shopID);
 		
-		DisMCUpdate du = new DisMCUpdate();
-		du.updateMonth(shopID);
-		
-		ArrayList<DisMCDB> list = dm.showCNT(shopID);
+		ArrayList<DisMCDB> list = dq.showCNT(shopID);
 		
 		for(int i  = 0; i < list.size(); i++) {
 			DisMCDB data = list.get(i);

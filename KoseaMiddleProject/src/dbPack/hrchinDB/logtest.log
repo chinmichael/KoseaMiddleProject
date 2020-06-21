@@ -1,5 +1,5 @@
 
-SQL*Loader: Release 11.2.0.1.0 - Production on 금 6월 19 14:45:33 2020
+SQL*Loader: Release 11.2.0.1.0 - Production on 토 6월 20 18:04:38 2020
 
 Copyright (c) 1982, 2009, Oracle and/or its affiliates.  All rights reserved.
 
@@ -31,11 +31,14 @@ EXP_DATE                             NEXT     *   ,       DATE RR/MM/DD
 DISUSE_COUNT                         NEXT     *   ,       CHARACTER            
 COUNT_MONTH                          NEXT     *   ,       CHARACTER            
 
+레코드 11: 기각됨 - 테이블 STOCK에 오류
+ORA-02291: 무결성 제약조건(HRCHIN.FK_STOCK2)이 위배되었습니다- 부모 키가 없습니다
+
 레코드 57: 기각됨 - 테이블 STOCK, 열 SHOP_ID에 오류
 논리 레코드가 종료하기 전에 열을 찾지 못했습니다 (TRAILING NULLCOLS 사용)
 테이블 STOCK:
-  56 행 로드되었습니다.
-  데이터 오류 때문에 1 행(이)가 로드되지 않았습니다
+  55 행 로드되었습니다.
+  데이터 오류 때문에 2 행(이)가 로드되지 않았습니다
   모든 WHEN절이 실패하여 0 행(이)가 로드되지 않았습니다
   모든 필드가 NULL이어서 0 행(이)가 로드되지 않았습니다
 
@@ -45,11 +48,11 @@ COUNT_MONTH                          NEXT     *   ,       CHARACTER
 
 생략된 논리 레코드의 합계:         0
 읽어낸 논리 레코드의 합계:        57
-거부된 논리 레코드의 합계:         1
+거부된 논리 레코드의 합계:         2
 폐기된 논리 레코드의 합계:         0
 
-금 6월  19 14:45:33 2020에 실행 개시
-금 6월  19 14:45:33 2020에 실행 종료
+토 6월  20 18:04:38 2020에 실행 개시
+토 6월  20 18:04:38 2020에 실행 종료
 
-경과 시간:        00:00:00.04
-CPU 시간:         00:00:00.01
+경과 시간:        00:00:00.51
+CPU 시간:         00:00:00.32

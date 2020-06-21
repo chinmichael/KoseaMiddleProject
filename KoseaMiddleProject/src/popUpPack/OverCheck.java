@@ -1,10 +1,11 @@
 package popUpPack;
 
 import java.awt.*;
+
 import java.awt.event.*;
 import javax.swing.*;
 
-import connPack.ExistCheck;
+import connPack.AccountQ;
 import loginPack.LoginRegist;
 import toolPack.*;
 
@@ -83,7 +84,7 @@ public class OverCheck extends JDialog {
 					cm.printMsg(msg);
 
 				} else {
-					ExistCheck ex = new ExistCheck();
+					AccountQ ex = new AccountQ();
 					boolean flg = ex.idcheck(idInput);
 
 					if (flg == false) {

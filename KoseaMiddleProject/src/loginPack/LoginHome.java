@@ -171,6 +171,16 @@ public class LoginHome extends JFrame {
 			}
 		});
 		
+		fieldID.addKeyListener(new KeyAdapter() {
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == 10) {  //keyCode() == 9 는 Tab, 10은 Enter
+					Toolkit.getDefaultToolkit().beep(); 
+
+			        loginB.doClick();
+				}
+			}
+		});
+		
 		fieldPW.addKeyListener(new KeyAdapter() {
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == 10) {  //keyCode() == 9 는 Tab, 10은 Enter

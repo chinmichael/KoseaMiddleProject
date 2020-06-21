@@ -3,6 +3,8 @@ package loginPack;
 import java.awt.*;
 
 
+
+
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -10,8 +12,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.basic.BasicArrowButton;
 
-import connPack.ExistCheck;
-import connPack.RegistAccount;
+import connPack.AccountQ;
 import popUpPack.CationMsg;
 import popUpPack.ExitWarning;
 import popUpPack.OverCheck;
@@ -41,6 +42,7 @@ public class LoginRegist extends JDialog {
 	TextClear tc = new TextClear();
 	ImageInput imageEdit = new ImageInput();
 	CationMsg cm = new CationMsg();
+	AccountQ regAcc;
 
 	public static void main(String[] args) {
 		try {
@@ -106,6 +108,17 @@ public class LoginRegist extends JDialog {
 		idF.setBounds(135, 135, 195, 25);
 		contentP.add(idF);
 		idF.setColumns(10);
+		
+		idF.setFocusTraversalKeysEnabled(false);
+		idF.addKeyListener(new KeyAdapter() {
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == 9) { // keyCode() == 9 ´Â Tab, 10Àº Enter
+					pwF.requestFocus();
+					checkinfo2.setVisible(false);
+					passflg = true;
+				}
+			}
+		});
 		
 		pwF = tc.passClean();
 		pwF.setBounds(135, 190, 195, 25);
@@ -439,7 +452,7 @@ public class LoginRegist extends JDialog {
 								cm.printMsg(msg);
 
 							} else {
-								RegistAccount regAcc = new RegistAccount();
+								regAcc = new AccountQ();
 								regAcc.registAccount(nameF.getText(), idF.getText(), checkPwF.getText(), mail, phone,
 										hintF.getText(), hAnswerF.getText(), shopF.getText(), rankF, owner);
 								if (regAcc.getFlg()) {

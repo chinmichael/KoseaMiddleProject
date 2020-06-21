@@ -24,9 +24,9 @@ public class MainSearchPanel extends BasicMP {
 	boolean piVis = false;
 	
 	StockSearchPanel ssP;
-	StockInputPanel siP = new StockInputPanel();
-	ProductSearchPanel psP = new ProductSearchPanel();
-	ProductInputPanel piP = new ProductInputPanel();
+	StockInputPanel siP;
+	ProductSearchPanel psP;
+	ProductInputPanel piP;
 
 	public MainSearchPanel() {
 		

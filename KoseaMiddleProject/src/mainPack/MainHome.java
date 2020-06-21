@@ -15,8 +15,8 @@ import popUpPack.ReturnLogin;
 public class MainHome extends JFrame {
 	
 	AccountDB ad = new AccountDB();
-//	String Type = ad.getUtype();
-	String Type = ""; // 확인작업용
+	String Type = ad.getUtype();
+//	String Type = ""; // 확인작업용
 //	String Type = "점장"; //확인작업용2
 	
 	Container contentP = getContentPane();
@@ -30,19 +30,25 @@ public class MainHome extends JFrame {
 	boolean disVis = false;
 	boolean searchVis = false;
 	boolean accountVis = false;
+	
+	static MainHome frame;
 
-	public static void main(String[] args) {
-
-				try {
-					MainHome frame = new MainHome();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+//	public static void main(String[] args) {
+//
+//				try {
+//					MainHome frame = new MainHome();
+//					frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//	}
+	
+	public void diposeMain() {
+		frame.dispose();
 	}
 	
 	public void openMainHome() {
-		MainHome frame = new MainHome();
+		frame = new MainHome();
 		frame.setVisible(true);
 	}
 

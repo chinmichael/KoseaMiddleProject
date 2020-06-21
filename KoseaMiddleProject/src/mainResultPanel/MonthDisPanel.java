@@ -9,6 +9,7 @@ package mainResultPanel;
 
 import java.awt.event.MouseAdapter;
 
+
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import javax.swing.JScrollPane;
@@ -22,7 +23,6 @@ import javax.swing.table.TableColumnModel;
 import connPack.AccountDB;
 import connPack.DisDBShort;
 import connPack.DisQ;
-import connPack.DisUpdateQ;
 import toolPack.DateTool;
 
 import javax.swing.ImageIcon;
@@ -31,10 +31,6 @@ import javax.swing.JButton;
 
 public class MonthDisPanel extends BasicRMP {
 
-	AccountDB ad = new AccountDB();
-//	String shopID = ad.getUshop();
-	String shopID = "SG85"; // 실험용
-
 	private JTable table;
 	DefaultTableModel model;
 	JScrollPane sp;
@@ -42,7 +38,7 @@ public class MonthDisPanel extends BasicRMP {
 	TableColumnModel tcm;
 	
 	DateTool dt = new DateTool();
-	DisUpdateQ du = new DisUpdateQ();
+	DisQ dq = new DisQ();
 
 	public MonthDisPanel() {
 
@@ -109,33 +105,27 @@ public class MonthDisPanel extends BasicRMP {
 		add(saveButton);
 		saveButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				boolean flg1 = true;
-				boolean flg2 = true;
+				boolean flg = true;
 				
 				for (int i = 0; i < table.getRowCount(); i++) {
 					if ((boolean) table.getModel().getValueAt(i, 0)) {
 
 						if ((int) table.getModel().getValueAt(i, 3) < 0) {
 							cm.printMsg("재고수량이 유효하지 않습니다");
-							flg1 = false;
+							flg = false;
+							break;
 						} 
-					}
-				}
-				
-				if (flg1) {
-
-					for (int i = 0; i < table.getRowCount(); i++) {
-						if ((boolean) table.getModel().getValueAt(i, 0)) {
-
-							if (!dt.vildationDate((String) table.getModel().getValueAt(i, 4))) {
-								cm.printMsg("유효기간을 입력형식을 맞춰주세요");
-								flg2 = false;
-							}
+						
+						if (!dt.vildationDate((String) table.getModel().getValueAt(i, 4))) {
+							cm.printMsg("유효기간을 입력형식을 맞춰주세요");
+							flg = false;
+							break;
 						}
 					}
 				}
+				
 
-				if (flg1 && flg2) {
+				if (flg) {
 					for (int i = 0; i < table.getRowCount(); i++) {
 						if ((boolean) table.getModel().getValueAt(i, 0)) {
 
@@ -144,13 +134,13 @@ public class MonthDisPanel extends BasicRMP {
 							int stock = (int) table.getModel().getValueAt(i, 3);
 							
 
-							du.disChange(serial, date, stock);
+							dq.disChange(serial, date, stock);
 
 						}
 					}
 					
-					if(du.getFlg()) {
-						du.setFlg(false);
+					if(dq.getFlg()) {
+						dq.setFlg(false);
 						rm.printMsg("변경사항을 저장했습니다");
 					}
 				}

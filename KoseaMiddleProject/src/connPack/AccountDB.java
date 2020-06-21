@@ -2,15 +2,15 @@ package connPack;
 
 public class AccountDB {
 	private String user_name;
-	private String user_id;
-	private String user_pw;
-	private String e_mail;
-	private String phone;
-	private String hint;
-	private String hint_answer;
+	private static String user_id;
+	private static String user_pw;
+	private static String e_mail;
+	private static String phone;
+	private static String hint;
+	private static String hint_answer;
 	private static String shop_id;
 	private static String user_type;
-	private String owner_code;
+	private static String owner_code;
 	
 	public AccountDB() {
 	}

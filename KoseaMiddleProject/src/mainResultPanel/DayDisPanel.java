@@ -1,6 +1,7 @@
 package mainResultPanel;
 
 import java.awt.event.MouseAdapter;
+
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
@@ -17,15 +18,10 @@ import javax.swing.table.TableColumnModel;
 import connPack.AccountDB;
 import connPack.DisDBShort;
 import connPack.DisQ;
-import connPack.DisUpdateQ;
 import toolPack.DateTool;
 
 public class DayDisPanel extends BasicRMP {
 	
-	AccountDB ad = new AccountDB();
-//	String shopID = ad.getUshop();
-	String shopID = "SG85"; // 실험용
-
 	private JTable table;
 	DefaultTableModel model;
 	JScrollPane sp;
@@ -34,7 +30,7 @@ public class DayDisPanel extends BasicRMP {
 	
 	DateTool dt = new DateTool();
 	
-	DisUpdateQ du = new DisUpdateQ();
+	DisQ dq = new DisQ();
 
 	public DayDisPanel() {
 
@@ -136,13 +132,13 @@ public class DayDisPanel extends BasicRMP {
 							int stock = (int) table.getModel().getValueAt(i, 3);
 							
 
-							du.disChange(serial, date, stock);
+							dq.disChange(serial, date, stock);
 
 						}
 					}
 					
-					if(du.getFlg()) {
-						du.setFlg(false);
+					if(dq.getFlg()) {
+						dq.setFlg(false);
 						rm.printMsg("변경사항을 저장했습니다");
 					}
 				}
