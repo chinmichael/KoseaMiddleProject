@@ -71,6 +71,7 @@ public class IDList extends JDialog {
 		};
 		sp = new JScrollPane(table);
 		sp.setBounds(20, 100, 360, 120);
+		imageEdit.tableSet(table, sp);
 		
 		for(int i = 0; i < idFind.size(); i++) {
 			AccFindDB data = (AccFindDB) idFind.get(i);

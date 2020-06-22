@@ -7,7 +7,9 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
+import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.basic.BasicComboPopup;
+import javax.swing.table.JTableHeader;
 
 public class ImageInput {
 
@@ -83,6 +85,27 @@ public class ImageInput {
 		};
 
 		return t;
+	}
+	
+	public void tableSet(JTable table, JScrollPane sp) {
+		
+		Color HD = new ColorUIResource (248, 147, 31);
+		Color HDF = new ColorUIResource(193, 135, 71);
+		Color BG = new ColorUIResource (254, 251, 245);
+		
+		table.setGridColor(new Color(222, 184, 135));
+		table.setRowHeight(20);
+		table.setBackground(new Color(255, 255, 255));
+		table.setSelectionBackground(new Color(255, 222, 173));
+		
+		JTableHeader header = table.getTableHeader();
+        header.setBackground(HD);
+        header.setForeground(Color.WHITE);
+        header.setBorder(new LineBorder(new Color(222, 184, 135)));
+		
+        sp.getViewport().setBackground(BG);
+		sp.setBorder(new LineBorder(new Color(222, 184, 135)));
+        
 	}
 
 }

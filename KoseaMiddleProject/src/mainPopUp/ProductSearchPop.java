@@ -82,6 +82,7 @@ public class ProductSearchPop extends JDialog {
 		table = new JTable(model);
 		sp = new JScrollPane(table);
 		sp.setBounds(10, 60, 640, 635);
+		imageEdit.tableSet(table, sp);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
 		table.getColumn("상품코드").setPreferredWidth(110);

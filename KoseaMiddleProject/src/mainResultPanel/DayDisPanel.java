@@ -13,12 +13,17 @@ import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
 
 import connPack.AccountDB;
-import connPack.DisDBShort;
+import connPack.DisDB;
 import connPack.DisQ;
+import mainPopUp.DisLongPop;
 import toolPack.DateTool;
+import java.awt.Color;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 
 public class DayDisPanel extends BasicRMP {
 	
@@ -57,8 +62,11 @@ public class DayDisPanel extends BasicRMP {
 
 		};
 		table = new JTable(model);
+		
 		sp = new JScrollPane(table);
 		sp.setBounds(0, 0, 420, 330);
+		imageEdit.tableSet(table, sp);
+		
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
 		table.getColumn("").setPreferredWidth(10);
@@ -150,6 +158,15 @@ public class DayDisPanel extends BasicRMP {
 		expandButton.setBounds(180, 355, 60, 60);
 		imageEdit.setButtonImage(expandButton, expandNormal, expandAction);
 		add(expandButton);
+		expandButton.addMouseListener(new MouseAdapter() {
+			
+			public void mouseClicked(MouseEvent e) {
+				ArrayList<DisDB> list = dq.disSearchDayLong(shopID);
+				
+				DisLongPop dlp = new DisLongPop();
+				dlp.openList(list);
+			}
+		});
 		
 		JButton refreshButton = new JButton();
 		refreshButton.setBounds(360, 355, 60, 60);
@@ -170,12 +187,12 @@ public class DayDisPanel extends BasicRMP {
 	public void setData() {
 		
 		DisQ dq = new DisQ();
-		ArrayList<DisDBShort> list = dq.disSearchDay(shopID);
+		ArrayList<DisDB> list = dq.disSearchDay(shopID);
 		
 		model.setNumRows(0);
 
 		for (int i = 0; i < list.size(); i++) {
-			DisDBShort data = list.get(i);
+			DisDB data = list.get(i);
 			record[0] = false;
 			record[1] = data.getNum();
 			record[2] = data.getName();

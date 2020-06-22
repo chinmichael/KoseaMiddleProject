@@ -87,6 +87,8 @@ public class ShopList extends JDialog {
 		sp = new JScrollPane(table);
 		sp.setBounds(25, 137, 430, 130);
 		
+		imageEdit.tableSet(table, sp);
+		
 		for (int i = 0; i < list.size(); i++) {
 			ShopDB data = (ShopDB) list.get(i);
 			record[0] = data.getShopID();

@@ -39,10 +39,6 @@ public class StockInputPop extends JDialog {
 	Object[] record = new Object[12];
 	TableColumnModel tcm;
 	
-	DateTool dt = new DateTool();
-	CationMsg cm = new CationMsg();
-	CheckMsg ck = new CheckMsg();
-	ResultMsg rm = new ResultMsg();
 	StockQ sud = new StockQ();
 	
 	public String getCodeP() {
@@ -84,6 +80,7 @@ public class StockInputPop extends JDialog {
 		table = new JTable(model);
 		sp = new JScrollPane(table);
 		sp.setBounds(10, 40, 580, 350);
+		imageEdit.tableSet(table, sp);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
 		table.getColumn("상품코드").setPreferredWidth(180);

@@ -15,11 +15,11 @@ public class DisQ {
 	}
 	
 	
-	public ArrayList<DisDBShort> disSearchMonth(String shopID) {
+	public ArrayList<DisDB> disSearchMonth(String shopID) {
 		
 		ConnDB c = new ConnDB();
 		
-		ArrayList<DisDBShort> list = new ArrayList<DisDBShort>();
+		ArrayList<DisDB> list = new ArrayList<DisDB>();
 		
 		try {
 			String query = "SELECT serial_num, pro_name, stock_num, TO_CHAR(exp_date, 'YYYY/MM/DD') \"exp_date\" FROM STOCK s, PRODUCT p"
@@ -37,7 +37,7 @@ public class DisQ {
 				String date = c.getRS().getString("exp_date");
 				
 
-				DisDBShort data = new DisDBShort(serial, name, stock, date);
+				DisDB data = new DisDB(serial, name, stock, date);
 				list.add(data);
 			}
 			
@@ -50,11 +50,53 @@ public class DisQ {
 		
 		return list;
 	}
+	
+	public ArrayList<DisDB> disSearchMonthLong(String shopID) {
 
-	public ArrayList<DisDBShort> disSearchDay(String shopID) {
+		ConnDB c = new ConnDB();
+
+		ArrayList<DisDB> list = new ArrayList<DisDB>();
+
+		try {
+			String query = "SELECT serial_num, pro_name, stock_num, location, comp, TO_CHAR(exp_date, 'YYYY/MM/DD') \"exp_date\", type_name1, type_name2, type_exp FROM STOCK s, PRODUCT p, CATEGORY c"
+					+ " WHERE TO_CHAR(exp_date, 'YYYY/MM') = TO_CHAR(SYSDATE, 'YYYY/MM')" + " AND shop_id = '" + shopID
+					+ "' AND s.pro_id = p.pro_id"
+					+ " AND p.pro_type = c.pro_type";
+
+			c.setRS(c.getST().executeQuery(query));
+			c.getRS().last();
+
+			c.getRS().beforeFirst();
+			while (c.getRS().next()) {
+				int serial = c.getRS().getInt("serial_num");
+				String name = c.getRS().getString("pro_name");
+				int stock = c.getRS().getInt("stock_num");
+				String date = c.getRS().getString("exp_date");
+				
+				String loc = c.getRS().getString("location");
+				String comp = c.getRS().getString("comp");
+				String typeB = c.getRS().getString("type_name1");
+				String typeS = c.getRS().getString("type_name2");
+				String typeE = c.getRS().getString("type_exp");
+
+				DisDB data = new DisDB(serial, name, stock, date, loc, comp, typeB, typeS, typeE);
+				list.add(data);
+			}
+
+			c.getCon().close();
+			c.getRS().close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return list;
+	}
+
+	public ArrayList<DisDB> disSearchDay(String shopID) {
 		
 		ConnDB c = new ConnDB();
-		ArrayList<DisDBShort> list = new ArrayList<DisDBShort>();
+		ArrayList<DisDB> list = new ArrayList<DisDB>();
 
 		try {
 			String query = "SELECT serial_num, pro_name, stock_num, TO_CHAR(exp_date, 'YYYY/MM/DD') \"exp_date\" FROM STOCK s, PRODUCT p"
@@ -71,7 +113,49 @@ public class DisQ {
 				int stock = c.getRS().getInt("stock_num");
 				String date = c.getRS().getString("exp_date");
 
-				DisDBShort data = new DisDBShort(serial, name, stock, date);
+				DisDB data = new DisDB(serial, name, stock, date);
+				list.add(data);
+			}
+
+			c.getCon().close();
+			c.getRS().close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return list;
+	}
+	
+	public ArrayList<DisDB> disSearchDayLong(String shopID) {
+
+		ConnDB c = new ConnDB();
+
+		ArrayList<DisDB> list = new ArrayList<DisDB>();
+
+		try {
+			String query = "SELECT serial_num, pro_name, stock_num, location, comp, TO_CHAR(exp_date, 'YYYY/MM/DD') \"exp_date\", type_name1, type_name2, type_exp FROM STOCK s, PRODUCT p, CATEGORY c"
+					+ " WHERE TO_CHAR(exp_date, 'YYYY/MM/DD') = TO_CHAR(SYSDATE, 'YYYY/MM/DD')" + " AND shop_id = '" + shopID
+					+ "' AND s.pro_id = p.pro_id"
+					+ " AND p.pro_type = c.pro_type";
+
+			c.setRS(c.getST().executeQuery(query));
+			c.getRS().last();
+
+			c.getRS().beforeFirst();
+			while (c.getRS().next()) {
+				int serial = c.getRS().getInt("serial_num");
+				String name = c.getRS().getString("pro_name");
+				int stock = c.getRS().getInt("stock_num");
+				String date = c.getRS().getString("exp_date");
+				
+				String loc = c.getRS().getString("location");
+				String comp = c.getRS().getString("comp");
+				String typeB = c.getRS().getString("type_name1");
+				String typeS = c.getRS().getString("type_name2");
+				String typeE = c.getRS().getString("type_exp");
+
+				DisDB data = new DisDB(serial, name, stock, date, loc, comp, typeB, typeS, typeE);
 				list.add(data);
 			}
 

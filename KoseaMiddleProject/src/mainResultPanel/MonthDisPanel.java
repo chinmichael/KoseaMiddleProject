@@ -16,12 +16,13 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
 import connPack.AccountDB;
-import connPack.DisDBShort;
+import connPack.DisDB;
 import connPack.DisQ;
 import toolPack.DateTool;
 
@@ -64,9 +65,11 @@ public class MonthDisPanel extends BasicRMP {
 			}
 
 		};
+		
 		table = new JTable(model);
 		sp = new JScrollPane(table);
 		sp.setBounds(0, 0, 420, 330);
+		imageEdit.tableSet(table, sp);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
 		table.getColumn("").setPreferredWidth(10);
@@ -172,12 +175,12 @@ public class MonthDisPanel extends BasicRMP {
 	public void setData() {
 		
 		DisQ dq = new DisQ();
-		ArrayList<DisDBShort> list = dq.disSearchMonth(shopID);
+		ArrayList<DisDB> list = dq.disSearchMonth(shopID);
 		
 		model.setNumRows(0);
 
 		for (int i = 0; i < list.size(); i++) {
-			DisDBShort data = list.get(i);
+			DisDB data = list.get(i);
 			record[0] = false;
 			record[1] = data.getNum();
 			record[2] = data.getName();

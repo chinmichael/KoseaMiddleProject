@@ -57,11 +57,13 @@ public class PhoneChangePanel extends BasicRMP {
 		
 		mailTF1 = tc.textClean();
 		mailTF1.setBounds(85, 180, 100, 21);
+		mailTF1.setHorizontalAlignment(SwingConstants.CENTER);
 		add(mailTF1);
 		mailTF1.setColumns(10);
 		
 		mailTF2 = tc.textClean();
 		mailTF2.setBounds(235, 180, 100, 21);
+		mailTF2.setHorizontalAlignment(SwingConstants.CENTER);
 		add(mailTF2);
 		mailTF2.setColumns(10);
 		

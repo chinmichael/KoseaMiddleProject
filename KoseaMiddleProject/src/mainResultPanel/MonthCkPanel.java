@@ -7,6 +7,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
@@ -37,6 +38,7 @@ public class MonthCkPanel extends BasicRMP {
 		table = new JTable(model);
 		sp = new JScrollPane(table);
 		sp.setBounds(0, 0, 420, 330);
+		imageEdit.tableSet(table, sp);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.getColumn("No.").setPreferredWidth(15);
 		table.getColumn("ªÛ«∞∏Ì").setPreferredWidth(200);

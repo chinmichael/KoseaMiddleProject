@@ -91,7 +91,7 @@ public class ProductInputPanel extends BasicRMP {
 		PersonalComboBoxUI pu3 = new PersonalComboBoxUI();
 		pu3.setColorBack(CB, SB);
 		
-		String[] typeExpList = { "미선택", "장기", "00", "02" };
+		String[] typeExpList = { "미선택", "장기", "00", "02", "14" };
 		
 		JComboBox typeExp = new JComboBox(typeExpList);
 		typeExp.setFont(new Font("돋움", Font.PLAIN, 13));

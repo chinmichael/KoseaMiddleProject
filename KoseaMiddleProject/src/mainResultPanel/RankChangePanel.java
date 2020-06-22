@@ -16,6 +16,7 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
 
 import connPack.MainAccountQ;
@@ -26,6 +27,9 @@ import loginPack.LoginRegist.RadioSelect;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
+
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.Color;
@@ -77,6 +81,8 @@ public class RankChangePanel extends BasicRMP {
 		sp = new JScrollPane(table);
 		sp.setBounds(25, 67, 370, 200);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		
+		imageEdit.tableSet(table, sp);
 		
 		table.getColumn("").setPreferredWidth(35);
 		table.getColumn("¾ÆÀÌµð").setPreferredWidth(110);
