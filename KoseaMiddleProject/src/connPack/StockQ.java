@@ -181,7 +181,7 @@ public class StockQ {
 		ConnDB c = new ConnDB();
 		
 		try {
-			String query = "SELECT pro_id, pro_name, comp FROM product WHERE pro_name LIKE '%" + name + "%'";
+			String query = "SELECT pro_id, pro_name, comp FROM product WHERE pro_name LIKE '%" + name + "%' AND pro_id NOT IN (SELECT pro_id FROM stock)";
 			
 			c.setRS(c.getST().executeQuery(query));
 			c.getRS().last();
