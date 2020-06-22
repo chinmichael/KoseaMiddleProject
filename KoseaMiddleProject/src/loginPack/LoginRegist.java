@@ -14,6 +14,7 @@ import javax.swing.plaf.basic.BasicArrowButton;
 
 import connPack.AccountQ;
 import popUpPack.CationMsg;
+import popUpPack.CheckMsg;
 import popUpPack.ExitWarning;
 import popUpPack.OverCheck;
 import popUpPack.OwnerCodeInput;
@@ -42,6 +43,7 @@ public class LoginRegist extends JDialog {
 	TextClear tc = new TextClear();
 	ImageInput imageEdit = new ImageInput();
 	CationMsg cm = new CationMsg();
+	CheckMsg ck = new CheckMsg();
 	AccountQ regAcc;
 
 	public static void main(String[] args) {
@@ -81,7 +83,11 @@ public class LoginRegist extends JDialog {
 		contentP.add(xButton);
 		xButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				dispose();
+				ck.printMsg("계정등록을 종료하시겠습니까", "확인");
+				if(ck.getFlg()) {
+					ck.setFlg(false);
+					dispose();
+				}
 			}
 		});
 		

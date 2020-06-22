@@ -24,6 +24,7 @@ import javax.swing.table.TableColumnModel;
 import connPack.AccountDB;
 import connPack.DisDB;
 import connPack.DisQ;
+import mainPopUp.DisLongPop;
 import toolPack.DateTool;
 
 import javax.swing.ImageIcon;
@@ -155,6 +156,16 @@ public class MonthDisPanel extends BasicRMP {
 		expandButton.setBounds(180, 355, 60, 60);
 		imageEdit.setButtonImage(expandButton, expandNormal, expandAction);
 		add(expandButton);
+		expandButton.addMouseListener(new MouseAdapter() {
+			
+			public void mouseClicked(MouseEvent e) {
+				ArrayList<DisDB> list = dq.disSearchMonthLong(shopID);
+				
+				DisLongPop dlp = new DisLongPop();
+				dlp.openList(list);
+			}
+			
+		});
 		
 		JButton refreshButton = new JButton();
 		refreshButton.setBounds(360, 355, 60, 60);

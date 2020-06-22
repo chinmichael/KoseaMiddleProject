@@ -18,6 +18,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
 import connPack.DisDB;
+import connPack.DisQ;
 import connPack.StockQ;
 import popUpPack.CationMsg;
 import popUpPack.CheckMsg;
@@ -44,7 +45,7 @@ public class DisLongPop extends JDialog {
 	ImageInput imageEdit = new ImageInput();
 	
 	public void openList(ArrayList<DisDB> list) {
-		DisLongPop dlp = new DisLongPop();
+		DisLongPop dlp = new DisLongPop(list);
 		dlp.setVisible(true);
 	}
 	
@@ -53,6 +54,7 @@ public class DisLongPop extends JDialog {
 	}
 	
 	public DisLongPop(ArrayList<DisDB> list) {
+		
 		setSize(1100, 550);
 		setResizable(false);
 		SizeTool st = new SizeTool();
@@ -157,6 +159,51 @@ public class DisLongPop extends JDialog {
 		saveButton.setBounds(520, 473, 60, 60);
 		imageEdit.setButtonImage(saveButton, saveNormal, saveAction);
 		add(saveButton);
+		saveButton.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				boolean flg = true;
+				DisQ dq = new DisQ();
+				
+				for (int i = 0; i < table.getRowCount(); i++) {
+					if ((boolean) table.getModel().getValueAt(i, 0)) {
+
+						if ((int) table.getModel().getValueAt(i, 4) < 0) {
+							cm.printMsg("재고수량이 유효하지 않습니다");
+							flg = false;
+							break;
+						} 
+						
+						if (!dt.vildationDate((String) table.getModel().getValueAt(i, 5))) {
+							cm.printMsg("유효기간을 입력형식을 맞춰주세요");
+							flg = false;
+							break;
+						}
+					}
+				}
+				
+
+				if (flg) {
+					for (int i = 0; i < table.getRowCount(); i++) {
+						if ((boolean) table.getModel().getValueAt(i, 0)) {
+
+							int serial = (int) table.getModel().getValueAt(i, 1);
+							String date = (String) table.getModel().getValueAt(i, 5);
+							int stock = (int) table.getModel().getValueAt(i, 4);
+							
+
+							dq.disChange(serial, date, stock);
+
+						}
+					}
+					
+					if(dq.getFlg()) {
+						dq.setFlg(false);
+						rm.printMsg("변경사항을 저장했습니다");
+					}
+				}
+			}
+
+		});
 		
 		
 		contentP.add(sp);
