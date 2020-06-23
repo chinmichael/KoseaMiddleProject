@@ -10,14 +10,6 @@ public class ExitWarning extends JDialog {
 
 	Container contentP = getContentPane();
 
-	public static void main(String[] args) {
-		try {
-			ExitWarning frame = new ExitWarning();
-			frame.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 	
 	public void printMsg() {
 		ExitWarning frame = new ExitWarning();

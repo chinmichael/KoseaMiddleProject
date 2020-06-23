@@ -17,8 +17,11 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 
 import connPack.AccFindDB;
 import connPack.ShopDB;
@@ -37,6 +40,7 @@ public class IDList extends JDialog {
 	JScrollPane sp;
 	DefaultTableModel model;
 	Object[] record = new Object[2];
+	TableColumnModel tcm;
 	
 	public String getID() {
 		return findID;
@@ -72,6 +76,12 @@ public class IDList extends JDialog {
 		sp = new JScrollPane(table);
 		sp.setBounds(20, 100, 360, 120);
 		imageEdit.tableSet(table, sp);
+		
+		DefaultTableCellRenderer mid = new DefaultTableCellRenderer();
+		mid.setHorizontalAlignment(SwingConstants.CENTER);
+		tcm = table.getColumnModel();
+		tcm.getColumn(0).setCellRenderer(mid);
+		tcm.getColumn(1).setCellRenderer(mid);
 		
 		for(int i = 0; i < idFind.size(); i++) {
 			AccFindDB data = (AccFindDB) idFind.get(i);

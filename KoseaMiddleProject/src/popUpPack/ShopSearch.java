@@ -25,15 +25,6 @@ public class ShopSearch extends JDialog {
 		return shopCode;
 	}
 	
-	public static void main(String[] args) {
-		try {
-			ShopSearch frame = new ShopSearch();
-			frame.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
 	public void openWindow() {
 		ShopSearch frame = new ShopSearch();
 		frame.setVisible(true);

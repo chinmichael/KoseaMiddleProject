@@ -20,15 +20,6 @@ public class ReturnLogin extends JDialog {
 	public void setFlg(boolean flg) {
 		this.flg= flg;
 	}
-
-	public static void main(String[] args) {
-		try {
-			ReturnLogin frame = new ReturnLogin();
-			frame.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 	
 	public void printMsg() {
 		ReturnLogin frame = new ReturnLogin();

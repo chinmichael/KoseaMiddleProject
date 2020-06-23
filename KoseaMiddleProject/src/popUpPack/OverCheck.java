@@ -19,14 +19,6 @@ public class OverCheck extends JDialog {
 	CheckMsg ck  = new CheckMsg();
 	CationMsg cm = new CationMsg();
 	
-	public static void main(String[] args) {
-		try {
-			OverCheck frame = new OverCheck();
-			frame.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 	
 	public String getID() {
 		return idF.getText();
