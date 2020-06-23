@@ -42,20 +42,40 @@ public class AccountDB {
 		return user_pw;
 	}
 	
+	public void setPW(String pw) {
+		user_pw = pw;
+	}
+	
 	public String getUmail() {
 		return e_mail;
+	}
+	
+	public void setMail(String mail) {
+		e_mail = mail;
 	}
 	
 	public String getUphone() {
 		return phone;
 	}
 	
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	
 	public String getUhint() {
 		return hint;
 	}
 	
+	public void setHint(String hint) {
+		this.hint = hint;
+	}
+	
 	public String getUanswer() {
 		return hint_answer;
+	}
+	
+	public void setAnswer(String answer) {
+		hint_answer = answer;
 	}
 	
 	public String getUshop() {
@@ -68,5 +88,9 @@ public class AccountDB {
 	
 	public String getUowner() {
 		return owner_code;
+	}
+	
+	public void setOwner(String code) {
+		owner_code = code;
 	}
 }

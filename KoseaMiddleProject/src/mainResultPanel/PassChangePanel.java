@@ -12,6 +12,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JTextField;
 
@@ -113,6 +114,17 @@ public class PassChangePanel extends BasicRMP {
 		lblNewLabel_8.setBounds(12, 280, 126, 27);
 		add(lblNewLabel_8);
 		
+		JLabel explain = new JLabel("저장");
+		explain.setBounds(248, 330, 45, 20);
+		imageEdit.setHint(explain);
+		add(explain);
+		
+		addMouseListener(new MouseAdapter() {
+			public void mouseEntered(MouseEvent e) {
+				explain.setVisible(false);
+			}
+		});
+		
 		ImageIcon saveNormal = new ImageIcon("src\\mainIcon\\saveB1.jpg");
 		ImageIcon saveAction = new ImageIcon("src\\mainIcon\\saveB2.jpg");
 		
@@ -120,40 +132,47 @@ public class PassChangePanel extends BasicRMP {
 		saveButton.setBounds(180, 335, 60, 60);
 		imageEdit.setButtonImage(saveButton, saveNormal, saveAction);
 		add(saveButton);
-		
 		saveButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				if(!currentPT.getText().isBlank() && !changePT.getText().isBlank() && !changePCT.getText().isBlank() && !changeHT.getText().isBlank() && !changeHAT.getText().isBlank()) {
-					
-					if(currentPT.getText().equals(ad.getUpw())) {
-						
-						if(changePT.getText().length() >= 8) {
-							
-							if(changePT.getText().equals(changePCT.getText())) {
-								
-								ck.printMsg("비밀번호를 변경하시겠습니까", "확인");
-								
-								if(ck.getFlg()) {
-									ck.setFlg(false);
-									
-									MainAccountQ maq = new MainAccountQ();
-									maq.changePW(changePCT.getText(), changeHT.getText(), changeHAT.getText());
-									
-									if(maq.getFlg()) {
-										maq.setFlg(false);
-										rm.printMsg("비밀번호 변경을 완료했습니다");
-									} else {
-										cm.printMsg("정보변경을 실패했습니다");
+
+				if (!currentPT.getText().isBlank() && !changePT.getText().isBlank() && !changePCT.getText().isBlank()
+						&& !changeHT.getText().isBlank() && !changeHAT.getText().isBlank()) {
+
+					if (currentPT.getText().equals(ad.getUpw())) {
+
+						if (changePT.getText().length() >= 8) {
+
+							if (changePT.getText().equals(changePCT.getText())) {
+
+								if (!currentPT.getText().equals(changePCT.getText())) {
+
+									ck.printMsg("비밀번호를 변경하시겠습니까", "확인");
+
+									if (ck.getFlg()) {
+										ck.setFlg(false);
+
+										MainAccountQ maq = new MainAccountQ();
+										maq.changePW(changePCT.getText(), changeHT.getText(), changeHAT.getText());
+
+										if (maq.getFlg()) {
+											maq.setFlg(false);
+											ad.setPW(changePCT.getText());
+											ad.setHint(changeHT.getText());
+											ad.setAnswer(changeHAT.getText());
+											rm.printMsg("비밀번호 변경을 완료했습니다");
+										} else {
+											cm.printMsg("정보변경을 실패했습니다");
+										}
 									}
-									
+								} else {
+									cm.printMsg("변경하실 PW가 이전과 같습니다");
 								}
-								
+
 							} else {
 								cm.printMsg("변경하실 비밀번호가 일치하지 않습니다");
 							}
-							
+
 						} else {
 							cm.printMsg("비밀번호는 8자리 이상이어야 합니다");
 						}
@@ -166,6 +185,15 @@ public class PassChangePanel extends BasicRMP {
 					cm.printMsg("필수정보를 모두 입력해주세요");
 				}
 				
+			}
+			
+		});
+		
+		saveButton.addMouseListener(new MouseAdapter() {
+			
+			public void mouseEntered(MouseEvent e) {
+				explain.setVisible(true);
+
 			}
 			
 		});

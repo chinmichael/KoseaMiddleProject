@@ -29,6 +29,7 @@ import toolPack.DateTool;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 
 
 public class MonthDisPanel extends BasicRMP {
@@ -43,6 +44,30 @@ public class MonthDisPanel extends BasicRMP {
 	DisQ dq = new DisQ();
 
 	public MonthDisPanel() {
+		
+		JLabel explain = new JLabel("저장");
+		explain.setBounds(62, 348, 45, 20);
+		imageEdit.setHint(explain);
+		add(explain);
+		
+		JLabel explain1 = new JLabel("자세히");
+		explain1.setBounds(238, 348, 45, 20);
+		imageEdit.setHint(explain1);
+		add(explain1);
+		
+		JLabel explain2 = new JLabel("뒤로");
+		explain2.setBounds(311, 348, 45, 20);
+		imageEdit.setHint(explain2);
+		add(explain2);
+		
+		addMouseListener(new MouseAdapter() {
+			public void mouseEntered(MouseEvent e) {
+				explain.setVisible(false);
+				explain1.setVisible(false);
+				explain2.setVisible(false);
+
+			}
+		});
 
 		String[] title = { "", "No.", "상품명", "재고", "유통기한" };
 		model = new DefaultTableModel(title, 0) {
@@ -149,6 +174,11 @@ public class MonthDisPanel extends BasicRMP {
 					}
 				}
 			}
+			
+			public void mouseEntered(MouseEvent e) {
+				explain.setVisible(true);
+
+			}
 
 		});
 		
@@ -165,6 +195,11 @@ public class MonthDisPanel extends BasicRMP {
 				dlp.openList(list);
 			}
 			
+			public void mouseEntered(MouseEvent e) {
+				explain1.setVisible(true);
+
+			}
+			
 		});
 		
 		JButton refreshButton = new JButton();
@@ -178,6 +213,11 @@ public class MonthDisPanel extends BasicRMP {
 				if (ck.getFlg()) {
 					setData();
 				}
+			}
+			
+			public void mouseEntered(MouseEvent e) {
+				explain2.setVisible(true);
+
 			}
 		});
 		

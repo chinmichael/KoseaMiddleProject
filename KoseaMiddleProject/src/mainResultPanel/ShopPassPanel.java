@@ -11,6 +11,8 @@ import toolPack.JTextFLimit;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.Color;
 
 
@@ -81,6 +83,17 @@ public class ShopPassPanel extends BasicRMP {
 		lblNewLabel_5.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel_5.setBounds(15, 186, 143, 40);
 		add(lblNewLabel_5);
+		
+		JLabel explain = new JLabel("저장");
+		explain.setBounds(187, 346, 48, 20);
+		imageEdit.setHint(explain);
+		add(explain);
+		
+		addMouseListener(new MouseAdapter() {
+			public void mouseEntered(MouseEvent e) {
+				explain.setVisible(false);
+			}
+		});
 	
 		ImageIcon saveNormal = new ImageIcon("src\\mainIcon\\saveB1.jpg");
 		ImageIcon saveAction = new ImageIcon("src\\mainIcon\\saveB2.jpg");
@@ -99,25 +112,32 @@ public class ShopPassPanel extends BasicRMP {
 					if(codeTF1.getText().equals(ad.getUowner())) {
 						
 						if(codeTF2.getText().equals(codeTF3.getText())) {
-							
-							ck.printMsg("점장코드를 변경하시겠습니까", "변경");
-							
-							if(ck.getFlg()) {
-								ck.setFlg(false);
-								
-								MainAccountQ maq = new MainAccountQ();
-								maq.changeCode(codeTF3.getText());
-								
-								if(maq.getFlg()) {
-									maq.setFlg(false);
-									rm.printMsg("코드변경을 완료했습니다.");
+
+							if (!codeTF1.getText().equals(codeTF3.getText())) {
+
+								ck.printMsg("점장코드를 변경하시겠습니까", "변경");
+
+								if (ck.getFlg()) {
+									ck.setFlg(false);
+
+									MainAccountQ maq = new MainAccountQ();
+									maq.changeCode(codeTF3.getText());
+
+									if (maq.getFlg()) {
+										maq.setFlg(false);
+										ad.setOwner(codeTF3.getText());
+										rm.printMsg("코드변경을 완료했습니다.");
+									}
 								}
+
+							} else {
+								cm.printMsg("변경하실 코드가 이전과 일치합니다");
 							}
-							
+
 						} else {
 							cm.printMsg("변경하실 코드가 일치하지 않습니다");
 						}
-						
+
 					} else {
 						cm.printMsg("기존 코드가 일치하지 않습니다");
 					}
@@ -128,6 +148,15 @@ public class ShopPassPanel extends BasicRMP {
 				
 			}		
 			
+		});
+
+		saveButton.addMouseListener(new MouseAdapter() {
+
+			public void mouseEntered(MouseEvent e) {
+				explain.setVisible(true);
+
+			}
+
 		});
 	}
 }

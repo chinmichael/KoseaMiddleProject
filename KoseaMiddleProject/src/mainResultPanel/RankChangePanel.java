@@ -178,6 +178,18 @@ public class RankChangePanel extends BasicRMP {
 			}
 		});
 		
+		
+		JLabel explain = new JLabel("¿˙¿Â");
+		explain.setBounds(248, 337, 45, 20);
+		imageEdit.setHint(explain);
+		add(explain);
+		
+		addMouseListener(new MouseAdapter() {
+			public void mouseEntered(MouseEvent e) {
+				explain.setVisible(false);
+			}
+		});
+		
 		ImageIcon saveNormal = new ImageIcon("src\\mainIcon\\saveB1.jpg");
 		ImageIcon saveAction = new ImageIcon("src\\mainIcon\\saveB2.jpg");
 		
@@ -209,6 +221,12 @@ public class RankChangePanel extends BasicRMP {
 					}
 				}
 			}
+			
+			public void mouseEntered(MouseEvent e) {
+				explain.setVisible(true);
+
+			}
+			
 		});
 		
 		add(sp);

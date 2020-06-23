@@ -52,6 +52,17 @@ public class OutPanel extends BasicRMP {
 		ImageIcon outNormal = new ImageIcon("src\\mainIcon\\outB1.jpg");
 		ImageIcon outAction = new ImageIcon("src\\mainIcon\\outB2.jpg");
 		
+		JLabel explain = new JLabel("Ε»Επ");
+		explain.setBounds(186, 267, 48, 20);
+		imageEdit.setHint(explain);
+		add(explain);
+		
+		addMouseListener(new MouseAdapter() {
+			public void mouseEntered(MouseEvent e) {
+				explain.setVisible(false);
+			}
+		});
+		
 		JButton outButton = new JButton();
 		outButton.setBounds(180, 200, 60, 60);
 		imageEdit.setButtonImage(outButton, outNormal, outAction);
@@ -83,6 +94,11 @@ public class OutPanel extends BasicRMP {
 					}
 					
 				}
+			}
+			
+			public void mouseEntered(MouseEvent e) {
+				explain.setVisible(true);
+
 			}
 		});
 		

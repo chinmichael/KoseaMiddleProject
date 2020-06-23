@@ -11,6 +11,7 @@ import connPack.AccountDB;
 import toolPack.*;
 import loginPack.*;
 import popUpPack.ReturnLogin;
+import javax.swing.border.LineBorder;
 
 public class MainHome extends JFrame {
 	
@@ -60,6 +61,37 @@ public class MainHome extends JFrame {
 		setUndecorated(true);
 		contentP.setLayout(null);
 		addMouseMotionListener(new MouseDragMove());
+		
+		JLabel explain1 = new JLabel("홈");
+		imageEdit.setHint(explain1);
+		explain1.setBounds(52, 130, 35, 20);
+		contentP.add(explain1);
+		
+		JLabel explain2 = new JLabel("폐기확인");
+		imageEdit.setHint(explain2);
+		explain2.setBounds(147, 131, 62, 20);
+		contentP.add(explain2);
+		
+		JLabel explain3 = new JLabel("등록 검색");
+		imageEdit.setHint(explain3);
+		explain3.setBounds(252, 131, 65, 20);
+		contentP.add(explain3);
+		
+		JLabel explain4 = new JLabel("계정관리");
+		imageEdit.setHint(explain4);
+		explain4.setBounds(364, 131, 60, 20);
+		contentP.add(explain4);
+
+		addMouseListener(new MouseAdapter() {
+
+			public void mouseEntered(MouseEvent e) {
+				explain1.setVisible(false);
+				explain2.setVisible(false);
+				explain3.setVisible(false);
+				explain4.setVisible(false);
+			}
+
+		});
 		
 		ImageIcon backImage = new ImageIcon("src\\mainIcon\\BG1.jpg");
 		JPanel background = imageEdit.panelPaint(backImage);
@@ -111,7 +143,8 @@ public class MainHome extends JFrame {
 		ImageIcon accountNormal = new ImageIcon("src\\mainIcon\\accChB1.jpg");
 		ImageIcon accountAction = new ImageIcon("src\\mainIcon\\accChB2.jpg");
 		
-		JButton homeButton = new JButton();
+		
+		JToggleButton homeButton = new JToggleButton();
 		homeButton.setBounds(40, 70, 55, 55);
 		imageEdit.setButtonImage(homeButton, homeNormal, homeAction);
 		contentP.add(homeButton);
@@ -135,9 +168,16 @@ public class MainHome extends JFrame {
 					accountVis = false;
 				}
 			}
+			
+			public void mouseEntered(MouseEvent e) {
+				explain1.setVisible(true);
+			}
+			
 		});
 		
-		JButton disButton = new JButton();
+		explain1.setVisible(false);
+		
+		JToggleButton disButton = new JToggleButton();
 		disButton.setBounds(148, 71, 55, 55);
 		imageEdit.setButtonImage(disButton, disuseNormal, disuseAction);
 		contentP.add(disButton);
@@ -161,9 +201,14 @@ public class MainHome extends JFrame {
 					accountVis = false;
 				}
 			}
+			
+			public void mouseEntered(MouseEvent e) {
+				explain2.setVisible(true);
+			}
+			
 		});
 		
-		JButton searchButton = new JButton();
+		JToggleButton searchButton = new JToggleButton();
 		searchButton.setBounds(256, 70, 55, 55);
 		imageEdit.setButtonImage(searchButton, searchNormal, searchAction);
 		contentP.add(searchButton);
@@ -187,9 +232,13 @@ public class MainHome extends JFrame {
 					accountVis = false;
 				}
 			}
+			
+			public void mouseEntered(MouseEvent e) {
+				explain3.setVisible(true);
+			}
 		});
 		
-		JButton accountButton = new JButton();
+		JToggleButton accountButton = new JToggleButton();
 		accountButton.setBounds(365, 70, 55, 55);
 		imageEdit.setButtonImage(accountButton, accountNormal, accountAction);
 		contentP.add(accountButton);
@@ -213,7 +262,17 @@ public class MainHome extends JFrame {
 					searchVis = false;
 				}
 			}
+			
+			public void mouseEntered(MouseEvent e) {
+				explain4.setVisible(true);
+			}
 		});
+		
+		ButtonGroup mainBG = new ButtonGroup();
+		mainBG.add(homeButton);
+		mainBG.add(disButton);
+		mainBG.add(searchButton);
+		mainBG.add(accountButton);
 		
 		ImageIcon menuBG = new ImageIcon("src\\mainIcon\\menuBar.jpg");
 		

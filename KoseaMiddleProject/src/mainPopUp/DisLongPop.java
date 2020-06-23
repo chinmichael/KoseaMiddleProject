@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -153,6 +154,17 @@ public class DisLongPop extends JDialog {
 			}
 		});
 		
+		JLabel explain = new JLabel("저장");
+		explain.setBounds(580, 465, 45, 20);
+		imageEdit.setHint(explain);
+		add(explain);
+		
+		addMouseListener(new MouseAdapter() {
+			public void mouseEntered(MouseEvent e) {
+				explain.setVisible(false);
+			}
+		});
+		
 		ImageIcon saveNormal = new ImageIcon("src\\mainIcon\\saveB1.jpg");
 		ImageIcon saveAction = new ImageIcon("src\\mainIcon\\saveB2.jpg");
 		JButton saveButton = new JButton();
@@ -201,6 +213,11 @@ public class DisLongPop extends JDialog {
 						rm.printMsg("변경사항을 저장했습니다");
 					}
 				}
+			}
+			
+			public void mouseEntered(MouseEvent e) {
+				explain.setVisible(true);
+
 			}
 
 		});

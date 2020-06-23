@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
@@ -38,6 +39,30 @@ public class DayDisPanel extends BasicRMP {
 	DisQ dq = new DisQ();
 
 	public DayDisPanel() {
+		
+		JLabel explain = new JLabel("저장");
+		explain.setBounds(62, 348, 45, 20);
+		imageEdit.setHint(explain);
+		add(explain);
+		
+		JLabel explain1 = new JLabel("자세히");
+		explain1.setBounds(238, 348, 45, 20);
+		imageEdit.setHint(explain1);
+		add(explain1);
+		
+		JLabel explain2 = new JLabel("뒤로");
+		explain2.setBounds(311, 348, 45, 20);
+		imageEdit.setHint(explain2);
+		add(explain2);
+		
+		addMouseListener(new MouseAdapter() {
+			public void mouseEntered(MouseEvent e) {
+				explain.setVisible(false);
+				explain1.setVisible(false);
+				explain2.setVisible(false);
+
+			}
+		});
 
 		String[] title = { "", "No.", "상품명", "재고", "유통기한" };
 		model = new DefaultTableModel(title, 0) {
@@ -151,6 +176,11 @@ public class DayDisPanel extends BasicRMP {
 					}
 				}
 			}
+			
+			public void mouseEntered(MouseEvent e) {
+				explain.setVisible(true);
+
+			}
 
 		});
 		
@@ -166,6 +196,11 @@ public class DayDisPanel extends BasicRMP {
 				DisLongPop dlp = new DisLongPop();
 				dlp.openList(list);
 			}
+			
+			public void mouseEntered(MouseEvent e) {
+				explain1.setVisible(true);
+
+			}
 		});
 		
 		JButton refreshButton = new JButton();
@@ -179,6 +214,11 @@ public class DayDisPanel extends BasicRMP {
 				if (ck.getFlg()) {
 					setData();
 				}
+			}
+			
+			public void mouseEntered(MouseEvent e) {
+				explain2.setVisible(true);
+
 			}
 		});
 		

@@ -120,14 +120,14 @@ public class ProductQ {
 		int pri = Integer.parseInt(price);
 		
 		try {
-			String query1 = "SELECT pro_type FROM category WHERE type_name1 = '" + typeB + "', type_name2 = '" + typeS + "'";
+			String query1 = "SELECT pro_type FROM category WHERE type_name1 = '" + typeB + "' AND type_name2 = '" + typeS + "'";
 			c.setRS(c.getST().executeQuery(query1));
 			c.getRS().last();
 			
 			String proType = c.getRS().getString("pro_type");
 			
-			String query2 = "INSERT INTO product VALUES ('" + code + "', '" + name + "', " + pri + ", '" + proType + "', '" + comp + "', '" + exp + "'";
-			c.setRS(c.getST().executeQuery(query2));
+			String query2 = "INSERT INTO product VALUES ('" + code + "', '" + name + "', " + pri + ", '" + proType + "', '" + comp + "', '" + exp + "')";
+			c.getST().execute(query2);
 			
 			flg = true;
 			

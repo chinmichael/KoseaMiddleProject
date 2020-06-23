@@ -148,14 +148,21 @@ public class ProductInputPanel extends BasicRMP {
 		checkB.addMouseListener(new MouseAdapter() {
 			
 			public void mouseClicked(MouseEvent e) {
-				String code = codeTF.getText();
 				
-				if(pq.proIDcheck(code)) {
-					rm.printMsg("등록가능한 상품입니다");
-					checkCode = code;
+				if(!codeTF.getText().isBlank()) {
+					
+					String code = codeTF.getText();
+					
+					if(pq.proIDcheck(code)) {
+						rm.printMsg("등록가능한 상품입니다");
+						checkCode = code;
+						
+					} else {
+						cm.printMsg("중복되는 상품이 있습니다");
+					}
 					
 				} else {
-					cm.printMsg("중복되는 상품이 있습니다");
+					cm.printMsg("상품코드를 입력해주세요");
 				}
 			}
 			

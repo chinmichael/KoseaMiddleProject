@@ -4,8 +4,10 @@ import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+import javax.swing.JToggleButton;
 import javax.swing.plaf.ColorUIResource;
 
 import mainResultPanel.DayDisPanel;
@@ -15,6 +17,7 @@ import mainResultPanel.StockInputPanel;
 import mainResultPanel.StockSearchPanel;
 import toolPack.ImageInput;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 
 public class MainSearchPanel extends BasicMP {
 	
@@ -30,6 +33,36 @@ public class MainSearchPanel extends BasicMP {
 
 	public MainSearchPanel() {
 		
+		JLabel explain1 = new JLabel("재고조회");
+		explain1.setBounds(16, 65, 60, 20);
+		imageEdit.setHint(explain1);
+		add(explain1);
+		
+		JLabel explain2 = new JLabel("재고등록");
+		explain2.setBounds(127, 65, 60, 20);
+		imageEdit.setHint(explain2);
+		add(explain2);
+		
+		JLabel explain3 = new JLabel("상품조회");
+		explain3.setBounds(238, 65, 60, 20);
+		imageEdit.setHint(explain3);
+		add(explain3);
+		
+		JLabel explain4 = new JLabel("상품등록");
+		explain4.setBounds(348, 65, 60, 20);
+		imageEdit.setHint(explain4);
+		add(explain4);
+		
+		addMouseListener(new MouseAdapter() {
+			public void mouseEntered(MouseEvent e) {
+				explain1.setVisible(false);
+				explain2.setVisible(false);
+				explain3.setVisible(false);
+				explain4.setVisible(false);
+			}
+
+		});
+		
 		ImageIcon searchSNormal = new ImageIcon("src\\mainIcon\\searchSB1.jpg");
 		ImageIcon searchSAction = new ImageIcon("src\\mainIcon\\searchSB2.jpg");
 		ImageIcon insertSNormal = new ImageIcon("src\\mainIcon\\insertSB1.jpg");
@@ -39,8 +72,8 @@ public class MainSearchPanel extends BasicMP {
 		ImageIcon insertPNormal = new ImageIcon("src\\mainIcon\\insertPB1.jpg");
 		ImageIcon insertPAction = new ImageIcon("src\\mainIcon\\insertPB2.jpg");
 		
-		JButton searchSB = new JButton();
-		searchSB.setBounds(15, 0, 60, 60);
+		JToggleButton searchSB = new JToggleButton();
+		searchSB.setBounds(15, 2, 60, 60);
 		imageEdit.setButtonImage(searchSB, searchSNormal, searchSAction);
 		add(searchSB);
 		searchSB.addMouseListener(new MouseAdapter() {
@@ -62,13 +95,16 @@ public class MainSearchPanel extends BasicMP {
 				if(piVis) {
 					piP.setVisible(false);
 					piVis = false;
-				}
-				
+				}	
+			}
+			
+			public void mouseEntered(MouseEvent e) {
+				explain1.setVisible(true);
 			}
 		});
 		
-		JButton insertSB = new JButton();
-		insertSB.setBounds(125, 0, 60, 60);
+		JToggleButton insertSB = new JToggleButton();
+		insertSB.setBounds(125, 2, 60, 60);
 		imageEdit.setButtonImage(insertSB, insertSNormal, insertSAction);
 		add(insertSB);
 		insertSB.addMouseListener(new MouseAdapter() {
@@ -90,13 +126,16 @@ public class MainSearchPanel extends BasicMP {
 				if(piVis) {
 					piP.setVisible(false);
 					piVis = false;
-				}
-				
+				}	
+			}
+			
+			public void mouseEntered(MouseEvent e) {
+				explain2.setVisible(true);
 			}
 		});
 		
-		JButton searchPB = new JButton();
-		searchPB.setBounds(235, 0, 60, 60);
+		JToggleButton searchPB = new JToggleButton();
+		searchPB.setBounds(235, 2, 60, 60);
 		imageEdit.setButtonImage(searchPB, searchPNormal, searchPAction);
 		add(searchPB);
 		searchPB.addMouseListener(new MouseAdapter() {
@@ -119,12 +158,15 @@ public class MainSearchPanel extends BasicMP {
 					piP.setVisible(false);
 					piVis = false;
 				}
-				
+			}
+			
+			public void mouseEntered(MouseEvent e) {
+				explain3.setVisible(true);
 			}
 		});
 		
-		JButton insertPB = new JButton();
-		insertPB.setBounds(345, 0, 60, 60);
+		JToggleButton insertPB = new JToggleButton();
+		insertPB.setBounds(345, 2, 60, 60);
 		imageEdit.setButtonImage(insertPB, insertPNormal, insertPAction);
 		add(insertPB);
 		insertPB.addMouseListener(new MouseAdapter() {
@@ -147,9 +189,18 @@ public class MainSearchPanel extends BasicMP {
 					ssP.setVisible(false);
 					ssVis = false;
 				}
-				
+			}
+			
+			public void mouseEntered(MouseEvent e) {
+				explain4.setVisible(true);
 			}
 		});
+		
+		ButtonGroup searchBG = new ButtonGroup();
+		searchBG.add(insertPB);
+		searchBG.add(searchPB);
+		searchBG.add(insertSB);
+		searchBG.add(searchSB);
 		
 	}
 	

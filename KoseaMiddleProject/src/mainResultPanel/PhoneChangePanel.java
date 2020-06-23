@@ -1,11 +1,12 @@
 package mainResultPanel;
 import javax.swing.ImageIcon;
+
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.SwingConstants;
 
@@ -139,16 +140,29 @@ public class PhoneChangePanel extends BasicRMP {
 		lblNewLabel_9.setBounds(242, 62, 30, 40);
 		add(lblNewLabel_9);
 		
+		JLabel explain = new JLabel("저장");
+		explain.setBounds(188, 325, 45, 20);
+		imageEdit.setHint(explain);
+		add(explain);
+		
+		addMouseListener(new MouseAdapter() {
+			public void mouseEntered(MouseEvent e) {
+				explain.setVisible(false);
+			}
+		});
+		
+		
 		ImageIcon saveNormal = new ImageIcon("src\\mainIcon\\saveB1.jpg");
 		ImageIcon saveAction = new ImageIcon("src\\mainIcon\\saveB2.jpg");
-		
+
 		JButton saveButton = new JButton();
 		saveButton.setBounds(180, 255, 60, 60);
 		imageEdit.setButtonImage(saveButton, saveNormal, saveAction);
 		add(saveButton);
-		saveButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
+		
+		saveButton.addMouseListener(new MouseAdapter() {
+
+			public void mouseClicked(MouseEvent e) {
 				
 				if(!phoneTF1.getText().isBlank() && !phoneTF2.getText().isBlank() && !phoneTF3.getText().isBlank()) {
 					
@@ -169,6 +183,8 @@ public class PhoneChangePanel extends BasicRMP {
 							
 							if(maq.getFlg()) {
 								maq.setFlg(false);
+								ad.setPhone(lastPhone);
+								ad.setMail(lastMail);
 								rm.printMsg("연락처 변경이 완료되었습니다");
 							}
 							
@@ -180,6 +196,11 @@ public class PhoneChangePanel extends BasicRMP {
 					cm.printMsg("연락처를 반드시 입력해 주세요");
 				}
 				
+			}
+			
+			public void mouseEntered(MouseEvent e) {
+				explain.setVisible(true);
+
 			}
 		});
 		

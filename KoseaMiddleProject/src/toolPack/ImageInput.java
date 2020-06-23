@@ -31,6 +31,21 @@ public class ImageInput {
 		b.setIcon(im);
 	}
 	
+	
+	public void setButtonImage(JToggleButton b, ImageIcon bNormal, ImageIcon bAction) {
+
+		buttonOpaque(b);
+
+		Dimension d = b.getSize();
+
+		bNormal = imageSetsize(bNormal, d.width, d.height);
+		bAction = imageSetsize(bAction, d.width, d.height);
+
+		b.setIcon(bNormal);
+		b.setSelectedIcon(bAction);
+		b.setRolloverIcon(bAction);
+
+	}
 
 	public void setButtonImage(JButton b, ImageIcon bNormal, ImageIcon bAction) {
 
@@ -47,6 +62,12 @@ public class ImageInput {
 
 	}
 	
+	public void buttonOpaque(JToggleButton b) {
+		b.setBorderPainted(false);
+		b.setContentAreaFilled(false);
+		b.setFocusPainted(false);
+	}
+	
 	public void buttonOpaque(JButton b) {
 		b.setBorderPainted(false);
 		b.setContentAreaFilled(false);
@@ -59,6 +80,14 @@ public class ImageInput {
 		l.setIcon(back);
 	}
 	
+	public void setHint(JLabel explain) {
+		explain.setOpaque(true);
+		explain.setBorder(new LineBorder(new Color(0, 0, 0)));
+		explain.setBackground(new Color(255, 250, 205));
+		explain.setFont(new Font("µ¸¿ò", Font.PLAIN, 12));
+		explain.setHorizontalAlignment(SwingConstants.CENTER);
+		explain.setVisible(false);
+	}
 
 	public JPanel panelPaint(ImageIcon back) {
 

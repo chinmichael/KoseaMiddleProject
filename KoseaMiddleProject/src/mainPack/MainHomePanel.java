@@ -31,6 +31,24 @@ public class MainHomePanel extends BasicMP {
 	CheckMsg ck = new CheckMsg();
 
 	public MainHomePanel() {
+		
+		JLabel explain = new JLabel("저장");
+		explain.setBounds(64, 440, 45, 20);
+		imageEdit.setHint(explain);
+		add(explain);
+		
+		JLabel explain2 = new JLabel("뒤로");
+		explain2.setBounds(309, 440, 45, 20);
+		imageEdit.setHint(explain2);
+		add(explain2);
+		
+		addMouseListener(new MouseAdapter() {
+			public void mouseEntered(MouseEvent e) {
+				explain.setVisible(false);
+				explain2.setVisible(false);
+
+			}
+		});
 
 		noticeWriting = new JTextArea();
 		noticeWriting.setBorder(new EmptyBorder(0, 0, 0, 0));
@@ -75,6 +93,11 @@ public class MainHomePanel extends BasicMP {
 					}
 				}
 			}
+			
+			public void mouseEntered(MouseEvent e) {
+				explain.setVisible(true);
+
+			}
 		});
 
 		JButton backButton = new JButton();
@@ -88,6 +111,11 @@ public class MainHomePanel extends BasicMP {
 				if (ck.getFlg()) {
 					loadFile();
 				}
+			}
+			
+			public void mouseEntered(MouseEvent e) {
+				explain2.setVisible(true);
+
 			}
 		});
 
