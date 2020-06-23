@@ -49,7 +49,7 @@ public class LoginHome extends JFrame {
 		contentP.setLayout(null);
 		addMouseMotionListener(new MouseDragMove());
 		
-		ImageIcon panelImage = new ImageIcon("src\\loginImage\\LoginBG1.jpg");
+		ImageIcon panelImage = new ImageIcon("src\\loginImage\\BG1.png");
 		JPanel backG = imageEdit.panelPaint(panelImage);
 		backG.setBounds(0, 0, 380, 600);
 		

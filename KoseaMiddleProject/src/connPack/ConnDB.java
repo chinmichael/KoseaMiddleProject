@@ -4,8 +4,8 @@ import java.sql.*;
 
 public class ConnDB {
 	String driver = "oracle.jdbc.driver.OracleDriver";
-	String url = "jdbc:oracle:thin:@localhost:1521:orcl";   // School URL
-//	String url = "jdbc:oracle:thin:@localhost:1521:ChinHR"; // Home URL
+//	String url = "jdbc:oracle:thin:@localhost:1521:orcl";   // School URL
+	String url = "jdbc:oracle:thin:@localhost:1521:ChinHR"; // Home URL
 	String user = "hrchin";
 	String password = "kosea";
 	

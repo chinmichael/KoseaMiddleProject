@@ -47,7 +47,7 @@ public class ProductSearchPop extends JDialog {
 		setSize(660, 725);
 		setResizable(false);
 		SizeTool st = new SizeTool();
-		setLocation(st.setCenterX(660), st.setCenterY(725) - 100);
+		setLocation(st.setCenterX(660), st.setCenterY(725) - 50);
 		setUndecorated(true);
 		setModal(true);
 		addMouseMotionListener(new DragMoveDialog());
