@@ -112,26 +112,33 @@ public class ShopPassPanel extends BasicRMP {
 					if(codeTF1.getText().equals(ad.getUowner())) {
 						
 						if(codeTF2.getText().equals(codeTF3.getText())) {
+							
+							if(codeTF3.getText().length() == 6) {
+								
+								if (!codeTF1.getText().equals(codeTF3.getText())) {
 
-							if (!codeTF1.getText().equals(codeTF3.getText())) {
+									ck.printMsg("점장코드를 변경하시겠습니까", "변경");
 
-								ck.printMsg("점장코드를 변경하시겠습니까", "변경");
+									if (ck.getFlg()) {
+										ck.setFlg(false);
 
-								if (ck.getFlg()) {
-									ck.setFlg(false);
+										MainAccountQ maq = new MainAccountQ();
+										maq.changeCode(codeTF3.getText());
 
-									MainAccountQ maq = new MainAccountQ();
-									maq.changeCode(codeTF3.getText());
-
-									if (maq.getFlg()) {
-										maq.setFlg(false);
-										ad.setOwner(codeTF3.getText());
-										rm.printMsg("코드변경을 완료했습니다.");
+										if (maq.getFlg()) {
+											maq.setFlg(false);
+											ad.setOwner(codeTF3.getText());
+											rm.printMsg("코드변경을 완료했습니다.");
+										}
 									}
-								}
 
+								} else {
+									cm.printMsg("변경하실 코드가 이전과 일치합니다");
+								}
+								
 							} else {
-								cm.printMsg("변경하실 코드가 이전과 일치합니다");
+								cm.printMsg("점장코드는 6자리 입니다");
+								
 							}
 
 						} else {

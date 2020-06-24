@@ -105,9 +105,9 @@ public class LoginHome extends JFrame {
 			
 		addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				if (fieldID.getText().equals(""))
+				if (fieldID.getText().equals("") && !fieldID.isCursorSet())
 					msgID.setVisible(true);
-				if (fieldPW.getText().equals(""))
+				if (fieldPW.getText().equals("") && !fieldPW.isCursorSet())
 					msgPW.setVisible(true);
 			}
 		});

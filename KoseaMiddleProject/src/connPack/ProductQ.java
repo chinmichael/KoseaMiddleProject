@@ -44,7 +44,7 @@ public class ProductQ {
 						+ " FROM PRODUCT p, CATEGORY c"
 						+ " WHERE p.pro_type = c.pro_type"
 						+ " AND pro_id LIKE '%" + code + "%' AND pro_name LIKE '%" + name + "%' AND comp LIKE '%" + brand + "%'"
-						+ " AND type_name1 = '" + type1 + "' type_name2 = '" + type2 + "'";
+						+ " AND type_name1 = '" + type1 + "'AND type_name2 = '" + type2 + "'";
 				
 			}
 			

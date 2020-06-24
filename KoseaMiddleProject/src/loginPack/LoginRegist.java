@@ -46,14 +46,14 @@ public class LoginRegist extends JDialog {
 	CheckMsg ck = new CheckMsg();
 	AccountQ regAcc;
 
-	public static void main(String[] args) {
-		try {
-			LoginRegist frame = new LoginRegist();
-			frame.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+//	public static void main(String[] args) {
+//		try {
+//			LoginRegist frame = new LoginRegist();
+//			frame.setVisible(true);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//	}
 	
 	public void openWindow() {
 		LoginRegist frame = new LoginRegist();
@@ -152,7 +152,7 @@ public class LoginRegist extends JDialog {
 		
 		addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				if (pwF.getText().isBlank()) {
+				if (pwF.getText().isBlank() && !pwF.isCursorSet()) {
 					checkinfo2.setVisible(true);
 					passflg = false;
 				}
@@ -430,7 +430,7 @@ public class LoginRegist extends JDialog {
 				if (!nameF.getText().isBlank() && !idF.getText().isBlank() && !pwF.getText().isBlank()
 						&& !checkPwF.getText().isBlank() && !hintF.getText().isBlank() && !hAnswerF.getText().isBlank()
 						&& !phoneF1.getText().isBlank() && !phoneF2.getText().isBlank() && !phoneF3.getText().isBlank()
-						&& !rankF.equals("") && !shopF.getText().isBlank()) {
+						&& rankF != null && !shopF.getText().isBlank()) {
 					
 					if (pwF.getText().equals(checkPwF.getText())) {
 
@@ -467,7 +467,7 @@ public class LoginRegist extends JDialog {
 								}
 							}
 						} else {
-							cm.printMsg("비밀번호는 8자리 이상 입력했주세요");
+							cm.printMsg("비밀번호는 8자리 이상 입력해주세요");
 						}
 						
 					} else {

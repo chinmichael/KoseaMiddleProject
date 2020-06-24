@@ -92,7 +92,7 @@ public class StockInputPanel extends BasicRMP {
 		
 		addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				if(expTF.getText().isBlank()) {
+				if(expTF.getText().isBlank() && !expTF.isCursorSet()) {
 					expType.setVisible(true);
 				}
 			}
