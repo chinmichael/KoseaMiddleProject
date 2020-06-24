@@ -1,26 +1,20 @@
 package popUpPack;
 
-import java.awt.BorderLayout;
 import java.awt.Container;
-import java.awt.FlowLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
-import java.util.Vector;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
 import connPack.ShopDB;
-import connPack.ShopQ;
 import toolPack.DragMoveDialog;
 import toolPack.ImageInput;
 import toolPack.SizeTool;

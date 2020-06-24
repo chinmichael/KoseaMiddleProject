@@ -4,13 +4,10 @@ import java.awt.*;
 
 import java.awt.event.*;
 import java.util.ArrayList;
-
 import javax.swing.*;
-import javax.swing.border.Border;
 
 import toolPack.*;
 import connPack.*;
-import mainPack.*;
 import popUpPack.*;
 
 public class LoginHome extends JFrame {

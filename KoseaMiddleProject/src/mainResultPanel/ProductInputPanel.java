@@ -1,12 +1,12 @@
 package mainResultPanel;
 import javax.swing.JLabel;
+
 import javax.swing.plaf.ColorUIResource;
 
 import connPack.ProductQ;
 import connPack.TypeList;
 import toolPack.IntegerDocument;
 import toolPack.PersonalComboBoxUI;
-import toolPack.TextClear;
 
 import javax.swing.JComboBox;
 

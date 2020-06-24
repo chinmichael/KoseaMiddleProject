@@ -1,13 +1,10 @@
 package popUpPack;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -15,11 +12,6 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
-import javax.swing.JTextField;
-import javax.swing.border.EmptyBorder;
-
-import connPack.ShopDB;
-import connPack.ShopQ;
 import toolPack.DragMoveDialog;
 import toolPack.ImageInput;
 import toolPack.JTextFLimit;

@@ -3,16 +3,15 @@ package mainResultPanel;
 import java.util.ArrayList;
 
 
+
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
-import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
-import connPack.AccountDB;
 import connPack.DisMCDB;
 import connPack.DisQ;
 

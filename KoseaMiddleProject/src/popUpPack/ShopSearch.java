@@ -2,6 +2,7 @@ package popUpPack;
 
 import java.awt.*;
 
+
 import java.awt.event.*;
 import java.util.ArrayList;
 
@@ -9,7 +10,6 @@ import javax.swing.*;
 
 import connPack.ShopDB;
 import connPack.ShopQ;
-import loginPack.LoginRegist;
 import toolPack.*;
 
 public class ShopSearch extends JDialog {

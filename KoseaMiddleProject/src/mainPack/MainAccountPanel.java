@@ -1,12 +1,12 @@
 package mainPack;
 
 import java.awt.Color;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
@@ -17,7 +17,6 @@ import mainResultPanel.PassChangePanel;
 import mainResultPanel.PhoneChangePanel;
 import mainResultPanel.RankChangePanel;
 import mainResultPanel.ShopPassPanel;
-import mainResultPanel.StockSearchPanel;
 import toolPack.ImageInput;
 import javax.swing.JLabel;
 

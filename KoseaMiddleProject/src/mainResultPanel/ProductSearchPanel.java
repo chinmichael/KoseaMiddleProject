@@ -1,6 +1,7 @@
 package mainResultPanel;
 
 import java.awt.Color;
+
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -19,13 +20,9 @@ import javax.swing.plaf.ColorUIResource;
 
 import connPack.ProductQ;
 import connPack.ProductSearchDB;
-import connPack.SearchStockDB;
-import connPack.StockQ;
 import connPack.TypeList;
 import mainPopUp.ProductSearchPop;
-import mainPopUp.StockSearchPop;
 import toolPack.PersonalComboBoxUI;
-import toolPack.TextClear;
 
 public class ProductSearchPanel extends BasicRMP {
 	

@@ -1,6 +1,7 @@
 package mainResultPanel;
 import javax.swing.JLabel;
 
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Font;
@@ -20,8 +21,6 @@ import connPack.StockQ;
 import mainPopUp.StockInputPop;
 import toolPack.DateTool;
 import toolPack.IntegerDocument;
-import toolPack.JTextFLimit;
-import toolPack.TextClear;
 
 import javax.swing.JTextField;
 

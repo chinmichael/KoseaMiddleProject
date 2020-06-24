@@ -2,6 +2,7 @@ package mainResultPanel;
 
 import java.awt.event.MouseAdapter;
 
+
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
@@ -14,17 +15,12 @@ import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
 
-import connPack.AccountDB;
 import connPack.DisDB;
 import connPack.DisQ;
 import mainPopUp.DisLongPop;
 import toolPack.DateTool;
-import java.awt.Color;
-import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
 
 public class DayDisPanel extends BasicRMP {
 	

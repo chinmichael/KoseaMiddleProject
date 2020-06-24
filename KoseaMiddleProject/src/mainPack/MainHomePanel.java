@@ -1,11 +1,4 @@
 package mainPack;
-
-import javax.swing.JPanel;
-
-import toolPack.ImageInput;
-
-import java.awt.Color;
-import java.awt.Container;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
@@ -17,11 +10,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
-import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
-import javax.swing.plaf.ColorUIResource;
 
 import popUpPack.CheckMsg;
 

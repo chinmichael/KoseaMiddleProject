@@ -1,6 +1,5 @@
 package mainPack;
 
-import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -8,15 +7,10 @@ import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
-import javax.swing.plaf.ColorUIResource;
-
-import mainResultPanel.DayDisPanel;
 import mainResultPanel.ProductInputPanel;
 import mainResultPanel.ProductSearchPanel;
 import mainResultPanel.StockInputPanel;
 import mainResultPanel.StockSearchPanel;
-import toolPack.ImageInput;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 
 public class MainSearchPanel extends BasicMP {

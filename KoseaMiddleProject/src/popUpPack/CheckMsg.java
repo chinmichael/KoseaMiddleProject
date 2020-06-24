@@ -1,9 +1,7 @@
 package popUpPack;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -13,7 +11,6 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
 import toolPack.DragMoveDialog;
 import toolPack.ImageInput;

@@ -1,24 +1,13 @@
 package loginPack;
 
 import java.awt.*;
-
-
-
-
 import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.LineBorder;
-import javax.swing.plaf.ColorUIResource;
-import javax.swing.plaf.basic.BasicArrowButton;
-
 import connPack.AccountQ;
 import popUpPack.CationMsg;
 import popUpPack.CheckMsg;
-import popUpPack.ExitWarning;
 import popUpPack.OverCheck;
 import popUpPack.OwnerCodeInput;
-import popUpPack.ShopList;
 import popUpPack.ShopSearch;
 import toolPack.*;
 

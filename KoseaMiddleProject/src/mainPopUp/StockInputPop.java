@@ -1,6 +1,7 @@
 package mainPopUp;
 
 import java.awt.Container;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -18,12 +19,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
 import connPack.ProIDList;
-import connPack.SearchStockDB;
 import connPack.StockQ;
-import popUpPack.CationMsg;
-import popUpPack.CheckMsg;
-import popUpPack.ResultMsg;
-import toolPack.DateTool;
 import toolPack.DragMoveDialog;
 import toolPack.ImageInput;
 import toolPack.SizeTool;
