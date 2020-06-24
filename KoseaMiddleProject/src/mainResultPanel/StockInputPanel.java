@@ -270,6 +270,8 @@ public class StockInputPanel extends BasicRMP {
 								sq.insertStock(codeTF.getText(), expTF.getText(), locTF.getText(), stock, shopID);
 								
 								if(sq.getFlg()) {
+									sq.setFlg(false);
+									checkCode = "";
 									rm.printMsg("등록을 완료했습니다");
 								} else {
 									rm.printMsg("상품등록을 실패했습니다");

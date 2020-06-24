@@ -202,6 +202,7 @@ public class ProductInputPanel extends BasicRMP {
 						
 						if(pq.getFlg()) {
 							pq.setFlg(false);
+							checkCode = "";
 							rm.printMsg("상품등록을 완료했습니다");
 							
 						} else {
