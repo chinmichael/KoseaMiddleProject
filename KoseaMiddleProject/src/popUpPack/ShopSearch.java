@@ -66,8 +66,9 @@ public class ShopSearch extends JDialog {
 		searchShop.setBounds(230, 104, 53, 35);
 		imageEdit.setOneImage(searchShop, reg3);
 		contentP.add(searchShop);
-		searchShop.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
+		searchShop.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
 				String searchName = shopName.getText();
 
 				if (searchName.equals("")) {
@@ -87,6 +88,16 @@ public class ShopSearch extends JDialog {
 						dispose();
 					}
 
+				}
+			}
+		});
+		
+		shopName.addKeyListener(new KeyAdapter() {
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == 10) {  //keyCode() == 9 ´Â Tab, 10Àº Enter
+					Toolkit.getDefaultToolkit().beep(); 
+
+			        searchShop.doClick();
 				}
 			}
 		});

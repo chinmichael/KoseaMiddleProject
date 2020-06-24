@@ -1,8 +1,6 @@
 package popUpPack;
 
 import java.awt.*;
-
-
 import java.awt.event.*;
 import javax.swing.*;
 
@@ -67,8 +65,9 @@ public class OverCheck extends JDialog {
 		overlap.setBounds(230, 104, 53, 35);
 		imageEdit.setOneImage(overlap, reg1);
 		contentP.add(overlap);
-		overlap.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
+		overlap.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
 				String idInput = idF.getText();
 
 				if (idInput.length() < 6) {
@@ -91,6 +90,16 @@ public class OverCheck extends JDialog {
 						ck.setFlg(false);
 						dispose();
 					}
+				}
+			}
+		});
+		
+		idF.addKeyListener(new KeyAdapter() {
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == 10) {  //keyCode() == 9 ´Â Tab, 10Àº Enter
+					Toolkit.getDefaultToolkit().beep(); 
+
+			        overlap.doClick();
 				}
 			}
 		});

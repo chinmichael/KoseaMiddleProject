@@ -188,9 +188,9 @@ public class StockInputPanel extends BasicRMP {
 		findB.setBounds(315, 20, 55, 40);
 		imageEdit.setOneImage(findB, reg2);
 		add(findB);
-		findB.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-				
+		findB.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
 				ArrayList<ProIDList> list = sq.codeList(nameTF.getText());
 				if(sq.getFlg()) {
 					sq.setFlg(false);
@@ -202,28 +202,47 @@ public class StockInputPanel extends BasicRMP {
 				} else {
 					cm.printMsg("검색결과가 없습니다");
 				}
-				
 			}
-			
+		});
+		
+		nameTF.addKeyListener(new KeyAdapter() {
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == 10) {  //keyCode() == 9 는 Tab, 10은 Enter
+					Toolkit.getDefaultToolkit().beep(); 
+
+			        findB.doClick();
+				}
+			}
 		});
 		
 		JButton checkB = new JButton();
 		checkB.setBounds(315, 85, 55, 40);
 		imageEdit.setOneImage(checkB, reg1);
 		add(checkB);
-		checkB.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
+		checkB.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
 				int check = sq.checkStock(codeTF.getText());
-				
-				if(check == 0) {
+
+				if (check == 0) {
 					cm.printMsg("존재하지 않는 상품입니다");
-				} else if(check == 1) {
+				} else if (check == 1) {
 					cm.printMsg("중복되는 상품입니다");
 				} else {
 					rm.printMsg("등록가능한 상품입니다");
-					checkCode = codeTF.getText(); 
+					checkCode = codeTF.getText();
 				}
-			}		
+			}
+		});
+
+		codeTF.addKeyListener(new KeyAdapter() {
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == 10) {  //keyCode() == 9 는 Tab, 10은 Enter
+					Toolkit.getDefaultToolkit().beep(); 
+
+			        checkB.doClick();
+				}
+			}
 		});
 		
 		ImageIcon inputNormal = new ImageIcon("src\\mainIcon\\inputLB1.jpg");

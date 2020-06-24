@@ -12,8 +12,11 @@ import javax.swing.JComboBox;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -129,43 +132,51 @@ public class ProductInputPanel extends BasicRMP {
 				} else {
 					String[] type2 = tl.listS(type);
 					typeSmall.removeAllItems();
-					
+
 					typeSmall.addItem("소분류");
-					
-					for(int i = 0; i < type2.length; i++) {
+
+					for (int i = 0; i < type2.length; i++) {
 						typeSmall.addItem(type2[i]);
 					}
 				}
 			}
 		});
-		
+
 		ImageIcon reg1 = new ImageIcon("src\\loginImage\\RegButton2.jpg");
-		
+
 		JButton checkB = new JButton();
 		checkB.setBounds(315, 10, 55, 40);
 		imageEdit.setOneImage(checkB, reg1);
 		add(checkB);
-		checkB.addMouseListener(new MouseAdapter() {
-			
-			public void mouseClicked(MouseEvent e) {
-				
-				if(!codeTF.getText().isBlank()) {
-					
+		checkB.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (!codeTF.getText().isBlank()) {
+
 					String code = codeTF.getText();
-					
-					if(pq.proIDcheck(code)) {
+
+					if (pq.proIDcheck(code)) {
 						rm.printMsg("등록가능한 상품입니다");
 						checkCode = code;
-						
+
 					} else {
 						cm.printMsg("중복되는 상품이 있습니다");
 					}
-					
+
 				} else {
 					cm.printMsg("상품코드를 입력해주세요");
 				}
 			}
-			
+		});
+		
+		codeTF.addKeyListener(new KeyAdapter() {
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == 10) {  //keyCode() == 9 는 Tab, 10은 Enter
+					Toolkit.getDefaultToolkit().beep(); 
+
+			        checkB.doClick();
+				}
+			}
 		});
 		
 		ImageIcon inputNormal = new ImageIcon("src\\mainIcon\\inputLB1.jpg");

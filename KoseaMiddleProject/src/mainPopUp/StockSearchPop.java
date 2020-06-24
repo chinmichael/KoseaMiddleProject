@@ -115,7 +115,7 @@ public class StockSearchPop extends JDialog {
 		tcm = table.getColumnModel();
 		
 		for(int i = 1; i < 12; i++) {
-			if(i == 1 || i == 4 || i == 6) {
+			if(i == 4 || i == 6) {
 				tcm.getColumn(i).setCellRenderer(right);
 			} else {
 				tcm.getColumn(i).setCellRenderer(mid);
